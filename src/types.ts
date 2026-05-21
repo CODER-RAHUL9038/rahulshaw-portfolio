@@ -1,30 +1,34 @@
-export interface Skill {
-  name: string;
-  category: "Frontend" | "Backend" | "AI Workflows" | "Databases" | "Tools";
-  iconName: string;
-}
-
 export interface Project {
+  id: string;
   title: string;
   description: string;
-  longDescription?: string;
   tech: string[];
-  imageUrl: string;
-  liveUrl?: string;
-  githubUrl?: string;
+  image: string;
+  github?: string;
+  live?: string;
+  featured: boolean;
+}
+
+export interface Skill {
+  id: string;
+  name: string;
+  category: string;
+  icon: string; // Lucide icon name
 }
 
 export interface Experience {
+  id: string;
   year: string;
-  title: string;
-  company?: string;
-  subtitle: string;
+  role: string;
+  company: string;
+  tagline: string;
   description: string;
   highlighted?: boolean;
+  details?: string[];
 }
 
 export interface ChatMessage {
   id: string;
-  role: "user" | "model";
+  sender: "user" | "assistant";
   text: string;
 }

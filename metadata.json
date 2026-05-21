@@ -1,6 +1,6 @@
 {
-  "name": "Rahul Shaw | Full-Stack MERN Engineer",
-  "description": "The premium cinematic developer portfolio of Rahul Shaw, featuring an interactive AI Recruiter Assistant, core technology stack, project showcase, and professional timeline.",
+  "name": "Rahul Shaw Portfolio",
+  "description": "A cinematic premium AI-first developer portfolio website for Rahul Shaw, featuring an interactive GSAP-style timeline, custom glassmorphism effects, and a Next.js-powered Gemini recruiter assistant chatbot.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

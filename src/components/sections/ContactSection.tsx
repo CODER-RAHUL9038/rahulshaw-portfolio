@@ -1,0 +1,175 @@
+import React, { useState } from "react";
+import { Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
+
+export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) return;
+
+    setIsSubmitting(true);
+
+    // Simulate submission flow elegantly to give high-fidelity feedback
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+      
+      // Auto dismiss success toast
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    }, 1500);
+  };
+
+  return (
+    <section id="contact" className="py-28 px-6 max-w-7xl mx-auto relative">
+      {/* Background radial soft light highlight */}
+      <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div className="grid lg:grid-cols-[0.80fr_1.2fr] gap-12 lg:gap-16 items-start">
+        {/* Left column text details */}
+        <div className="space-y-8 lg:sticky lg:top-28">
+          <div className="space-y-4">
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500">
+              Inquiries & Collabs
+            </div>
+            <h2 className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+              Let's build <br />
+              something great.
+            </h2>
+            <p className="text-[#9ca3af] leading-relaxed text-sm md:text-base">
+              I am actively seeking software consulting gigs, fast-paced contract developments, or Full-Stack Node/MERN engineering positions globally. Let's start the dialogue.
+            </p>
+          </div>
+
+          <div className="space-y-6 pt-4 border-t border-white/5">
+            <a
+              href="mailto:rahulshaw.dev@nxerra.com"
+              className="flex items-center gap-4 group p-4 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
+            >
+              <div className="w-11 h-11 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-xs text-[#9ca3af] font-mono uppercase tracking-wider">Email Address</div>
+                <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">rahulshaw.dev@nxerra.com</div>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-4 p-4 border border-brand-border bg-[#0f1012]/40 rounded-2xl">
+              <div className="w-11 h-11 rounded-xl bg-indigo-500/5 border border-indigo-500/10 flex items-center justify-center text-indigo-400">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-xs text-[#9ca3af] font-mono uppercase tracking-wider">Mailing Address</div>
+                <div className="text-sm font-bold text-white">Kolkata, India</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right column form container */}
+        <div className="p-8 rounded-[2.2rem] border border-brand-border bg-[#0f1012]/50 backdrop-blur-xl relative shadow-2xl">
+          {submitSuccess ? (
+            <div className="py-16 flex flex-col items-center justify-center text-center space-y-4 animate-fade-in">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
+                <CheckCircle2 className="w-8 h-8" />
+              </div>
+              <h3 className="font-heading text-2xl font-extrabold text-white tracking-tight">
+                Message Received!
+              </h3>
+              <p className="text-[#9ca3af] max-w-sm text-sm">
+                Thank you for reaching out. I've received your query and will get back to you within 24 business hours as Rahul.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleFormSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="form-input-name" className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">
+                  Your Full Name
+                </label>
+                <input
+                  id="form-input-name"
+                  type="text"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="e.g. John Doe"
+                  className="w-full bg-[#161719] border border-brand-border text-white px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-blue-500/50 focus:bg-pink-100/10 focus:ring-1 focus:ring-blue-500/50 transition-all font-sans"
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="form-input-email" className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">
+                  Email Address
+                </label>
+                <input
+                  id="form-input-email"
+                  type="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="e.g. john@company.com"
+                  className="w-full bg-[#161719] border border-brand-border text-white px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-blue-500/50 focus:bg-pink-100/10 focus:ring-1 focus:ring-blue-500/50 transition-all font-sans"
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="form-input-message" className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">
+                  Project Inquiry & Proposal
+                </label>
+                <textarea
+                  id="form-input-message"
+                  name="message"
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="What scope or technology stack are you planning?"
+                  className="w-full bg-[#161719] border border-brand-border text-white px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-blue-500/50 focus:bg-pink-100/10 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none font-sans"
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting || !formData.name.trim() || !formData.email.trim() || !formData.message.trim()}
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:shadow-[0_0_25px_rgba(59,130,246,0.25)] hover:scale-102 active:scale-98 disabled:opacity-40 disabled:hover:shadow-none disabled:hover:scale-100 transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Dispatching...
+                  </>
+                ) : (
+                  <>
+                    Transmit Inquiry
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
