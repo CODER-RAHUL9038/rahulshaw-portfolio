@@ -21,7 +21,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     { name: "Projects", href: "#projects" },
     { name: "Tech Stack", href: "#stack" },
     { name: "Experience", href: "#experience" },
-    { name: "AI Agent", href: "#ai-agent" },
+    { name: "Ask Rahul AI", href: "#ai-agent" },
     { name: "Contact", href: "#contact" }
   ];
 
@@ -43,7 +43,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
       id="main-header"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#050505]/75 backdrop-blur-md border-b border-brand-border py-4"
+          ? "bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 py-3"
           : "bg-transparent py-6"
       }`}
     >
@@ -52,25 +52,25 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
         <a
           href="#"
           onClick={(e) => handleLinkClick(e, "#")}
-          className="flex items-center gap-2 group transition-all"
+          className="flex items-center gap-2.5 group transition-all"
         >
-          <div className="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container shadow-lg shadow-primary-container/20 group-hover:scale-110 active:scale-95 transition-all">
+          <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shadow-lg shadow-blue-500/5 group-hover:scale-110 active:scale-95 transition-all">
             <Terminal className="w-4 h-4 text-blue-400" />
           </div>
-          <span className="font-heading font-extrabold text-lg tracking-tighter text-white group-hover:text-blue-400 transition-colors">
+          <span className="font-heading font-extrabold text-base tracking-relaxed text-white group-hover:text-blue-400 transition-colors">
             RAHUL SHAW
           </span>
         </a>
 
         {/* Desktop nav menu */}
-        <nav className="hidden md:flex items-center gap-8">
-          <ul className="flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
+          <ul className="flex items-center gap-6">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="font-heading font-medium text-sm text-[#9ca3af] hover:text-white transition-colors py-2 relative group"
+                  className="font-heading font-medium text-[13px] tracking-wide text-[#9ca3af] hover:text-white transition-colors py-2 relative group"
                 >
                   {link.name}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
@@ -82,7 +82,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
           <button
             id="download-resume-btn-desktop"
             onClick={onResumeClick}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(59,130,246,0.35)] hover:scale-105 active:scale-95 transition-all duration-300"
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-[10px] tracking-widest uppercase px-5 py-2.5 rounded-full shadow-[0_5px_15px_rgba(59,130,246,0.2)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
           >
             <FileDown className="w-3.5 h-3.5" />
             Resume
@@ -122,8 +122,9 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
               setIsMobileMenuOpen(false);
               onResumeClick();
             }}
-            className="flex items-center justify-center gap-2 bg-[#161719] border border-brand-border text-white text-sm font-bold py-3.5 rounded-xl hover:bg-white/5 active:scale-95 transition-all w-full"
+            className="group flex items-center justify-center gap-2 bg-[#161719] border border-white/5 text-white text-sm font-bold py-3.5 rounded-xl hover:bg-white/5 active:scale-95 transition-all w-full relative overflow-hidden"
           >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none"></div>
             <FileDown className="w-4 h-4 text-blue-400" />
             Download Resume
           </button>

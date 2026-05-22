@@ -23,7 +23,9 @@ export default function RecruiterAssistant() {
 
   // Auto scroll to bottom
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messages.length > 1 || isLoading) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages, isLoading]);
 
   const suggestionPrompts = [

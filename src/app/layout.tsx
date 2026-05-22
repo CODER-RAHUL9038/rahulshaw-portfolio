@@ -2,27 +2,62 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rahul Shaw | Full-Stack Developer Portfolio",
-  description: "A cinematic, premium AI-first developer portfolio website for Rahul Shaw, featuring an interactive experience timeline, custom glassmorphism effects, and a Next.js Gemini recruiter assistant chatbot.",
+  title: "Rahul Shaw | Backend-Heavy MERN Developer",
+
+  description:
+    "Premium full-stack developer portfolio showcasing scalable MERN applications, secure APIs, AI-assisted workflows, and production-focused engineering.",
+
   keywords: [
     "Rahul Shaw",
+    "Backend Developer",
     "MERN Stack Developer",
     "Full-Stack Developer",
     "Next.js Developer",
-    "AI-assisted Workflows",
-    "Kolkata",
     "React.js",
     "Node.js",
-    "Express.js"
+    "Express.js",
+    "MongoDB",
+    "TypeScript",
+    "Tailwind CSS",
+    "AI-assisted Workflows",
+    "Kolkata Developer",
+    "Freelance Developer",
   ],
-  authors: [{ name: "Rahul Shaw", url: "https://rahulshaw.dev" }],
+
+  authors: [
+    {
+      name: "Rahul Shaw",
+    },
+  ],
+
+  creator: "Rahul Shaw",
+
   openGraph: {
-    title: "Rahul Shaw | Full-Stack Developer Portfolio",
-    description: "Cinematic, premium developer portfolio website featuring a Gemini-powered Recruiter AI Assistant chatbot, core stack insights, and professional evolution timeline.",
+    title: "Rahul Shaw | Backend-Heavy MERN Developer",
+
+    description:
+      "Modern developer portfolio showcasing scalable MERN applications, backend-focused engineering, AI-assisted workflows, and interactive project experiences.",
+
     type: "website",
+
     locale: "en_US",
-    siteName: "Rahul Shaw Portfolio"
-  }
+
+    siteName: "Rahul Shaw Portfolio",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title: "Rahul Shaw | Backend-Heavy MERN Developer",
+
+    description:
+      "Premium full-stack developer portfolio with scalable MERN applications, secure APIs, and AI-assisted workflows.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -32,7 +67,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth bg-[#050505]">
-      <body className="antialiased text-[#e5e2e1] bg-[#050505] selection:bg-blue-500/30 selection:text-white min-h-screen relative">
+      <body className="antialiased text-[#e5e2e1] bg-[#050505] selection:bg-blue-500/30 selection:text-white min-h-screen relative overflow-x-hidden">
         {children}
       </body>
     </html>
