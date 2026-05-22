@@ -1,5 +1,6 @@
 import React from "react";
 import { Terminal, Share2, Mail, MapPin } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,20 +17,35 @@ export default function Footer() {
     }
   };
 
+  const textRevealVariants = {
+    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
   return (
     <footer id="main-footer" className="bg-[#050505] border-t border-brand-border pt-24 pb-12 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] gap-12 lg:gap-8 mb-24">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] gap-12 lg:gap-8 mb-24"
+        >
           <div className="space-y-6">
-            <div className="font-heading font-extrabold text-[#e5e2e1] text-3xl tracking-tighter">
+            <motion.div variants={textRevealVariants} className="font-heading font-extrabold text-[#e5e2e1] text-3xl tracking-tighter">
               RAHUL SHAW
-            </div>
-            <p className="text-[#9ca3af] leading-relaxed max-w-xs text-base">
+            </motion.div>
+            <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed max-w-xs text-base">
               Full-Stack MERN Engineer specializing in robust, scalable backend systems, secure authorization, and modern AI workflows.
-            </p>
-            <div className="flex gap-3">
+            </motion.p>
+            <motion.div variants={textRevealVariants} className="flex gap-3">
               <a
                 href="https://github.com/rahulshaw-dev"
                 target="_blank"
@@ -55,12 +71,12 @@ export default function Footer() {
               >
                 <Mail className="w-5 h-5" />
               </a>
-            </div>
+            </motion.div>
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Navigation</h4>
-            <ul className="space-y-4">
+            <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Navigation</motion.h4>
+            <motion.ul variants={textRevealVariants} className="space-y-4">
               <li>
                 <a
                   href="#projects"
@@ -97,12 +113,12 @@ export default function Footer() {
                   Hire & Contact
                 </a>
               </li>
-            </ul>
+            </motion.ul>
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Featured Work</h4>
-            <ul className="space-y-4">
+            <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Featured Work</motion.h4>
+            <motion.ul variants={textRevealVariants} className="space-y-4">
               <li>
                 <span className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base cursor-pointer">
                   Freight-Intel
@@ -118,12 +134,12 @@ export default function Footer() {
                   Camellia E-Comm
                 </span>
               </li>
-            </ul>
+            </motion.ul>
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 font-heading">Collaborate</h4>
-            <div className="space-y-4">
+            <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 font-heading">Collaborate</motion.h4>
+            <motion.div variants={textRevealVariants} className="space-y-4">
               <a
                 href="mailto:rahulshaw.dev@nxerra.com"
                 className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base block"
@@ -148,9 +164,9 @@ export default function Footer() {
                   Hire Me
                 </button>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs text-[#9ca3af]">

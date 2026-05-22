@@ -29,31 +29,63 @@ export default function Hero({ onResumeClick }: HeroProps) {
     }
   };
 
+  const textRevealVariants = {
+    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.8,
+        delay: custom * 0.1,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    }),
+  };
+
   return (
     <section className="min-h-screen flex flex-col justify-center pt-24 md:pt-32 pb-12 px-6 max-w-7xl mx-auto relative cinematic-bg">
       <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-12 lg:gap-16 items-center z-10 w-full table-fixed">
-        {/* Hero Left Content - Stable Positioning */}
+        {/* Hero Left Content */}
         <div className="space-y-10 relative z-20 w-full min-w-0">
-          <div className="space-y-10 animate-[reveal_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+          <div className="space-y-10">
             {/* Headline block */}
             <div className="space-y-6">
-              <h1 className="font-heading text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-white max-w-[12ch] md:max-w-none">
+              <motion.h1 
+                custom={1}
+                initial="hidden"
+                animate="visible"
+                variants={textRevealVariants}
+                className="font-heading text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-white max-w-[12ch] md:max-w-none"
+              >
                 Building Fast, <br className="hidden md:block" />{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.15)]">
                   Reliable
                 </span>{" "}
                 Web Systems.
-              </h1>
-              <p className="text-lg md:text-xl text-[#9ca3af] font-sans leading-relaxed max-w-xl">
+              </motion.h1>
+              <motion.p 
+                custom={2}
+                initial="hidden"
+                animate="visible"
+                variants={textRevealVariants}
+                className="text-lg md:text-xl text-[#9ca3af] font-sans leading-relaxed max-w-xl"
+              >
                 Hi, I’m <span className="text-white font-medium">Rahul Shaw</span>
                 , a backend-heavy MERN developer focused on
                 <span className="text-white font-medium"> scalable systems</span>,
                 secure APIs, and modern AI-assisted workflows.
-              </p>
+              </motion.p>
             </div>
 
-            {/* Dynamic typing row - Clean Style */}
-            <div className="text-sm md:text-base font-mono text-blue-400/90 flex items-center w-fit animate-[reveal_0.8s_cubic-bezier(0.16,1,0.3,1)_0.4s_forwards] opacity-0">
+            {/* Dynamic typing row */}
+            <motion.div 
+              custom={3}
+              initial="hidden"
+              animate="visible"
+              variants={textRevealVariants}
+              className="text-sm md:text-base font-mono text-blue-400/90 flex items-center w-fit min-h-[1.5em]"
+            >
               <span className="opacity-50 mr-2 text-xs font-bold text-blue-500">
                 &gt;
               </span>
@@ -70,10 +102,16 @@ export default function Hero({ onResumeClick }: HeroProps) {
                   }}
                 />
               </div>
-            </div>
+            </motion.div>
 
             {/* Call to Actions & Social Integration */}
-            <div className="flex flex-col sm:flex-row gap-5 sm:items-center pt-3 animate-[reveal_0.8s_cubic-bezier(0.16,1,0.3,1)_0.6s_forwards] opacity-0">
+            <motion.div 
+              custom={4}
+              initial="hidden"
+              animate="visible"
+              variants={textRevealVariants}
+              className="flex flex-col sm:flex-row gap-5 sm:items-center pt-3"
+            >
               <a
                 href="#projects"
                 onClick={handleScrollToProjects}
@@ -123,11 +161,11 @@ export default function Hero({ onResumeClick }: HeroProps) {
                   Based in Kolkata, IN
                 </span>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Hero Right Avatar Visual - Stable Position + Preferred Animation */}
+        {/* Hero Right Avatar Visual - Cinematic Animation PRESERVED */}
         <div className="relative flex justify-center lg:justify-end lg:pr-4 mt-12 lg:mt-0 z-20 w-full min-w-0">
           <motion.div 
             initial={{ opacity: 0, x: 40, scale: 0.9, rotateY: 15, filter: "blur(10px)" }}

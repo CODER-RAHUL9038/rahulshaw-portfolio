@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles } from "lucide-react";
 import { ChatMessage } from "../../types";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function RecruiterAssistant() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -10,7 +11,16 @@ export default function RecruiterAssistant() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Set initial welcome greeting cleanly on load
+  const textRevealVariants = {
+    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
   useEffect(() => {
     setMessages([
       {
@@ -21,7 +31,6 @@ export default function RecruiterAssistant() {
     ]);
   }, []);
 
-  // Auto scroll to bottom
   useEffect(() => {
     if (messages.length > 1 || isLoading) {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -51,7 +60,6 @@ export default function RecruiterAssistant() {
     setIsLoading(true);
 
     try {
-      // Build previous context history (simplified text strings)
       const chatHistory = messages.slice(-6).map((msg) => ({
         sender: msg.sender,
         text: msg.text
@@ -105,28 +113,31 @@ export default function RecruiterAssistant() {
 
   return (
     <section id="ai-agent" className="py-24 px-6 max-w-7xl mx-auto relative overflow-hidden">
-      {/* Background radial accent flare */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/[0.02] blur-[150px] rounded-full pointer-events-none"></div>
 
-      <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-start">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-start"
+      >
         {/* Left column info */}
         <div className="space-y-8 lg:sticky lg:top-28">
           <div className="space-y-4">
-            <div className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 flex items-center gap-2">
+            <motion.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-blue-400" />
               Cognitive Core
-            </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+            </motion.div>
+            <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
               Recruiter <br />
               AI Assistant
-            </h2>
-            <p className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
+            </motion.h2>
+            <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
               Need on-demand verification? Query my custom-trained LLM model server to evaluate standard job alignment, technology choices, or professional highlights in real-time.
-            </p>
+            </motion.p>
           </div>
 
-          {/* Quick Stats Grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <motion.div variants={textRevealVariants} className="grid grid-cols-2 gap-4">
             <div className="p-4 bg-[#0f1012]/40 border border-white/[0.04] rounded-2xl flex items-center gap-3">
               <Cpu className="w-5 h-5 text-blue-400 shrink-0" />
               <div>
@@ -141,13 +152,11 @@ export default function RecruiterAssistant() {
                 <div className="text-xs font-bold text-white mt-0.5">Online & Stable</div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Right column: Chat workspace */}
-        <div className="p-6 md:p-8 rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] flex flex-col justify-between">
-          
-          {/* Workspace Top Details */}
+        <motion.div variants={textRevealVariants} className="p-6 md:p-8 rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] flex flex-col justify-between">
           <div className="flex justify-between items-center pb-4 border-b border-white/[0.04]">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
@@ -172,28 +181,35 @@ export default function RecruiterAssistant() {
             </button>
           </div>
 
-          {/* Messages feed viewport */}
           <div className="flex-grow overflow-y-auto py-6 space-y-4 pr-1 scrollbar-thin">
-            {messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-              >
-                <div
-                  className={`max-w-[85%] rounded-2xl px-5 py-3.5 text-sm leading-relaxed ${
-                    msg.sender === "user"
-                      ? "bg-blue-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(59,130,246,0.15)]"
-                      : "bg-[#131416]/90 border border-white/[0.04] text-[#e5e2e1] rounded-bl-none"
-                  }`}
+            <AnimatePresence initial={false}>
+              {messages.map((msg) => (
+                <motion.div
+                  key={msg.id}
+                  initial={{ opacity: 0, y: 10, filter: "blur(4px)", scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  {msg.text}
-                </div>
-              </div>
-            ))}
+                  <div
+                    className={`max-w-[85%] rounded-2xl px-5 py-3.5 text-sm leading-relaxed ${
+                      msg.sender === "user"
+                        ? "bg-blue-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(59,130,246,0.15)]"
+                        : "bg-[#131416]/90 border border-white/[0.04] text-[#e5e2e1] rounded-bl-none"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
 
-            {/* Simulated server reply delay feedback indicator */}
             {isLoading && (
-              <div className="flex justify-start animate-fade-in">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex justify-start"
+              >
                 <div className="bg-[#131416]/90 border border-white/[0.04] rounded-2xl rounded-bl-none px-5 py-3.5 text-sm text-[#9ca3af] flex items-center gap-2.5">
                   <span className="flex gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce [animation-delay:-0.3s]"></span>
@@ -202,10 +218,9 @@ export default function RecruiterAssistant() {
                   </span>
                   <span className="text-xs font-mono">Evaluating background datasets...</span>
                 </div>
-              </div>
+              </motion.div>
             )}
 
-            {/* Error messaging state panel */}
             {errorMessage && (
               <div className="flex justify-center">
                 <div className="bg-red-500/15 border border-red-500/20 rounded-2xl p-4 flex items-start gap-3 w-full text-xs text-red-400">
@@ -218,9 +233,13 @@ export default function RecruiterAssistant() {
               </div>
             )}
 
-            {/* Suggested Questions inside the chat box matching Image 3 */}
             {messages.length === 1 && !isLoading && (
-              <div className="pt-4 space-y-3 animate-[reveal_0.5s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="pt-4 space-y-3"
+              >
                 <span className="text-[10px] font-bold text-[#9ca3af] tracking-[0.15em] uppercase block pl-1">
                   SUGGESTED QUESTIONS
                 </span>
@@ -236,13 +255,12 @@ export default function RecruiterAssistant() {
                     </button>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             )}
             
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input text controls bar */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -266,9 +284,8 @@ export default function RecruiterAssistant() {
               <Send className="w-5 h-5" />
             </button>
           </form>
-
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

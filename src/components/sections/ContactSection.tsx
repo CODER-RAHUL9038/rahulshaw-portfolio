@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,16 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const textRevealVariants = {
+    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,39 +32,41 @@ export default function ContactSection() {
 
     setIsSubmitting(true);
 
-    // Simulate submission flow elegantly to give high-fidelity feedback
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", message: "" });
       
-      // Auto dismiss success toast
       setTimeout(() => setSubmitSuccess(false), 5000);
     }, 1500);
   };
 
   return (
     <section id="contact" className="py-28 px-6 max-w-7xl mx-auto relative">
-      {/* Background radial soft light highlight */}
       <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
-      <div className="grid lg:grid-cols-[0.80fr_1.2fr] gap-12 lg:gap-16 items-start">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="grid lg:grid-cols-[0.80fr_1.2fr] gap-12 lg:gap-16 items-start"
+      >
         {/* Left column text details */}
         <div className="space-y-8 lg:sticky lg:top-28">
           <div className="space-y-4">
-            <div className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500">
+            <motion.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500">
               Inquiries & Collabs
-            </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+            </motion.div>
+            <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
               Let's build <br />
               something great.
-            </h2>
-            <p className="text-[#9ca3af] leading-relaxed text-sm md:text-base">
+            </motion.h2>
+            <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base">
               I am actively seeking software consulting gigs, fast-paced contract developments, or Full-Stack Node/MERN engineering positions globally. Let's start the dialogue.
-            </p>
+            </motion.p>
           </div>
 
-          <div className="space-y-6 pt-4 border-t border-white/5">
+          <motion.div variants={textRevealVariants} className="space-y-6 pt-4 border-t border-white/5">
             <a
               href="mailto:rahulshaw.dev@nxerra.com"
               className="flex items-center gap-4 group p-4 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
@@ -76,11 +89,11 @@ export default function ContactSection() {
                 <div className="text-sm font-bold text-white">Kolkata, India</div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Right column form container */}
-        <div className="p-8 rounded-[2.2rem] border border-brand-border bg-[#0f1012]/50 backdrop-blur-xl relative shadow-2xl">
+        <motion.div variants={textRevealVariants} className="p-8 rounded-[2.2rem] border border-brand-border bg-[#0f1012]/50 backdrop-blur-xl relative shadow-2xl">
           {submitSuccess ? (
             <div className="py-16 flex flex-col items-center justify-center text-center space-y-4 animate-fade-in">
               <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
@@ -149,27 +162,24 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting || !formData.name.trim() || !formData.email.trim() || !formData.message.trim()}
-                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:shadow-[0_0_25px_rgba(59,130,246,0.25)] hover:scale-102 active:scale-98 disabled:opacity-40 disabled:hover:shadow-none disabled:hover:scale-100 transition-all duration-300 flex items-center justify-center gap-2"
+                className="group flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-8 py-4 rounded-2xl shadow-[0_10px_35px_rgba(59,130,246,0.2)] hover:shadow-[0_15px_45px_rgba(59,130,246,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-300 min-w-[200px] w-full"
               >
                 {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
-                    Dispatching...
-                  </>
+                  <span className="flex items-center gap-2">
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Dispatching Query...
+                  </span>
                 ) : (
                   <>
-                    Transmit Inquiry
-                    <Send className="w-4 h-4" />
+                    Send Message
+                    <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </>
                 )}
               </button>
             </form>
           )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

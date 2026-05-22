@@ -1,15 +1,42 @@
 import { projects } from "../../data/projects";
 import { Terminal, Globe, ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function FeaturedProjects() {
+  const textRevealVariants = {
+    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
   return (
     <section id="projects" className="py-28 px-6 max-w-7xl mx-auto relative">
       {/* Background neon dust glow */}
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none"></div>
 
-      <div className="space-y-16">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+        className="space-y-16"
+      >
         {/* Section Header */}
-        <div className="space-y-4 max-w-2xl">
+        <motion.div variants={textRevealVariants} className="space-y-4 max-w-2xl">
           <div className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans">
             Curated Showcases
           </div>
@@ -19,21 +46,25 @@ export default function FeaturedProjects() {
           <p className="text-[#9ca3af] leading-relaxed text-base">
             Exploring the bounds of robust backend systems, advanced state machine coordination, and sleek user experiences.
           </p>
-        </div>
+        </motion.div>
 
         {/* Project display index cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {projects.map((project) => (
-            <div
+            <motion.div
               key={project.id}
+              variants={textRevealVariants}
+              whileHover={{ y: -8 }}
               className="glass-card rounded-[2rem] overflow-hidden flex flex-col group h-full relative"
             >
               {/* Image Frame */}
               <div className="relative aspect-[16/10] overflow-hidden border-b border-brand-border bg-[#0a0a0a]">
-                <img
+                <motion.img
                   src={project.image}
                   alt={project.title}
                   loading="lazy"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.6 }}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 select-none"
                   referrerPolicy="no-referrer"
                 />
@@ -86,7 +117,7 @@ export default function FeaturedProjects() {
                       {project.title}
                     </h3>
                   </div>
-                  <p className="text-[#9ca3af] leading-relaxed text-sm md:text-base">
+                  <p className="text-[#9ca3af] leading-relaxed text-sm md:text-base line-clamp-3">
                     {project.description}
                   </p>
                 </div>
@@ -104,15 +135,15 @@ export default function FeaturedProjects() {
                     ))}
                   </div>
                   <button className="text-white hover:text-blue-400 font-bold text-xs uppercase flex items-center gap-1 group-hover/btn:translate-x-1 transition-all">
-                    Detail
+                    View Project
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
