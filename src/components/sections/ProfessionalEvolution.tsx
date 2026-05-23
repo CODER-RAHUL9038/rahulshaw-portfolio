@@ -1,23 +1,22 @@
 import React from "react";
 import { experiences } from "../../data/experience";
 import { Briefcase, MapPin, Milestone, Award, Star, GraduationCap } from "lucide-react";
-import { motion, useScroll, useSpring } from "motion/react";
+import { motion, useScroll, useSpring, Variants } from "motion/react";
 
 export default function ProfessionalEvolution() {
   const { scrollYProgress } = useScroll();
   const scaleY = useSpring(scrollYProgress, {
-    staggerChildren: 0.1,
     damping: 30,
     restDelta: 0.001
   });
 
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -39,7 +38,7 @@ export default function ProfessionalEvolution() {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: "some" }}
           className="text-center space-y-3"
         >
           <motion.h2 
@@ -75,7 +74,7 @@ export default function ProfessionalEvolution() {
                   key={exp.id}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: "some" }}
                   variants={textRevealVariants}
                   className={`relative flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-start md:items-center gap-0 md:gap-12 w-full ${
                     isEven ? "md:flex-row-reverse" : ""

@@ -1,6 +1,6 @@
 import React from "react";
 import { Terminal, Share2, Mail, MapPin } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,13 +17,13 @@ export default function Footer() {
     }
   };
 
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -35,7 +35,7 @@ export default function Footer() {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: "some" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] gap-12 lg:gap-8 mb-24"
         >
           <div className="space-y-6">
@@ -49,7 +49,7 @@ export default function Footer() {
               <a
                 href="https://github.com/rahulshaw-dev"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="GitHub"
               >
@@ -58,7 +58,7 @@ export default function Footer() {
               <a
                 href="https://linkedin.com/in/rahulshaw-dev"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="LinkedIn"
               >
@@ -174,11 +174,11 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6 text-xs text-[#9ca3af] font-mono">
             <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-              Production v2.5.0
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <motion.span 
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1.5 h-1.5 rounded-full bg-blue-500"
+              ></motion.span>
               Uptime 99.9%
             </span>
           </div>

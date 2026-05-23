@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { skills } from "../../data/skills";
 import { Atom, Globe, Cpu, Terminal, Database, Lock, GitBranch, Wind, Code, Sparkles, MessageSquareCode, Network, Layers, Zap, GitFork, Container, Radio, Check } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 export default function CoreStack() {
   const [activeTab, setActiveTab] = useState<string>("ALL");
@@ -93,13 +93,13 @@ export default function CoreStack() {
     }
   ];
 
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -110,7 +110,7 @@ export default function CoreStack() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: "some" }}
         className="space-y-16 relative z-10"
       >
         {/* Section Header */}

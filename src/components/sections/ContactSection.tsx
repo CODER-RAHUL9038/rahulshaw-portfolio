@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -11,13 +11,13 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -48,7 +48,7 @@ export default function ContactSection() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: "some" }}
         className="grid lg:grid-cols-[0.80fr_1.2fr] gap-12 lg:gap-16 items-start"
       >
         {/* Left column text details */}
@@ -95,7 +95,11 @@ export default function ContactSection() {
         {/* Right column form container */}
         <motion.div variants={textRevealVariants} className="p-8 rounded-[2.2rem] border border-brand-border bg-[#0f1012]/50 backdrop-blur-xl relative shadow-2xl">
           {submitSuccess ? (
-            <div className="py-16 flex flex-col items-center justify-center text-center space-y-4 animate-fade-in">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="py-16 flex flex-col items-center justify-center text-center space-y-4"
+            >
               <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
@@ -105,7 +109,7 @@ export default function ContactSection() {
               <p className="text-[#9ca3af] max-w-sm text-sm">
                 Thank you for reaching out. I've received your query and will get back to you within 24 business hours as Rahul.
               </p>
-            </div>
+            </motion.div>
           ) : (
             <form onSubmit={handleFormSubmit} className="space-y-6">
               <div className="space-y-2">
@@ -166,7 +170,11 @@ export default function ContactSection() {
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
-                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <motion.span 
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full" 
+                    />
                     Dispatching Query...
                   </span>
                 ) : (

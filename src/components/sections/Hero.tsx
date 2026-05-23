@@ -1,7 +1,7 @@
 import React from "react";
 import { Terminal, Share2, Mail, ArrowRight, Download } from "lucide-react";
 import Typewriter from "typewriter-effect";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 interface HeroProps {
   onResumeClick: () => void;
@@ -29,16 +29,16 @@ export default function Hero({ onResumeClick }: HeroProps) {
     }
   };
 
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: (custom: number) => ({
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
       transition: {
         duration: 0.8,
-        delay: custom * 0.1,
-        ease: [0.16, 1, 0.3, 1],
+        delay: (custom || 0) * 0.1,
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     }),
   };
@@ -124,7 +124,12 @@ export default function Hero({ onResumeClick }: HeroProps) {
                 onClick={onResumeClick}
                 className="group flex items-center justify-center gap-2 border border-white/5 bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-4.5 rounded-2xl shadow-lg hover:shadow-blue-500/10 active:scale-98 transition-all duration-300 min-w-[200px] backdrop-blur-md relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none"></div>
+                <motion.div 
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"
+                />
                 <Download className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
                  Resume
               </button>
@@ -134,7 +139,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
                 <a
                   href="https://github.com/rahulshaw-dev"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="group p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
                   aria-label="GitHub Developer Profile"
                 >
@@ -143,7 +148,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
                 <a
                   href="https://linkedin.com/in/rahulshaw-dev"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="group p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
                   aria-label="LinkedIn Authority Profile"
                 >
@@ -165,14 +170,14 @@ export default function Hero({ onResumeClick }: HeroProps) {
           </div>
         </div>
 
-        {/* Hero Right Avatar Visual - Cinematic Animation PRESERVED */}
+        {/* Hero Right Avatar Visual */}
         <div className="relative flex justify-center lg:justify-end lg:pr-4 mt-12 lg:mt-0 z-20 w-full min-w-0">
           <motion.div 
             initial={{ opacity: 0, x: 40, scale: 0.9, rotateY: 15, filter: "blur(10px)" }}
             animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0, filter: "blur(0px)" }}
             transition={{ 
               duration: 1.8, 
-              ease: [0.16, 1, 0.3, 1], 
+              ease: [0.16, 1, 0.3, 1] as const, 
               delay: 0.2,
               opacity: { duration: 1.2 },
               scale: { duration: 1.8 }
@@ -180,11 +185,40 @@ export default function Hero({ onResumeClick }: HeroProps) {
             className="relative perspective-1000 w-full max-w-[420px]"
           >
             {/* Ambient space glow behind avatar */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-blue-500/5 blur-[120px] rounded-full pulse-glow pointer-events-none"></div>
+            <motion.div 
+              animate={{ 
+                opacity: [0.35, 0.5, 0.35],
+                scale: [1, 1.04, 1]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"
+            />
 
-            <div className="relative w-full aspect-[1/1.15] float-avatar">
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="relative w-full aspect-[1/1.15]"
+            >
               {/* Dynamic visual framing containing the primary portrait */}
-              <div className="neon-border-glow rounded-[2.5rem]"></div>
+              <motion.div 
+                animate={{ 
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute inset-[-1px] rounded-[2.5rem] bg-gradient-to-r from-blue-600 via-transparent to-purple-600 bg-[length:300%_300%] z-[-1] opacity-25 blur-[15px]"
+              />
               <div className="w-full h-full p-1.5 rounded-[2.5rem] border border-blue-500/15 bg-[#0f1012]/80 backdrop-blur-md overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.1)] relative z-10">
                 <div className="w-full h-full rounded-[2.2rem] overflow-hidden border-2 border-[#131416]/70 shadow-2xl relative bg-[#0a0a0a]">
                   <img
@@ -198,7 +232,11 @@ export default function Hero({ onResumeClick }: HeroProps) {
                   {/* Visual branding in portrait margins */}
                   <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center bg-black/40 backdrop-blur-md border border-white/5 py-2 px-4 rounded-xl">
                     <div className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <motion.span 
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                      ></motion.span>
                       <span className="text-[10px] font-mono text-emerald-400 font-bold tracking-tighter uppercase">
                         Available For Projects
                       </span>
@@ -206,7 +244,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

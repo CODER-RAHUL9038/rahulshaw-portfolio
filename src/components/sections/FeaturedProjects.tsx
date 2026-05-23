@@ -1,19 +1,19 @@
 import { projects } from "../../data/projects";
 import { Terminal, Globe, ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 export default function FeaturedProjects() {
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -31,7 +31,7 @@ export default function FeaturedProjects() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: "some" }}
         variants={containerVariants}
         className="space-y-16"
       >
@@ -49,7 +49,7 @@ export default function FeaturedProjects() {
         </motion.div>
 
         {/* Project display index cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <motion.div variants={containerVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {projects.map((project) => (
             <motion.div
               key={project.id}
@@ -88,7 +88,7 @@ export default function FeaturedProjects() {
                     <a
                       href={project.github}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="w-10 h-10 rounded-xl bg-[#0f1012]/85 border border-white/5 flex items-center justify-center text-white hover:text-blue-400 hover:border-blue-500/50 hover:bg-black/85 transition-all text-xs"
                       title="GitHub Repository"
                     >
@@ -99,7 +99,7 @@ export default function FeaturedProjects() {
                     <a
                       href={project.live}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="w-10 h-10 rounded-xl bg-[#0f1012]/85 border border-white/5 flex items-center justify-center text-white hover:text-blue-400 hover:border-blue-500/50 hover:bg-black/85 transition-all text-xs"
                       title="Live Deployment"
                     >
@@ -142,7 +142,7 @@ export default function FeaturedProjects() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

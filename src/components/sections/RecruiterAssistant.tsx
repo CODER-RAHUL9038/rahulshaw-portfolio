@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles } from "lucide-react";
 import { ChatMessage } from "../../types";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, Variants } from "motion/react";
 
 export default function RecruiterAssistant() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -11,13 +11,13 @@ export default function RecruiterAssistant() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 6, filter: "blur(8px)" },
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -118,7 +118,7 @@ export default function RecruiterAssistant() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: "some" }}
         className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-start"
       >
         {/* Left column info */}
@@ -165,7 +165,11 @@ export default function RecruiterAssistant() {
               <div>
                 <h4 className="text-sm font-bold text-white leading-none font-heading">Recruiter Assistant</h4>
                 <span className="text-[10px] font-mono font-medium text-emerald-400 flex items-center gap-1.5 mt-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <motion.span 
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                  ></motion.span>
                   Ready to respond
                 </span>
               </div>
@@ -188,7 +192,7 @@ export default function RecruiterAssistant() {
                   key={msg.id}
                   initial={{ opacity: 0, y: 10, filter: "blur(4px)", scale: 0.98 }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
                   className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
@@ -212,9 +216,21 @@ export default function RecruiterAssistant() {
               >
                 <div className="bg-[#131416]/90 border border-white/[0.04] rounded-2xl rounded-bl-none px-5 py-3.5 text-sm text-[#9ca3af] flex items-center gap-2.5">
                   <span className="flex gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce [animation-delay:-0.3s]"></span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce [animation-delay:-0.15s]"></span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce"></span>
+                    <motion.span 
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                      className="w-1.5 h-1.5 rounded-full bg-blue-400"
+                    />
+                    <motion.span 
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
+                      className="w-1.5 h-1.5 rounded-full bg-blue-400"
+                    />
+                    <motion.span 
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
+                      className="w-1.5 h-1.5 rounded-full bg-blue-400"
+                    />
                   </span>
                   <span className="text-xs font-mono">Evaluating background datasets...</span>
                 </div>
