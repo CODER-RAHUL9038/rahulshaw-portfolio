@@ -202,10 +202,21 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
               animate="open"
               exit="closed"
               variants={mobileMenuVariants}
-              className="absolute top-0 right-0 h-full w-[80%] max-w-sm bg-[#050505]/95 backdrop-blur-2xl border-l border-brand-border shadow-2xl flex flex-col pt-24"
+              className="absolute top-0 right-0 h-full w-[80%] max-w-sm bg-[#050505]/95 backdrop-blur-2xl border-l border-brand-border shadow-2xl flex flex-col pt-6"
             >
-              <div className="px-10 flex flex-col gap-10">
-                <ul className="flex flex-col gap-6 perspective-1000">
+              {/* Internal Close Button */}
+              <div className="flex justify-end px-6 mb-4">
+                <button 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 rounded-xl bg-white/5 text-[#9ca3af] hover:text-white transition-all active:scale-90"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="px-10 flex flex-col gap-12">
+                <ul className="flex flex-col gap-8 perspective-1000">
                   {navLinks.map((link) => (
                     <motion.li
                       key={link.name}
