@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { skills } from "../../data/skills";
 import { Atom, Globe, Cpu, Terminal, Database, Lock, GitBranch, Wind, Code, Sparkles, MessageSquareCode, Network, Layers, Zap, GitFork, Container, Radio, Check } from "lucide-react";
 import { motion, Variants } from "motion/react";
 
 export default function CoreStack() {
   const [activeTab, setActiveTab] = useState<string>("ALL");
+  const directoryRef = useRef<HTMLDivElement>(null);
 
   const categories = ["ALL", "BACKEND", "FRONTEND", "AI WORKFLOWS", "DATABASES", "TOOLS"];
 
@@ -12,6 +13,17 @@ export default function CoreStack() {
     if (activeTab === "ALL") return true;
     return skill.category === activeTab;
   });
+
+  // Handle scroll to top of directory when tab changes
+  useEffect(() => {
+    if (directoryRef.current) {
+      const topOffset = directoryRef.current.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({
+        top: topOffset,
+        behavior: "smooth"
+      });
+    }
+  }, [activeTab]);
 
   const renderIcon = (id: string, className = "w-5 h-5 text-blue-400") => {
     switch (id) {
@@ -155,6 +167,7 @@ export default function CoreStack() {
 
         {/* Directory Wrapper Panel */}
         <motion.div 
+          ref={directoryRef}
           variants={textRevealVariants}
           className="rounded-[2.5rem] border border-white/[0.05] bg-[#090a0b]/80 p-8 md:p-12 space-y-10 shadow-[0_30px_70px_rgba(0,0,0,0.4)] relative"
         >
