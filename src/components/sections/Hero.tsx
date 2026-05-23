@@ -21,7 +21,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
     const target = document.querySelector("#projects");
     if (target) {
       const topOffset =
-        target.getBoundingClientRect().top + window.scrollY - 60;
+        target.getBoundingClientRect().top + window.scrollY - 20;
       window.scrollTo({
         top: topOffset,
         behavior: "smooth",

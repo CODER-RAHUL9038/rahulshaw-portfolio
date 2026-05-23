@@ -120,35 +120,19 @@ export default function CoreStack() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.04,
         delayChildren: 0.1
-      }
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        staggerChildren: 0.02,
-        staggerDirection: -1
       }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+    hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { 
-        duration: 0.5, 
-        ease: [0.16, 1, 0.3, 1] as const 
-      }
-    },
-    exit: { 
-      opacity: 0, 
-      scale: 0.95,
-      filter: "blur(4px)",
-      transition: { duration: 0.2 } 
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -159,7 +143,7 @@ export default function CoreStack() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: "some" }}
         className="space-y-16 relative z-10"
       >
         {/* Section Header */}
@@ -238,38 +222,36 @@ export default function CoreStack() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 min-h-[400px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="contents"
-              >
-                {filteredSkills.map((skill) => (
-                  <motion.div
-                    key={skill.id}
-                    variants={itemVariants}
-                    className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
-                  >
-                    <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="text-sm font-bold text-white tracking-tight truncate leading-tight">
-                        {skill.name}
-                      </h4>
-                      <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
-                        {skill.category}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+          <motion.div 
+            key={activeTab}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredSkills.map((skill) => (
+                <motion.div
+                  key={skill.id}
+                  variants={itemVariants}
+                  layout
+                  className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-bold text-white tracking-tight truncate leading-tight">
+                      {skill.name}
+                    </h4>
+                    <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
+                      {skill.category}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </AnimatePresence>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

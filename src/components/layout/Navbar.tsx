@@ -35,7 +35,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     const target = document.querySelector(href);
     if (target) {
       const topOffset =
-        target.getBoundingClientRect().top + window.scrollY - 60;
+        target.getBoundingClientRect().top + window.scrollY - 20;
       window.scrollTo({
         top: topOffset,
         behavior: "smooth",
