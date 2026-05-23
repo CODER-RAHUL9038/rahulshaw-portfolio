@@ -1,5 +1,5 @@
 import React from "react";
-import { Terminal, Share2, Mail, ArrowRight, Download } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react";
 import Typewriter from "typewriter-effect";
 import { motion, Variants } from "motion/react";
 
@@ -45,7 +45,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
 
   return (
     <section className="min-h-screen flex flex-col justify-center pt-28 md:pt-32 pb-12 px-6 max-w-7xl mx-auto relative cinematic-bg">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-16 items-center z-10 w-full table-fixed">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-16 items-center z-10 w-full">
         {/* Hero Left Content */}
         <div className="space-y-6 md:space-y-10 relative z-20 w-full min-w-0 order-2 lg:order-1">
           <div className="space-y-6 md:space-y-10">
@@ -135,34 +135,37 @@ export default function Hero({ onResumeClick }: HeroProps) {
               </button>
 
               {/* Mini Social icons list */}
-              <div className="flex items-center gap-4 pl-2 mt-4 sm:mt-0">
-                <a
-                  href="https://github.com/rahulshaw-dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
-                  aria-label="GitHub Developer Profile"
-                >
-                  <Terminal className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/rahulshaw-dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
-                  aria-label="LinkedIn Authority Profile"
-                >
-                  <Share2 className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
-                </a>
-                <a
-                  href="mailto:rahulshaw.dev@nxerra.com"
-                  className="group p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
-                  aria-label="Email Address Contacts"
-                >
-                  <Mail className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
-                </a>
-                <div className="h-px w-6 bg-white/10 ml-2 hidden sm:block"></div>
-                <span className="text-[9px] font-mono text-[#4b5563] uppercase tracking-widest select-none whitespace-nowrap hidden sm:block">
+              <div className="flex flex-wrap items-center gap-4 pl-1 mt-6 sm:mt-0">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://github.com/CODER-RAHUL9038"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group p-2 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
+                    aria-label="GitHub Developer Profile"
+                  >
+                    <Github className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/rahulshaw-dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group p-2 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
+                    aria-label="LinkedIn Authority Profile"
+                  >
+                    <Linkedin className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
+                  </a>
+                  <a
+                    href="mailto:rahulshaw903866@gmail.com"
+                    className="group p-2 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
+                    aria-label="Email Address Contacts"
+                  >
+                    <Mail className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
+                  </a>
+                </div>
+                
+                <div className="h-px w-6 bg-white/15 ml-1"></div>
+                <span className="text-[10px] font-mono text-[#9ca3af] uppercase tracking-widest select-none whitespace-nowrap">
                   Based in Kolkata, IN
                 </span>
               </div>
