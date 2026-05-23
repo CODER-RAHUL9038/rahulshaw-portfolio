@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Hero from "../components/sections/Hero";
 import CoreStack from "../components/sections/CoreStack";
@@ -13,6 +13,14 @@ import ResumeModal from "../components/shared/ResumeModal";
 
 export default function Home() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+
+  useEffect(() => {
+    // Reset scroll to top on refresh/load
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="bg-[#050505] min-h-screen text-[#e5e2e1] antialiased selection:bg-blue-500/30 selection:text-white overflow-x-hidden">
