@@ -25,53 +25,6 @@ export default function CoreStack() {
     }
   }, [activeTab]);
 
-  const renderIcon = (id: string, className = "w-5 h-5 text-blue-400") => {
-    switch (id) {
-      case "reactjs":
-      case "react":
-        return <Atom className={className} />;
-      case "nextjs":
-        return <Globe className={className} />;
-      case "nodejs":
-        return <Cpu className={className} />;
-      case "expressjs":
-      case "express":
-        return <Terminal className={className} />;
-      case "mongodb":
-        return <Database className={className} />;
-      case "rest-jwt":
-        return <Lock className={className} />;
-      case "graphql":
-        return <GitBranch className={className} />;
-      case "tailwind":
-        return <Wind className={className} />;
-      case "typescript":
-        return <Code className={className} />;
-      case "gemini-api":
-        return <Sparkles className={className} />;
-      case "claude-api":
-        return <Cpu className={className} />;
-      case "prompt-eng":
-        return <MessageSquareCode className={className} />;
-      case "agentic-workflows":
-        return <Network className={className} />;
-      case "postgresql":
-        return <Layers className={className} />;
-      case "redis":
-        return <Zap className={className} />;
-      case "git-github":
-        return <GitFork className={className} />;
-      case "docker":
-        return <Container className={className} />;
-      case "vite":
-        return <Zap className={className} />;
-      case "postman":
-        return <Radio className={className} />;
-      default:
-        return <Code className={className} />;
-    }
-  };
-
   const topPillars = [
     {
       id: "react",
@@ -120,19 +73,22 @@ export default function CoreStack() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.04,
+        staggerChildren: 0.05,
         delayChildren: 0.1
       }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
+    hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }
+      transition: { 
+        duration: 0.5, 
+        ease: [0.16, 1, 0.3, 1] as const 
+      }
     }
   };
 
@@ -143,7 +99,7 @@ export default function CoreStack() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ amount: 0.15 }}
+        viewport={{ once: false, amount: 0.1 }}
         className="space-y-16 relative z-10"
       >
         {/* Section Header */}
@@ -222,33 +178,34 @@ export default function CoreStack() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 min-h-[150px]">
-            <AnimatePresence mode="popLayout">
-              {filteredSkills.map((skill) => (
-                <motion.div
-                  key={skill.id}
-                  layout
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
-                >
-                  <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-sm font-bold text-white tracking-tight truncate leading-tight">
-                      {skill.name}
-                    </h4>
-                    <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
-                      {skill.category}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+          <motion.div 
+            key={activeTab} // This ensures recurring animations when tab changes
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.1 }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 min-h-[150px]"
+          >
+            {filteredSkills.map((skill) => (
+              <motion.div
+                key={skill.id}
+                variants={itemVariants}
+                className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
+                </div>
+                <div className="min-w-0">
+                  <h4 className="text-sm font-bold text-white tracking-tight truncate leading-tight">
+                    {skill.name}
+                  </h4>
+                  <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
+                    {skill.category}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>
