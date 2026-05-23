@@ -143,7 +143,7 @@ export default function CoreStack() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: "some" }}
+        viewport={{ amount: 0.15 }}
         className="space-y-16 relative z-10"
       >
         {/* Section Header */}
@@ -222,16 +222,16 @@ export default function CoreStack() {
             </div>
           </div>
 
-          <motion.div 
-            variants={containerVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-          >
-            <AnimatePresence mode="popLayout" initial={false}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 min-h-[150px]">
+            <AnimatePresence mode="popLayout">
               {filteredSkills.map((skill) => (
                 <motion.div
                   key={skill.id}
-                  variants={itemVariants}
                   layout
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
                   className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
                 >
                   <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
@@ -248,7 +248,7 @@ export default function CoreStack() {
                 </motion.div>
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
         </motion.div>
       </motion.div>
     </section>
