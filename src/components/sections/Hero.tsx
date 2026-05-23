@@ -115,14 +115,14 @@ export default function Hero({ onResumeClick }: HeroProps) {
               <a
                 href="#projects"
                 onClick={handleScrollToProjects}
-                className="group flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-8 py-4.5 rounded-2xl shadow-[0_10px_35px_rgba(59,130,246,0.2)] hover:shadow-[0_15px_45px_rgba(59,130,246,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-300 min-w-[200px]"
+                className="group flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-8 py-4.5 rounded-2xl shadow-[0_10px_35px_rgba(59,130,246,0.2)] hover:shadow-[0_15px_45px_rgba(59,130,246,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-300 min-w-[150px]"
               >
-                View Projects
+                 Projects
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <button
                 onClick={onResumeClick}
-                className="group flex items-center justify-center gap-2 border border-white/5 bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-4.5 rounded-2xl shadow-lg hover:shadow-blue-500/10 active:scale-98 transition-all duration-300 min-w-[200px] backdrop-blur-md relative overflow-hidden"
+                className="group flex items-center justify-center gap-2 border border-white/5 bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-4.5 rounded-2xl shadow-lg hover:shadow-blue-500/10 active:scale-98 transition-all duration-300 min-w-[150px] backdrop-blur-md relative overflow-hidden"
               >
                 <motion.div 
                   initial={{ x: "-100%" }}
