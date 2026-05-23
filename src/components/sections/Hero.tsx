@@ -44,19 +44,19 @@ export default function Hero({ onResumeClick }: HeroProps) {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-24 md:pt-32 pb-12 px-6 max-w-7xl mx-auto relative cinematic-bg">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-12 lg:gap-16 items-center z-10 w-full table-fixed">
+    <section className="min-h-screen flex flex-col justify-center pt-28 md:pt-32 pb-12 px-6 max-w-7xl mx-auto relative cinematic-bg">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-16 items-center z-10 w-full table-fixed">
         {/* Hero Left Content */}
-        <div className="space-y-10 relative z-20 w-full min-w-0">
-          <div className="space-y-10">
+        <div className="space-y-6 md:space-y-10 relative z-20 w-full min-w-0 order-2 lg:order-1">
+          <div className="space-y-6 md:space-y-10">
             {/* Headline block */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <motion.h1 
                 custom={1}
                 initial="hidden"
                 animate="visible"
                 variants={textRevealVariants}
-                className="font-heading text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-white max-w-[12ch] md:max-w-none"
+                className="font-heading text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-white max-w-[12ch] md:max-w-none"
               >
                 Building Fast, <br className="hidden md:block" />{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.15)]">
@@ -171,7 +171,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
         </div>
 
         {/* Hero Right Avatar Visual */}
-        <div className="relative flex justify-center lg:justify-end lg:pr-4 mt-12 lg:mt-0 z-20 w-full min-w-0">
+        <div className="relative flex justify-center lg:justify-end lg:pr-4 z-20 w-full min-w-0 order-1 lg:order-2 mb-6 lg:mb-0">
           <motion.div 
             initial={{ opacity: 0, x: 40, scale: 0.9, rotateY: 15, filter: "blur(10px)" }}
             animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0, filter: "blur(0px)" }}
@@ -182,7 +182,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
               opacity: { duration: 1.2 },
               scale: { duration: 1.8 }
             }}
-            className="relative perspective-1000 w-full max-w-[420px]"
+            className="relative perspective-1000 w-full max-w-[300px] md:max-w-[420px]"
           >
             {/* Ambient space glow behind avatar */}
             <motion.div 
