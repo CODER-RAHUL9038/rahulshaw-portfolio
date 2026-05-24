@@ -5,7 +5,10 @@ import { motion, Variants, AnimatePresence } from "motion/react";
 
 export default function CoreStack() {
   const [activeTab, setActiveTab] = useState<string>("ALL");
+  const [isExpanded, setIsExpanded] = useState(false);
   const directoryRef = useRef<HTMLDivElement>(null);
+
+  const SKILL_LIMIT = 10;
 
   const categories = ["ALL", "BACKEND", "FRONTEND", "AI WORKFLOWS", "DATABASES", "TOOLS"];
 
@@ -13,6 +16,14 @@ export default function CoreStack() {
     if (activeTab === "ALL") return true;
     return skill.category === activeTab;
   });
+
+  const displayedSkills = isExpanded ? filteredSkills : filteredSkills.slice(0, SKILL_LIMIT);
+  const hasMore = filteredSkills.length > SKILL_LIMIT;
+
+  // Reset expansion when category changes
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [activeTab]);
 
   // Handle scroll to top of directory when tab changes
   useEffect(() => {
@@ -179,33 +190,57 @@ export default function CoreStack() {
           </div>
 
           <motion.div 
-            key={activeTab} // This ensures recurring animations when tab changes
+            key={`${activeTab}-${isExpanded}`} // Ensures animation on expansion too
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 min-h-[150px]"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
           >
-            {filteredSkills.map((skill) => (
-              <motion.div
-                key={skill.id}
-                variants={itemVariants}
-                className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
-              >
-                <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
-                  <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="text-sm font-bold text-white tracking-tight truncate leading-tight">
-                    {skill.name}
-                  </h4>
-                  <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
-                    {skill.category}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+            <AnimatePresence mode="popLayout">
+              {displayedSkills.map((skill) => (
+                <motion.div
+                  key={skill.id}
+                  layout
+                  variants={itemVariants}
+                  className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-bold text-white tracking-tight truncate leading-tight">
+                      {skill.name}
+                    </h4>
+                    <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
+                      {skill.category}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </motion.div>
+
+          {/* Show More / Less Toggle */}
+          {hasMore && (
+            <motion.div 
+              variants={textRevealVariants}
+              className="flex justify-center pt-4"
+            >
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="group flex items-center gap-2 px-8 py-3 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 text-[#9ca3af] hover:text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95"
+              >
+                {isExpanded ? "Show Less" : `Show ${filteredSkills.length - SKILL_LIMIT} More`}
+                <motion.span
+                  animate={{ y: isExpanded ? -2 : 2 }}
+                  transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
+                >
+                  {isExpanded ? "↑" : "↓"}
+                </motion.span>
+              </button>
+            </motion.div>
+          )}
         </motion.div>
       </motion.div>
     </section>
