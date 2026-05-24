@@ -1,5 +1,5 @@
 import { projects } from "../../data/projects";
-import { Terminal, Globe, ArrowUpRight } from "lucide-react";
+import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import { motion, Variants } from "motion/react";
 
 export default function FeaturedProjects() {
@@ -49,7 +49,7 @@ export default function FeaturedProjects() {
         </motion.div>
 
         {/* Project display index cards */}
-        <motion.div variants={containerVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <motion.div
               key={project.id}
@@ -92,7 +92,7 @@ export default function FeaturedProjects() {
                       className="w-10 h-10 rounded-xl bg-[#0f1012]/85 border border-white/5 flex items-center justify-center text-white hover:text-blue-400 hover:border-blue-500/50 hover:bg-black/85 transition-all text-xs"
                       title="GitHub Repository"
                     >
-                      <Terminal className="w-5 h-5" />
+                      <Github className="w-5 h-5" />
                     </a>
                   )}
                   {project.live && (
@@ -103,27 +103,28 @@ export default function FeaturedProjects() {
                       className="w-10 h-10 rounded-xl bg-[#0f1012]/85 border border-white/5 flex items-center justify-center text-white hover:text-blue-400 hover:border-blue-500/50 hover:bg-black/85 transition-all text-xs"
                       title="Live Deployment"
                     >
-                      <Globe className="w-5 h-5" />
+                      <ExternalLink className="w-5 h-5" />
                     </a>
                   )}
                 </div>
               </div>
 
               {/* Text metadata content block */}
-              <div className="p-8 flex flex-col justify-between flex-grow space-y-6">
-                <div className="space-y-3">
+              <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
+                <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-heading text-2xl font-extrabold text-white tracking-tight group-hover:text-blue-400 transition-colors">
+                    <h3 className="font-heading text-xl font-extrabold text-white tracking-tight group-hover:text-blue-400 transition-colors">
                       {project.title}
                     </h3>
                   </div>
-                  <p className="text-[#9ca3af] leading-relaxed text-sm md:text-base line-clamp-3">
+                  {/* Reduced project description font size to shrink card height */}
+                  <p className="text-[#9ca3af] leading-relaxed text-[13px] line-clamp-3">
                     {project.description}
                   </p>
                 </div>
 
                 {/* Technology pill list */}
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5 items-center justify-between">
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5 items-center justify-between mt-auto">
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((t) => (
                       <span
@@ -134,9 +135,10 @@ export default function FeaturedProjects() {
                       </span>
                     ))}
                   </div>
-                  <button className="text-white hover:text-blue-400 font-bold text-xs uppercase flex items-center gap-1 group-hover/btn:translate-x-1 transition-all">
+                  {/* Top margin added for visual separation */}
+                  <button className="text-white hover:text-blue-400 font-bold text-[10px] uppercase flex items-center gap-1 group-hover/btn:translate-x-1 transition-all mt-4">
                     View Project
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-3 h-3" />
                   </button>
                 </div>
               </div>
