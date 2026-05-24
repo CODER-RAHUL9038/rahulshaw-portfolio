@@ -222,25 +222,31 @@ export default function CoreStack() {
           </motion.div>
 
           {/* Show More / Less Toggle */}
-          {hasMore && (
-            <motion.div 
-              variants={textRevealVariants}
-              className="flex justify-center pt-4"
-            >
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="group flex items-center gap-2 px-8 py-3 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 text-[#9ca3af] hover:text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95"
+          <AnimatePresence>
+            {hasMore && (
+              <motion.div 
+                key={`toggle-${activeTab}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="flex justify-center pt-8"
               >
-                {isExpanded ? "Show Less" : `Show ${filteredSkills.length - SKILL_LIMIT} More`}
-                <motion.span
-                  animate={{ y: isExpanded ? -2 : 2 }}
-                  transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="group flex items-center gap-2 px-8 py-3 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 text-[#9ca3af] hover:text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-lg"
                 >
-                  {isExpanded ? "↑" : "↓"}
-                </motion.span>
-              </button>
-            </motion.div>
-          )}
+                  {isExpanded ? "Show Less" : `Show ${filteredSkills.length - SKILL_LIMIT} More`}
+                  <motion.span
+                    animate={{ y: isExpanded ? -2 : 2 }}
+                    transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
+                    className="font-mono text-blue-400"
+                  >
+                    {isExpanded ? "↑" : "↓"}
+                  </motion.span>
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </motion.div>
     </section>
