@@ -47,22 +47,22 @@ export default function Footer() {
             </motion.p>
             <motion.div variants={textRevealVariants} className="flex gap-3">
               <a
-                href="https://github.com/rahulshaw-dev"
+                href="https://github.com/CODER-RAHUL9038"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="GitHub"
               >
-                <Terminal className="w-5 h-5" />
+                <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://linkedin.com/in/rahulshaw-dev"
+                href="https://www.linkedin.com/in/rahulshaw-dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="LinkedIn"
               >
-                <Share2 className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" />
               </a>
               <a
                 href="mailto:rahulshaw.dev@nxerra.com"
@@ -173,6 +173,23 @@ export default function Footer() {
             &copy; {currentYear} Rahul Shaw. Production-Focused Full-Stack Engineering.
           </p>
           <div className="flex items-center gap-6 text-xs text-[#9ca3af] font-mono">
+            <span className="flex items-center gap-2">
+              <motion.span 
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1.5 h-1.5 rounded-full bg-blue-500"
+              ></motion.span>
+              Uptime 99.9%
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+}
+        <div className="flex items-center gap-6 text-xs text-[#9ca3af] font-mono">
             <span className="flex items-center gap-2">
               <motion.span 
                 animate={{ opacity: [0.3, 1, 0.3] }}
