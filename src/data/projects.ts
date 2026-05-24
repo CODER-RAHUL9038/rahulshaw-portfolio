@@ -3,7 +3,7 @@ import { Project } from "../types";
 export const projects: Project[] = [
   {
     id: "portfolio-nextjs",
-    title: "Premium Developer Portfolio",
+    title: "Rahul Shaw's  Portfolio",
     description:
       "Cinematic Next.js portfolio engineered with immersive UI systems, responsive layouts, Framer Motion animations, AI-assisted workflows, and production-focused frontend architecture.",
     tech: [
@@ -15,7 +15,7 @@ export const projects: Project[] = [
     ],
     image: "/projects/portfolio.png",
     featured: true,
-    github: "https://github.com/CODER-RAHUL9038",
+    github: "https://github.com/CODER-RAHUL9038/rahulshaw-portfolio",
     live: "https://rahulshaw.carrd.co",
   },
   {
@@ -34,6 +34,7 @@ export const projects: Project[] = [
     title: "Camellia",
     description:
       "Airbnb-inspired MERN application featuring authentication, authorization, image uploads, listing management, review systems, and production-focused backend architecture using Node.js, Express, MongoDB, and EJS.",
+
     tech: [
       "Node.js",
       "Express.js",
@@ -42,9 +43,15 @@ export const projects: Project[] = [
       "Passport.js",
       "Cloudinary",
     ],
-    image: "/projects/camellia.png",
+
+    image:
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+
     featured: true,
-    github: "https://github.com/CODER-RAHUL9038",
+
+    github:
+      "https://github.com/CODER-RAHUL9038/MAJOR_PROJECT/tree/main/CAMELLIA",
+
     live: "https://major-project-zz1b.onrender.com/listings",
   },
   {
@@ -58,39 +65,40 @@ export const projects: Project[] = [
     github: "https://github.com/CODER-RAHUL9038/XORA.ai",
     live: "https://xora-ai-gamma.vercel.app/",
   },
+
   {
     id: "dr-maya-reynolds",
     title: "Dr Maya Reynolds Website",
     description:
-      "Modern responsive therapy website redesign built with Next.js and Tailwind CSS, focused on calming UI design, clean typography systems, reusable components, and professional frontend architecture.",
+      "Professional responsive healthcare website redesign built with Next.js and Tailwind CSS, focused on calming UI design, clean typography systems, and high-performance architecture.",
     tech: ["Next.js", "React.js", "Tailwind CSS", "JavaScript", "Vercel"],
     image: "/projects/Maya.png",
     featured: true,
-    github: "https://github.com/CODER-RAHUL9038",
+    github: "https://github.com/CODER-RAHUL9038/therapy-website-redesign",
     live: "https://dr-maya-reynolds-site-ten.vercel.app/",
   },
   {
     id: "weather-app",
     title: "Weather App",
     description:
-      "Real-time weather application featuring dynamic background transitions, location-based data fetching, and a highly responsive dashboard for precise meteorological insights.",
-    tech: ["JavaScript", "React.js", "Vite", "Tailwind CSS"],
+      "Real-time weather tracking application featuring dynamic backgrounds based on weather conditions, precise location-based forecasting, and a sleek, responsive glassmorphism UI.",
+    tech: ["React.js", "OpenWeather API", "Tailwind CSS", "Lucide Icons"],
     image:
-      "https://images.unsplash.com/photo-1592210633466-3b547535d96f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1200&q=80",
     featured: true,
-    github: "https://github.com/CODER-RAHUL9038",
+    github: "https://github.com/CODER-RAHUL9038/PROJECTS/tree/main/react-project/weather-app",
     live: "https://weatherapp-gules-sigma-87.vercel.app/",
   },
   {
     id: "more-projects",
     title: "More Games & Projects",
     description:
-      "Explore additional frontend experiments, JavaScript applications, UI systems, API integrations, responsive layouts, and learning-focused development projects available on GitHub.",
+      "Explore a wide collection of frontend experiments, JavaScript games, interactive UI components, API integrations, and production-grade development projects on GitHub.",
     tech: ["JavaScript", "React.js", "Next.js", "Tailwind CSS"],
     image:
       "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
     featured: true,
-    github: "https://github.com/CODER-RAHUL9038",
+    github: "https://github.com/CODER-RAHUL9038/PROJECTS",
     live: "https://github.com/CODER-RAHUL9038/PROJECTS",
   },
 ];

@@ -1,5 +1,5 @@
 import React from "react";
-import { Terminal, Share2, Mail, MapPin } from "lucide-react";
+import { Terminal, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { motion, Variants } from "motion/react";
 
 export default function Footer() {
@@ -65,7 +65,7 @@ export default function Footer() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="mailto:rahulshaw.dev@nxerra.com"
+                href="mailto:rahulshaw903866@gmail.com"
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-drop-glow/10 hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="Email Direct"
               >
@@ -120,19 +120,44 @@ export default function Footer() {
             <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Featured Work</motion.h4>
             <motion.ul variants={textRevealVariants} className="space-y-4">
               <li>
-                <span className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base cursor-pointer">
+                <a
+                  href="https://freight-intel-tau.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
+                >
                   Freight-Intel
-                </span>
+                </a>
               </li>
               <li>
-                <span className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base cursor-pointer">
+                <a
+                  href="https://xora-ai-gamma.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
+                >
                   XORA AI Portal
-                </span>
+                </a>
               </li>
               <li>
-                <span className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base cursor-pointer">
-                  Camellia E-Comm
-                </span>
+                <a
+                  href="https://weatherapp-gules-sigma-87.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
+                >
+                  Weather App
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://dr-maya-reynolds-site-ten.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
+                >
+                  Dr Maya Reynolds
+                </a>
               </li>
             </motion.ul>
           </div>
@@ -141,10 +166,10 @@ export default function Footer() {
             <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 font-heading">Collaborate</motion.h4>
             <motion.div variants={textRevealVariants} className="space-y-4">
               <a
-                href="mailto:rahulshaw.dev@nxerra.com"
+                href="mailto:rahulshaw903866@gmail.com"
                 className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base block"
               >
-                rahulshaw.dev@nxerra.com
+                rahulshaw903866@gmail.com
               </a>
               <p className="text-[#9ca3af] flex items-center gap-2 text-sm">
                 <MapPin className="w-4 h-4 text-blue-500" />
@@ -188,19 +213,3 @@ export default function Footer() {
   );
 }
 
-}
-        <div className="flex items-center gap-6 text-xs text-[#9ca3af] font-mono">
-            <span className="flex items-center gap-2">
-              <motion.span 
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1.5 h-1.5 rounded-full bg-blue-500"
-              ></motion.span>
-              Uptime 99.9%
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
