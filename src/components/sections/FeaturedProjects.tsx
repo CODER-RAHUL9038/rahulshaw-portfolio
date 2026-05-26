@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { projects } from "../../data/projects";
 import { Github, ExternalLink, ArrowUpRight, RotateCcw, Rocket, CheckCircle2, Trophy, Lightbulb } from "lucide-react";
-import { motion, Variants } from "motion/react";
+import { motion, AnimatePresence, Variants } from "motion/react";
 import { Project } from "../../types";
 
 interface ProjectCardProps {
@@ -24,7 +24,8 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
           duration: 0.65, 
           ease: [0.16, 1, 0.3, 1] 
         }}
-        className="relative w-full h-full cursor-pointer preserve-3d"
+        style={{ transformStyle: "preserve-3d" }}
+        className="relative w-full h-full cursor-pointer"
         onClick={() => !isFlipped && setIsFlipped(true)}
       >
         {/* FRONT SIDE */}
