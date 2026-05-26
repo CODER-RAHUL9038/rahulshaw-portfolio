@@ -7,6 +7,12 @@ export interface Project {
   github?: string;
   live?: string;
   featured: boolean;
+  // Detailed fields for back-side of card
+  overview?: string;
+  features?: string[];
+  challenges?: string;
+  learnings?: string;
+  status?: "Completed" | "In Progress" | "V2 Coming Soon";
 }
 
 export interface Skill {
