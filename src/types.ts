@@ -7,6 +7,14 @@ export interface Project {
   github?: string;
   live?: string;
   featured: boolean;
+  status: string;
+  details: {
+    overview: string;
+    features: string[];
+    technologies: string[];
+    challenges: string;
+    learnings: string;
+  };
 }
 
 export interface Skill {

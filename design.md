@@ -1,135 +1,270 @@
-This is a TypeScript + Framer Motion typing issue in your animation variants.
+Implement a premium cinematic 3D Project Flip Card system for the Featured Projects section using Framer Motion and the existing `projects.ts` data structure.
 
-The main error is:
+IMPORTANT:
+- Preserve the current dark cinematic portfolio UI
+- Do NOT redesign the existing FRONT side of the cards
+- Keep the current card image, layout, spacing, hover style, and visual hierarchy exactly the same
+- Only add the interactive flip system and backside details panel
+- Maintain premium SaaS-quality motion and UI polish
+- Avoid flashy gaming-style effects
 
-Property 'visible' is incompatible with index signature
+==================================================
+USE EXISTING PROJECT DATA
+==================================================
 
-and especially this part:
+Use the existing `projects.ts` structure directly.
 
-ease: number[]
+Each project already contains:
+- title
+- description
+- tech
+- image
+- status
+- details.overview
+- details.features
+- details.technologies
+- details.challenges
+- details.learnings
 
-Framer Motion expects ease to be a specific easing type, not just a plain number[].
+Render backside content dynamically from the project data.
 
-You probably wrote something like:
+DO NOT hardcode content manually inside components.
 
-ease: [0.25, 0.1, 0.25, 1]
+==================================================
+FLIP INTERACTION
+==================================================
 
-inside a variant object without proper typing.
+When user clicks a project card:
 
-WHY THIS HAPPENS
+1. The card should smoothly flip in 3D space
+2. Front side rotates away naturally
+3. Back side becomes visible
+4. Back side displays detailed project insights
+5. Clicking again flips card back
 
-In newer Framer Motion + TypeScript versions:
+The interaction should feel:
+- cinematic
+- immersive
+- refined
+- modern SaaS quality
+- technically polished
 
-Variants
+NOT:
+- flashy
+- gimmicky
+- gaming-style
+- exaggerated
 
-has strict typing.
+==================================================
+VERY IMPORTANT — FIX THE 3D STRUCTURE PROPERLY
+==================================================
 
-Your variant object is inferred incorrectly because TS thinks:
+Implement a CORRECT 3D card architecture.
 
-ease: number[]
+Use:
+- perspective on outer wrapper
+- transform-style: preserve-3d
+- backface-visibility: hidden
+- proper rotateY transforms
 
-instead of:
+REQUIRED STRUCTURE:
 
-ease: Easing
-FIX (BEST SOLUTION)
+Outer wrapper:
+- perspective: 1200px–1400px
 
-In the file around:
+Inner rotating container:
+- transform-style: preserve-3d
+- rotateY animation
 
-Hero.tsx line ~112
+Front face:
+- backface-visibility: hidden
 
-change your variants typing.
+Back face:
+- rotateY(180deg)
+- backface-visibility: hidden
 
-OPTION 1 — BEST FIX
+Parent rotates between:
+- rotateY(0deg)
+- rotateY(180deg)
 
-Import Variants:
+This MUST prevent:
+- mirrored text
+- backwards backside
+- distortion
+- clipping
+- broken rendering
 
-import { motion, Variants } from "framer-motion";
+The backside content must always appear perfectly readable.
 
-Then define:
+==================================================
+ANIMATION STYLE
+==================================================
 
-const fadeUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 6,
-    filter: "blur(8px)",
-  },
-  visible: (custom: number) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.5,
-      delay: custom,
-      ease: "easeOut",
-    },
-  }),
-};
-MOST IMPORTANT FIX
+Use Framer Motion.
 
-Replace THIS:
+Animation requirements:
+- smooth rotateY transition
+- subtle perspective depth
+- premium easing
+- refined cinematic timing
 
-ease: [0.25, 0.1, 0.25, 1]
+Recommended:
+- duration: 0.55–0.65s
+- ease: cubic-bezier(0.16, 1, 0.3, 1)
 
-WITH:
+Avoid:
+- fast spins
+- exaggerated motion
+- heavy distortion
+- cartoon effects
 
-ease: "easeOut"
+Motion style should feel similar to:
+- Linear
+- Vercel
+- modern SaaS product UI
 
-OR:
+==================================================
+FRONT SIDE RULES
+==================================================
 
-ease: [0.16, 1, 0.3, 1] as const
+Do NOT redesign current front card.
 
-The as const is critical if using arrays.
+Preserve:
+- image
+- title
+- description
+- tech badges
+- hover glow
+- spacing
+- CTA placement
+- cinematic styling
 
-WHY as const WORKS
+Only improve:
+- interaction smoothness
+- subtle hover polish
 
-Without it:
+==================================================
+BACKSIDE CONTENT LAYOUT
+==================================================
 
-number[]
+Backside should dynamically render:
 
-With it:
+- Status badge
+- Project Overview
+- Key Features
+- Technologies Used
+- Engineering Challenges
+- What I Learned
 
-readonly [0.16, 1, 0.3, 1]
+Layout should feel:
+- recruiter-friendly
+- readable
+- structured
+- premium
 
-which Framer Motion accepts as a cubic bezier easing tuple.
+Avoid:
+- long paragraphs
+- clutter
+- oversized text blocks
 
-SECOND ISSUE (BOTTOM ERRORS)
+==================================================
+BACKSIDE VISUAL STYLE
+==================================================
 
-These:
+Use:
+- premium glassmorphism
+- subtle gradient overlays
+- ambient border glow
+- elegant typography hierarchy
+- muted secondary text
+- refined spacing
 
-Link 'rel' attribute should include 'noopener'
+Maintain:
+- dark cinematic appearance
+- luxury SaaS feel
 
-are minor security warnings.
+Reduce:
+- excessive blue glow
+- RGB aesthetics
+- overpowering blur
 
-Fix:
+Glow should feel:
+- soft
+- ambient
+- premium
 
-target="_blank"
+==================================================
+CONTENT REVEAL ANIMATION
+==================================================
 
-must ALSO include:
+When card flips:
+- backside content fades in smoothly
+- subtle stagger animation
+- slight blur reduction
+- micro translateY only (4px–6px max)
 
-rel="noopener noreferrer"
+Avoid:
+- dramatic fly-ins
+- large movements
+- heavy stagger delays
 
-Example:
+==================================================
+INTERACTION ENHANCEMENTS
+==================================================
 
-<a
-  href={link}
-  target="_blank"
-  rel="noopener noreferrer"
->
-FINAL SUMMARY
+Add:
+- “View Details” micro CTA
+- animated arrow movement
+- subtle hover anticipation
+- responsive click feedback
+- smooth icon transitions
+- ambient glow pulse
+- rotate-back icon/button
 
-Your issues are:
+Interactions should remain:
+- subtle
+- premium
+- cinematic
+- refined
 
-Framer Motion Variants typing mismatch
-ease array typed incorrectly
-Missing rel="noopener noreferrer"
-QUICKEST FIX
+==================================================
+CARD LAYERING & Z-INDEX
+==================================================
 
-Just change:
+Ensure:
+- flipped card appears above neighboring cards
+- no overlap glitches
+- no clipping
+- border radius remains smooth during rotation
 
-ease: [0.25, 0.1, 0.25, 1]
+Avoid:
+- edge distortion
+- overflow issues
+- visual crowding
 
-to:
+==================================================
+MOBILE OPTIMIZATION
+==================================================
 
-ease: "easeOut"
+Ensure:
+- smooth touch interaction
+- reduced perspective depth on mobile
+- optimized FPS
+- stable layout
+- readable backside content
+- no overflow issues
 
-and most errors will disappear instantly.
+Reduce animation intensity slightly on smaller devices.
+
+==================================================
+FINAL EXPERIENCE GOAL
+==================================================
+
+The Featured Projects section should feel like:
+- a premium interactive case-study showcase
+- cinematic SaaS UI
+- production-grade frontend craftsmanship
+- immersive but professional
+
+The experience should communicate:
+“Refined engineering quality with attention to UX detail.”
