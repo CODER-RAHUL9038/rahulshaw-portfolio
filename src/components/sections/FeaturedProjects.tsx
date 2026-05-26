@@ -13,7 +13,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div className="perspective-2000 h-[480px] w-full group relative">
+    <div className="perspective-1400 h-[480px] w-full group">
       <motion.div
         variants={variants}
         initial="hidden"
@@ -24,18 +24,12 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
           duration: 0.65, 
           ease: [0.16, 1, 0.3, 1] 
         }}
-        style={{ transformStyle: "preserve-3d" }}
-        className="relative w-full h-full cursor-pointer"
+        className="relative w-full h-full cursor-pointer preserve-3d"
         onClick={() => !isFlipped && setIsFlipped(true)}
       >
-        {/* FRONT SIDE PANEL */}
+        {/* FRONT SIDE */}
         <div 
-          className="absolute inset-0 w-full h-full glass-card rounded-[2.5rem] overflow-hidden flex flex-col"
-          style={{ 
-            backfaceVisibility: "hidden", 
-            WebkitBackfaceVisibility: "hidden",
-            transform: "translateZ(1px)" // Explicitly place in front of back panel
-          }}
+          className="absolute inset-0 w-full h-full backface-hidden glass-card rounded-[2.5rem] overflow-hidden flex flex-col"
         >
           {/* Image Frame */}
           <div className="relative aspect-[16/10] overflow-hidden border-b border-brand-border bg-[#0a0a0a]">
@@ -50,7 +44,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent"></div>
 
-            {/* Tech Tags */}
+            {/* Badge tags overlay */}
             <div className="absolute top-6 left-6 flex flex-wrap gap-2">
               {project.tech.slice(0, 2).map((t) => (
                 <span
@@ -63,7 +57,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
             </div>
           </div>
 
-          {/* Front Content Metadata */}
+          {/* Text metadata content block */}
           <div className="p-7 flex flex-col justify-between flex-grow space-y-4">
             <div className="space-y-3">
               <h3 className="font-heading text-2xl font-extrabold text-white tracking-tight group-hover:text-blue-400 transition-colors">
@@ -115,14 +109,10 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* BACK SIDE PANEL (DETAILS) */}
+        {/* BACK SIDE */}
         <div 
-          className="absolute inset-0 w-full h-full glass-card rounded-[2.5rem] overflow-hidden flex flex-col bg-[#08090b] border border-blue-500/20 shadow-[0_0_40px_rgba(59,130,246,0.1)]"
-          style={{ 
-            backfaceVisibility: "hidden", 
-            WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg) translateZ(1px)" // Counter-rotate and push forward in flipped state
-          }}
+          className="absolute inset-0 w-full h-full backface-hidden glass-card rounded-[2.5rem] overflow-hidden flex flex-col bg-[#08090b]/98 border border-blue-500/20 shadow-[0_0_40px_rgba(59,130,246,0.1)]"
+          style={{ transform: "rotateY(180deg)" }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Ambient Glow */}
@@ -154,8 +144,13 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
             </div>
 
             <div className="flex-grow overflow-y-auto pr-2 scrollbar-thin space-y-7 pb-4">
-              {/* Detailed Content Sections */}
-              <div className="space-y-2.5">
+              {/* Overview */}
+              <motion.div 
+                initial={{ opacity: 0, y: 5 }}
+                animate={isFlipped ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 }}
+                className="space-y-2.5"
+              >
                 <div className="flex items-center gap-2 text-blue-400">
                   <Rocket className="w-3.5 h-3.5" />
                   <span className="text-[10px] font-bold uppercase tracking-widest">Overview</span>
@@ -163,10 +158,16 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                 <p className="text-[13px] text-[#e5e2e1] leading-relaxed font-sans">
                   {project.overview || project.description}
                 </p>
-              </div>
+              </motion.div>
 
+              {/* Features */}
               {project.features && (
-                <div className="space-y-2.5">
+                <motion.div 
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={isFlipped ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.2 }}
+                  className="space-y-2.5"
+                >
                   <div className="flex items-center gap-2 text-emerald-400">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span className="text-[10px] font-bold uppercase tracking-widest">Key Features</span>
@@ -179,12 +180,18 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               )}
 
+              {/* Challenges & Learnings */}
               <div className="grid grid-cols-1 gap-5">
                 {project.challenges && (
-                  <div className="space-y-2">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={isFlipped ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.3 }}
+                    className="space-y-2"
+                  >
                     <div className="flex items-center gap-2 text-amber-400">
                       <Trophy className="w-3.5 h-3.5" />
                       <span className="text-[10px] font-bold uppercase tracking-widest">Challenge</span>
@@ -192,10 +199,15 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                     <p className="text-[12px] text-[#9ca3af] leading-relaxed font-sans">
                       {project.challenges}
                     </p>
-                  </div>
+                  </motion.div>
                 )}
                 {project.learnings && (
-                  <div className="space-y-2">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={isFlipped ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.4 }}
+                    className="space-y-2"
+                  >
                     <div className="flex items-center gap-2 text-blue-400">
                       <Lightbulb className="w-3.5 h-3.5" />
                       <span className="text-[10px] font-bold uppercase tracking-widest">Learning</span>
@@ -203,13 +215,32 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                     <p className="text-[12px] text-[#9ca3af] leading-relaxed font-sans">
                       {project.learnings}
                     </p>
-                  </div>
+                  </motion.div>
                 )}
               </div>
+
+              {/* Tech Stack */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={isFlipped ? { opacity: 1 } : {}}
+                transition={{ delay: 0.5 }}
+                className="space-y-3 pt-4 border-t border-white/5"
+              >
+                <span className="text-[9px] font-bold text-[#4b5563] uppercase tracking-widest block">Stack</span>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2.5 py-1 rounded-md text-[9px] font-mono font-medium bg-white/5 border border-white/5 text-[#9ca3af]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             </div>
 
-            {/* Backside Action Links */}
-            <div className="mt-6 grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
+            <div className="mt-6 grid grid-cols-2 gap-4">
               {project.github && (
                 <a
                   href={project.github}
@@ -218,7 +249,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                   className="flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-[11px] font-bold hover:bg-white/10 transition-all active:scale-95"
                 >
                   <Github className="w-4 h-4" />
-                  Source
+                  GitHub
                 </a>
               )}
               {project.live && (
@@ -229,7 +260,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                   className="flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 text-white text-[11px] font-bold hover:bg-blue-500 shadow-[0_8px_20px_rgba(59,130,246,0.3)] transition-all active:scale-95"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Live
+                  Live Demo
                 </a>
               )}
             </div>
@@ -263,6 +294,7 @@ export default function FeaturedProjects() {
 
   return (
     <section id="projects" className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative">
+      {/* Background neon dust glow */}
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none"></div>
 
       <motion.div 
@@ -272,6 +304,7 @@ export default function FeaturedProjects() {
         variants={containerVariants}
         className="space-y-16"
       >
+        {/* Section Header */}
         <motion.div variants={textRevealVariants} className="space-y-4 max-w-2xl">
           <div className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans">
             Curated Showcases
@@ -284,6 +317,7 @@ export default function FeaturedProjects() {
           </p>
         </motion.div>
 
+        {/* Project display index cards */}
         <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <ProjectCard 
