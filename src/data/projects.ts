@@ -17,16 +17,6 @@ export const projects: Project[] = [
     featured: true,
     github: "https://github.com/CODER-RAHUL9038/rahulshaw-portfolio",
     live: "https://rahulshaw.carrd.co",
-    status: "Production Ready",
-    overview: "A premium digital showcase designed to demonstrate high-end frontend craftsmanship and AI integration.",
-    features: [
-      "AI Recruiter Assistant with Gemini 1.5 Flash",
-      "3D Interactive Project Flip System",
-      "Dynamic GSAP-style Experience Timeline",
-      "Responsive Glassmorphism UI Architecture"
-    ],
-    challenges: "Orchestrating complex 3D transforms while ensuring fluid performance across mobile and desktop environments.",
-    learnings: "Mastered advanced Framer Motion layout animations and optimized React 19 server-side rendering patterns."
   },
   {
     id: "freight-intel",
@@ -38,16 +28,6 @@ export const projects: Project[] = [
     featured: true,
     github: "https://github.com/CODER-RAHUL9038",
     live: "https://freight-intel-tau.vercel.app/",
-    status: "V1 Complete",
-    overview: "An enterprise-grade logistics monitoring platform for real-time supply chain transparency.",
-    features: [
-      "Real-time Shipment Tracking & Logging",
-      "Automated Operational Triage Workflows",
-      "Multi-tenant RBAC Security Infrastructure",
-      "High-Performance Data Visualization"
-    ],
-    challenges: "Managing state synchronization for high-velocity data streams in a multi-tenant dashboard environment.",
-    learnings: "Deepened expertise in MERN stack performance tuning and scalable MongoDB schema design."
   },
   {
     id: "camellia",
@@ -73,16 +53,6 @@ export const projects: Project[] = [
       "https://github.com/CODER-RAHUL9038/MAJOR_PROJECT/tree/main/CAMELLIA",
 
     live: "https://major-project-zz1b.onrender.com/listings",
-    status: "V2 in Dev",
-    overview: "A comprehensive full-stack marketplace platform for property listings and user reviews.",
-    features: [
-      "Secure Passport.js Authentication",
-      "Dynamic Listing Management System",
-      "Cloudinary Image Hosting Integration",
-      "Review & Rating Interaction Engine"
-    ],
-    challenges: "Building a secure authorization layer for multi-user interactions and resource management.",
-    learnings: "Solidified full-stack architecture principles and advanced server-side rendering with EJS."
   },
   {
     id: "xora-ai",
@@ -94,16 +64,6 @@ export const projects: Project[] = [
     featured: true,
     github: "https://github.com/CODER-RAHUL9038/XORA.ai",
     live: "https://xora-ai-gamma.vercel.app/",
-    status: "Active Beta",
-    overview: "A next-generation AI conversational platform with a focus on immersive user experience.",
-    features: [
-      "Real-time AI Chat with Streaming",
-      "Dynamic Markdown UI Rendering",
-      "Custom Framer Motion Interaction Labs",
-      "SaaS-grade Component Architecture"
-    ],
-    challenges: "Synchronizing complex AI responses with high-fidelity UI animations in real-time.",
-    learnings: "Advanced knowledge of LLM integration and interactive animation orchestration."
   },
 
   {
@@ -116,16 +76,6 @@ export const projects: Project[] = [
     featured: true,
     github: "https://github.com/CODER-RAHUL9038/therapy-website-redesign",
     live: "https://dr-maya-reynolds-site-ten.vercel.app/",
-    status: "Shipped",
-    overview: "A specialized healthcare landing page redesign focused on performance and accessibility.",
-    features: [
-      "High-Performance Next.js Architecture",
-      "Accessibility-First Navigation System",
-      "Clean Typography & Design Hierarchy",
-      "SEO-Optimized Metadata Strategy"
-    ],
-    challenges: "Maintaining a calming aesthetic while optimizing for Core Web Vitals and rapid load times.",
-    learnings: "Refined professional UI design skills and performance auditing techniques."
   },
   {
     id: "weather-app",
@@ -138,16 +88,6 @@ export const projects: Project[] = [
     featured: true,
     github: "https://github.com/CODER-RAHUL9038/PROJECTS/tree/main/react-project/weather-app",
     live: "https://weatherapp-gules-sigma-87.vercel.app/",
-    status: "Stable",
-    overview: "A high-precision meteorological dashboard with dynamic, condition-aware visual states.",
-    features: [
-      "Dynamic Condition-Based Backgrounds",
-      "Precise Geo-location Integration",
-      "Hourly & Daily Forecast Visuals",
-      "Glassmorphism Dashboard Interface"
-    ],
-    challenges: "Managing complex asynchronous state across multiple weather data points smoothly.",
-    learnings: "Advanced proficiency in API consumption and dynamic styling in React."
   },
   {
     id: "more-projects",
@@ -160,15 +100,5 @@ export const projects: Project[] = [
     featured: true,
     github: "https://github.com/CODER-RAHUL9038/PROJECTS",
     live: "https://github.com/CODER-RAHUL9038/PROJECTS",
-    status: "In Development",
-    overview: "A sandbox of engineering experiments, utility tools, and creative coding projects.",
-    features: [
-      "Custom JavaScript Game Engines",
-      "Utility CLI Tool Collections",
-      "Interactive UI Component Library",
-      "Open-Source Contribution Prototypes"
-    ],
-    challenges: "Maintaining quality and consistency across a diverse range of technology stacks.",
-    learnings: "Broadened technical adaptability across various paradigms and languages."
   },
 ];

@@ -7,12 +7,6 @@ export interface Project {
   github?: string;
   live?: string;
   featured: boolean;
-  // Professional details for the backside of the card
-  overview?: string;
-  features?: string[];
-  challenges?: string;
-  learnings?: string;
-  status?: string;
 }
 
 export interface Skill {
