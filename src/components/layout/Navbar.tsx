@@ -61,7 +61,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     closed: {
       x: "100%",
       transition: {
-        duration: 0.6,
+        duration: 0.35,
         ease: [0.16, 1, 0.3, 1] as const,
         when: "afterChildren",
       },
@@ -69,10 +69,10 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     open: {
       x: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: [0.16, 1, 0.3, 1] as const,
         when: "beforeChildren",
-        staggerChildren: 0.08,
+        staggerChildren: 0.05,
       },
     },
   };
@@ -192,6 +192,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
               onClick={() => setIsMobileMenuOpen(false)}
               className="absolute inset-0 bg-black/60 backdrop-blur-md"
             />
