@@ -42,7 +42,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-28 px-6 max-w-7xl mx-auto relative">
+    <section id="contact" className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative">
       <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <motion.div 
@@ -68,7 +68,7 @@ export default function ContactSection() {
 
           <motion.div variants={textRevealVariants} className="space-y-6 pt-4 border-t border-white/5">
             <a
-              href="mailto:rahulshaw.dev@nxerra.com"
+              href="mailto:rahulshaw903866@gmail.com"
               className="flex items-center gap-4 group p-4 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
             >
               <div className="w-11 h-11 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform">
@@ -76,7 +76,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <div className="text-xs text-[#9ca3af] font-mono uppercase tracking-wider">Email Address</div>
-                <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">rahulshaw.dev@nxerra.com</div>
+                <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">rahulshaw903866@gmail.com</div>
               </div>
             </a>
 

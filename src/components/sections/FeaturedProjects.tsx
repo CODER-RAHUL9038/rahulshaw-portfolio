@@ -24,7 +24,7 @@ export default function FeaturedProjects() {
   };
 
   return (
-    <section id="projects" className="py-28 px-6 max-w-7xl mx-auto relative">
+    <section id="projects" className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative">
       {/* Background neon dust glow */}
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none"></div>
 

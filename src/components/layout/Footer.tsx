@@ -9,7 +9,7 @@ export default function Footer() {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
-      const topOffset = target.getBoundingClientRect().top + window.scrollY - 20;
+      const topOffset = target.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({
         top: topOffset,
         behavior: "smooth"
@@ -180,7 +180,7 @@ export default function Footer() {
                   onClick={() => {
                     const target = document.querySelector("#contact");
                     if (target) {
-                      const topOffset = target.getBoundingClientRect().top + window.scrollY - 20;
+                      const topOffset = target.getBoundingClientRect().top + window.scrollY - 80;
                       window.scrollTo({ top: topOffset, behavior: "smooth" });
                     }
                   }}
