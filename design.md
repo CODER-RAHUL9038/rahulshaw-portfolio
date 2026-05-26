@@ -1,47 +1,135 @@
-When a user clicks on a project card:
+This is a TypeScript + Framer Motion typing issue in your animation variants.
 
-1. The card should smoothly flip in 3D space
-2. The back side of the card should appear
-3. The back side should display detailed project information
-4. Clicking again or a close button should flip the card back to the front.Do NOT redesign the existing front side. The flipped back side should include:
+The main error is:
 
-- Project Overview
-- Key Features
-- Technologies Used
-- Engineering Challenges
-- What I Learned
-The interaction should feel:
-- cinematic
-- immersive
-- modern SaaS quality
-- technically polished Use Framer Motion for the flip animation.
-Avoid:
-- fast spinning
-- exaggerated rotation
-- cartoon flip effectsPreferred animation style:The detailed side should use:Ensure:
-- flip works smoothly on touch devices
-- no layout breaking
-- readable content on smaller screens
-- optimized animation performanceAdd:
-- “View Details” micro CTA
-- animated arrow indicator
-- smooth icon rotation
-- project status badge
-- subtle ambient glow pulseOn mobile:
-- use slightly reduced animation depth if needed
-- premium glassmorphism
-- subtle gradient overlays
-- soft border glow
-- elegant typography hierarchy
-- readable spacing
+Property 'visible' is incompatible with index signature
 
-Maintain:
-- dark cinematic appearance
-- luxury SaaS feeling
-Recommended motion:
-- rotateY(0deg → 180deg)
-- duration: 0.6–0.8s
-- cubic-bezier(0.16, 1, 0.3, 1)- smooth 3D rotateY transition
-- subtle perspective depth
-- cinematic easing
-- premium motion timing
+and especially this part:
+
+ease: number[]
+
+Framer Motion expects ease to be a specific easing type, not just a plain number[].
+
+You probably wrote something like:
+
+ease: [0.25, 0.1, 0.25, 1]
+
+inside a variant object without proper typing.
+
+WHY THIS HAPPENS
+
+In newer Framer Motion + TypeScript versions:
+
+Variants
+
+has strict typing.
+
+Your variant object is inferred incorrectly because TS thinks:
+
+ease: number[]
+
+instead of:
+
+ease: Easing
+FIX (BEST SOLUTION)
+
+In the file around:
+
+Hero.tsx line ~112
+
+change your variants typing.
+
+OPTION 1 — BEST FIX
+
+Import Variants:
+
+import { motion, Variants } from "framer-motion";
+
+Then define:
+
+const fadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 6,
+    filter: "blur(8px)",
+  },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.5,
+      delay: custom,
+      ease: "easeOut",
+    },
+  }),
+};
+MOST IMPORTANT FIX
+
+Replace THIS:
+
+ease: [0.25, 0.1, 0.25, 1]
+
+WITH:
+
+ease: "easeOut"
+
+OR:
+
+ease: [0.16, 1, 0.3, 1] as const
+
+The as const is critical if using arrays.
+
+WHY as const WORKS
+
+Without it:
+
+number[]
+
+With it:
+
+readonly [0.16, 1, 0.3, 1]
+
+which Framer Motion accepts as a cubic bezier easing tuple.
+
+SECOND ISSUE (BOTTOM ERRORS)
+
+These:
+
+Link 'rel' attribute should include 'noopener'
+
+are minor security warnings.
+
+Fix:
+
+target="_blank"
+
+must ALSO include:
+
+rel="noopener noreferrer"
+
+Example:
+
+<a
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+FINAL SUMMARY
+
+Your issues are:
+
+Framer Motion Variants typing mismatch
+ease array typed incorrectly
+Missing rel="noopener noreferrer"
+QUICKEST FIX
+
+Just change:
+
+ease: [0.25, 0.1, 0.25, 1]
+
+to:
+
+ease: "easeOut"
+
+and most errors will disappear instantly.
