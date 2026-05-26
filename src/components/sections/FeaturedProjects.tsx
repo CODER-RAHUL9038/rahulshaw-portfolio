@@ -21,7 +21,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
         viewport={{ once: true }}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ 
-          duration: 0.7, 
+          duration: 0.65, 
           ease: [0.16, 1, 0.3, 1] 
         }}
         style={{ transformStyle: "preserve-3d" }}
@@ -34,7 +34,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
           style={{ 
             backfaceVisibility: "hidden", 
             WebkitBackfaceVisibility: "hidden",
-            transform: "translateZ(1px)" // Separation plane
+            transform: "translateZ(1px)" // Explicitly place in front of back panel
           }}
         >
           {/* Image Frame */}
@@ -63,7 +63,7 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
             </div>
           </div>
 
-          {/* Front Content */}
+          {/* Front Content Metadata */}
           <div className="p-7 flex flex-col justify-between flex-grow space-y-4">
             <div className="space-y-3">
               <h3 className="font-heading text-2xl font-extrabold text-white tracking-tight group-hover:text-blue-400 transition-colors">
@@ -117,52 +117,45 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
 
         {/* BACK SIDE PANEL (DETAILS) */}
         <div 
-          className="absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden flex flex-col bg-[#08090b] border border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.2)]"
+          className="absolute inset-0 w-full h-full glass-card rounded-[2.5rem] overflow-hidden flex flex-col bg-[#08090b] border border-blue-500/20 shadow-[0_0_40px_rgba(59,130,246,0.1)]"
           style={{ 
             backfaceVisibility: "hidden", 
             WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg) translateZ(1px)"
+            transform: "rotateY(180deg) translateZ(1px)" // Counter-rotate and push forward in flipped state
           }}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Internal Glass Layer (Avoids breaking 3D culling) */}
-          <div className="absolute inset-0 bg-[#0a0a0a]/95 backdrop-blur-xl pointer-events-none"></div>
-          
-          <div className="absolute top-0 right-0 w-48 h-48 bg-blue-600/10 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none animate-pulse"></div>
+          {/* Ambient Glow */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-[60px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
           <div className="flex flex-col h-full p-8 relative z-10">
             <div className="flex justify-between items-start mb-6">
               <div className="space-y-1">
                 {project.status && (
-                  <div className="px-2.5 py-0.5 rounded-full text-[8px] font-bold font-mono tracking-widest uppercase bg-blue-500/15 border border-blue-500/30 text-blue-400 w-fit flex items-center gap-1.5 mb-1.5">
+                  <div className="px-2.5 py-0.5 rounded-full text-[8px] font-bold font-mono tracking-widest uppercase bg-blue-500/10 border border-blue-500/20 text-blue-400 w-fit flex items-center gap-1.5 mb-1.5">
                     <motion.span 
                       animate={{ opacity: [0.4, 1, 0.4] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                      className="w-1 h-1 rounded-full bg-blue-500"
                     />
                     {project.status}
                   </div>
                 )}
                 <h3 className="font-heading text-xl font-extrabold text-white tracking-tight">
-                  Case Study
+                  Project Insights
                 </h3>
               </div>
               <button 
                 onClick={() => setIsFlipped(false)}
-                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#9ca3af] hover:text-white hover:bg-blue-600/20 hover:border-blue-500/40 transition-all active:scale-90"
+                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#9ca3af] hover:text-white hover:bg-white/10 transition-all active:scale-90"
               >
                 <RotateCcw className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="flex-grow overflow-y-auto pr-3 scrollbar-thin space-y-7 pb-4">
-              {/* Data-Driven Content Sections */}
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={isFlipped ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.15 }}
-                className="space-y-2.5"
-              >
+            <div className="flex-grow overflow-y-auto pr-2 scrollbar-thin space-y-7 pb-4">
+              {/* Detailed Content Sections */}
+              <div className="space-y-2.5">
                 <div className="flex items-center gap-2 text-blue-400">
                   <Rocket className="w-3.5 h-3.5" />
                   <span className="text-[10px] font-bold uppercase tracking-widest">Overview</span>
@@ -170,76 +163,61 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                 <p className="text-[13px] text-[#e5e2e1] leading-relaxed font-sans">
                   {project.overview || project.description}
                 </p>
-              </motion.div>
+              </div>
 
               {project.features && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={isFlipped ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.25 }}
-                  className="space-y-3"
-                >
+                <div className="space-y-2.5">
                   <div className="flex items-center gap-2 text-emerald-400">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span className="text-[10px] font-bold uppercase tracking-widest">Key Features</span>
                   </div>
-                  <ul className="grid grid-cols-1 gap-2.5">
+                  <ul className="grid grid-cols-1 gap-2">
                     {project.features.map((feature, i) => (
-                      <li key={i} className="text-[12px] text-[#9ca3af] flex items-start gap-2.5 leading-relaxed">
-                        <span className="w-1 h-1 rounded-full bg-blue-500/50 mt-2 shrink-0" />
+                      <li key={i} className="text-[12px] text-[#9ca3af] flex items-start gap-2 leading-relaxed">
+                        <span className="w-1 h-1 rounded-full bg-blue-500/40 mt-1.5 shrink-0" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
               )}
 
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-5">
                 {project.challenges && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isFlipped ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.35 }}
-                    className="space-y-2.5"
-                  >
+                  <div className="space-y-2">
                     <div className="flex items-center gap-2 text-amber-400">
                       <Trophy className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest">The Challenge</span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest">Challenge</span>
                     </div>
-                    <p className="text-[12px] text-[#9ca3af] leading-relaxed font-sans border-l border-white/5 pl-3">
+                    <p className="text-[12px] text-[#9ca3af] leading-relaxed font-sans">
                       {project.challenges}
                     </p>
-                  </motion.div>
+                  </div>
                 )}
                 {project.learnings && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isFlipped ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.45 }}
-                    className="space-y-2.5"
-                  >
-                    <div className="flex items-center gap-2 text-indigo-400">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-blue-400">
                       <Lightbulb className="w-3.5 h-3.5" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest">Learnings</span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest">Learning</span>
                     </div>
-                    <p className="text-[12px] text-[#9ca3af] leading-relaxed font-sans border-l border-white/5 pl-3">
+                    <p className="text-[12px] text-[#9ca3af] leading-relaxed font-sans">
                       {project.learnings}
                     </p>
-                  </motion.div>
+                  </div>
                 )}
               </div>
             </div>
 
             {/* Backside Action Links */}
-            <div className="mt-6 grid grid-cols-2 gap-4 pt-5 border-t border-white/5">
+            <div className="mt-6 grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
               {project.github && (
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-white text-[11px] font-bold hover:bg-white/10 transition-all active:scale-95"
+                  className="flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-[11px] font-bold hover:bg-white/10 transition-all active:scale-95"
                 >
-                  <Github className="w-4.5 h-4.5" />
+                  <Github className="w-4 h-4" />
                   Source
                 </a>
               )}
@@ -248,9 +226,9 @@ function ProjectCard({ project, variants }: ProjectCardProps) {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-blue-600 text-white text-[11px] font-bold hover:bg-blue-500 shadow-[0_10px_25px_rgba(59,130,246,0.3)] transition-all active:scale-95"
+                  className="flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 text-white text-[11px] font-bold hover:bg-blue-500 shadow-[0_8px_20px_rgba(59,130,246,0.3)] transition-all active:scale-95"
                 >
-                  <ExternalLink className="w-4.5 h-4.5" />
+                  <ExternalLink className="w-4 h-4" />
                   Live
                 </a>
               )}
