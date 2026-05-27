@@ -120,8 +120,10 @@ export default function Hero({ onResumeClick }: HeroProps) {
                  Projects
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-              <button
-                onClick={onResumeClick}
+              <a
+                href="https://docs.google.com/document/d/1bC9X-X4A2a8mkWtWHsKFGEhGCfGEzUFcLkjqbcROJao/export?format=pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center justify-center gap-2 border border-white/5 bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-4.5 rounded-2xl shadow-lg hover:shadow-blue-500/10 active:scale-98 transition-all duration-300 min-w-[150px] backdrop-blur-md relative overflow-hidden"
               >
                 <motion.div 
@@ -132,7 +134,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
                 />
                 <Download className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
                  Resume
-              </button>
+              </a>
 
               {/* Mini Social icons list */}
               <div className="flex flex-wrap items-center gap-4 pl-1 mt-6 sm:mt-0">

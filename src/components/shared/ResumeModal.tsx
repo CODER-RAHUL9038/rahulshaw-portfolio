@@ -43,13 +43,23 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 Rahul_Shaw_Resume.pdf
               </span>
               <div className="flex items-center gap-2">
+                <a
+                  href="https://docs.google.com/document/d/1bC9X-X4A2a8mkWtWHsKFGEhGCfGEzUFcLkjqbcROJao/export?format=pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase px-4 py-2 rounded-lg transition-colors"
+                  title="Download Resume as PDF"
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  Download PDF
+                </a>
                 <button
                   onClick={handlePrint}
-                  className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase px-4 py-2 rounded-lg transition-colors"
-                  title="Print Resume or Save as PDF"
+                  className="flex items-center gap-1.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white text-xs font-bold uppercase px-4 py-2 rounded-lg transition-colors"
+                  title="Print Resume"
                 >
                   <Printer className="w-3.5 h-3.5" />
-                  Print / Save PDF
+                  Print
                 </button>
                 <button
                   onClick={onClose}

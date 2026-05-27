@@ -150,18 +150,20 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
               ))}
             </ul>
 
-            <motion.button
+            <motion.a
               id="download-resume-btn-desktop"
               initial="hidden"
               animate="visible"
               variants={navRevealVariants}
               custom={navLinks.length + 2}
-              onClick={onResumeClick}
+              href="https://docs.google.com/document/d/1bC9X-X4A2a8mkWtWHsKFGEhGCfGEzUFcLkjqbcROJao/export?format=pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-[10px] tracking-widest uppercase px-5 py-2.5 rounded-full shadow-[0_5px_15px_rgba(59,130,246,0.2)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
             >
               <FileDown className="w-3.5 h-3.5" />
               Resume
-            </motion.button>
+            </motion.a>
           </nav>
 
           {/* Mobile/Tab menu trigger button */}
@@ -237,12 +239,12 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
                 </ul>
 
                 <motion.div variants={mobileItemVariants}>
-                  <button
+                  <a
                     id="download-resume-btn-mobile"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      onResumeClick();
-                    }}
+                    href="https://docs.google.com/document/d/1bC9X-X4A2a8mkWtWHsKFGEhGCfGEzUFcLkjqbcROJao/export?format=pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className="group flex items-center justify-center gap-2 bg-blue-600 text-white text-sm font-bold py-4.5 rounded-2xl hover:bg-blue-500 active:scale-95 transition-all w-full relative overflow-hidden shadow-lg shadow-blue-500/20"
                   >
                     <motion.div
@@ -253,7 +255,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
                     />
                     <FileDown className="w-5 h-5" />
                     Resume
-                  </button>
+                  </a>
                 </motion.div>
 
                 <motion.div
