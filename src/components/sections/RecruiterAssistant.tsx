@@ -26,14 +26,18 @@ export default function RecruiterAssistant() {
       {
         id: "init",
         sender: "assistant",
-        text: "Hello! I am Rahul's artificial Recruiter Assistant, powered by Gemini 3.5. Ask me anything about Rahul's key skills, projects, completed certifications, or professional experience timeline!"
+        text: "Hi, I’m Rahul’s AI recruiter assistant. Ask about his MERN stack projects, backend systems, frontend architecture, technical skills, or development experience."
       }
     ]);
   }, []);
 
   useEffect(() => {
     if (messages.length > 1 || isLoading) {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      // Small delay to ensure DOM is updated before scrolling
+      const timeoutId = setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 100);
+      return () => clearTimeout(timeoutId);
     }
   }, [messages, isLoading]);
 
@@ -104,7 +108,7 @@ export default function RecruiterAssistant() {
       {
         id: "init",
         sender: "assistant",
-        text: "Hello! I am Rahul's artificial Recruiter Assistant, powered by Gemini 3.5. Ask me anything about Rahul's key skills, projects, completed certifications, or professional experience timeline!"
+        text: "Hi, I’m Rahul’s AI recruiter assistant. Ask about his MERN stack projects, backend systems, frontend architecture, technical skills, or development experience."
       }
     ]);
     setInputText("");
@@ -119,18 +123,18 @@ export default function RecruiterAssistant() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
-        className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-start"
+        className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-center"
       >
         {/* Left column info */}
         <div className="space-y-8">
           <div className="space-y-4">
             <motion.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-blue-400" />
-              Cognitive Core
+              Ai chatbot
             </motion.div>
             <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
-              Recruiter <br />
-              AI Assistant
+              Rahul's Ai <br />
+              Assitant
             </motion.h2>
             <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
               Need on-demand verification? Query my custom-trained LLM model server to evaluate standard job alignment, technology choices, or professional highlights in real-time.
@@ -141,8 +145,8 @@ export default function RecruiterAssistant() {
             <div className="p-4 bg-[#0f1012]/40 border border-white/[0.04] rounded-2xl flex items-center gap-3">
               <Cpu className="w-5 h-5 text-blue-400 shrink-0" />
               <div>
-                <div className="text-[10px] text-[#9ca3af] font-mono uppercase tracking-wider">Model Engine</div>
-                <div className="text-xs font-bold text-white mt-0.5">Gemini 3.5 Flash</div>
+                <div className="text-[10px] text-[#9ca3af] font-mono uppercase tracking-wider">AI MODEL</div>
+                <div className="text-xs font-bold text-white mt-0.5">Gemini 3.5</div>
               </div>
             </div>
             <div className="p-4 bg-[#0f1012]/40 border border-white/[0.04] rounded-2xl flex items-center gap-3">
@@ -164,23 +168,23 @@ export default function RecruiterAssistant() {
               </div>
               <div>
                 <h4 className="text-sm font-bold text-white leading-none font-heading">Recruiter Assistant</h4>
-                <span className="text-[10px] font-mono font-medium text-emerald-400 flex items-center gap-1.5 mt-1.5">
+                <div className="flex items-center gap-1.5 mt-1.5">
                   <motion.span 
-                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.1, 0.9] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                    className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
                   ></motion.span>
-                  Ready to respond
-                </span>
+                  <span className="text-[10px] font-mono font-medium text-emerald-400/80 uppercase tracking-tighter">Live</span>
+                </div>
               </div>
             </div>
             
             <button
               onClick={handleResetChat}
-              className="px-3.5 py-2.5 rounded-xl border border-white/[0.04] text-[#9ca3af] hover:text-white hover:bg-white/5 active:scale-95 transition-all text-xs flex items-center gap-1.5 font-bold uppercase tracking-wider"
+              className="px-3 py-1.5 rounded-lg border border-white/[0.03] text-[#9ca3af]/60 hover:text-white hover:bg-white/5 hover:border-white/10 active:scale-95 transition-all text-[10px] flex items-center gap-1.5 font-bold uppercase tracking-wider"
               title="Reset Chat History"
             >
-              <RefreshCw className="w-3.5 h-3.5" />
+              <RefreshCw className="w-3 h-3" />
               Reset
             </button>
           </div>
