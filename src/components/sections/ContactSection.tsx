@@ -55,7 +55,7 @@ export default function ContactSection() {
         <div className="space-y-8 lg:sticky lg:top-28">
           <div className="space-y-4">
             <motion.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500">
-              Inquiries & Collabs
+              Inquiries & Hiring
             </motion.div>
             <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
               Let's build <br />
@@ -148,7 +148,7 @@ export default function ContactSection() {
 
               <div className="space-y-2">
                 <label htmlFor="form-input-message" className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">
-                  Project Inquiry & Proposal
+                  Project Inquiry & Hiring
                 </label>
                 <textarea
                   id="form-input-message"

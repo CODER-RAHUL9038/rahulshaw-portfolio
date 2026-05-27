@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles } from "lucide-react";
+import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles, Plus, MessageSquare, History, User, Settings } from "lucide-react";
 import { ChatMessage } from "../../types";
 import { motion, AnimatePresence, Variants } from "motion/react";
 
@@ -160,152 +160,184 @@ export default function RecruiterAssistant() {
         </div>
 
         {/* Right column: Chat workspace */}
-        <motion.div variants={textRevealVariants} className="p-5 md:p-7 rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] md:h-[520px] flex flex-col justify-between">
-          <div className="flex justify-between items-center pb-4 border-b border-white/[0.04]">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                <Terminal className="w-4 h-4" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white leading-none font-heading">Recruiter Assistant</h4>
-                <div className="flex items-center gap-1.5 mt-1.5">
-                  <motion.span 
-                    animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.1, 0.9] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
-                  ></motion.span>
-                  <span className="text-[10px] font-mono font-medium text-emerald-400/80 uppercase tracking-tighter">Live</span>
+        <motion.div variants={textRevealVariants} className="rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] md:h-[520px] flex flex-row overflow-hidden">
+          {/* Internal Sidebar (Thin) */}
+          <div className="hidden md:flex w-[68px] border-r border-white/[0.05] bg-white/[0.01] flex-col items-center py-8 justify-between shrink-0">
+            <div className="flex flex-col items-center gap-8">
+              <button 
+                onClick={handleResetChat}
+                className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-blue-400 hover:bg-blue-600/20 hover:border-blue-600/30 transition-all active:scale-90"
+                title="New Chat"
+              >
+                <Plus className="w-5 h-5" />
+              </button>
+              
+              <div className="flex flex-col items-center gap-6 text-[#4b5563]">
+                <div title="Recent Chats">
+                  <MessageSquare className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
+                </div>
+                <div title="History">
+                  <History className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
+                </div>
+                <div title="My Profile">
+                  <User className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
                 </div>
               </div>
             </div>
-            
-            <button
-              onClick={handleResetChat}
-              className="px-3 py-1.5 rounded-lg border border-white/[0.03] text-[#9ca3af]/60 hover:text-white hover:bg-white/5 hover:border-white/10 active:scale-95 transition-all text-[10px] flex items-center gap-1.5 font-bold uppercase tracking-wider"
-              title="Reset Chat History"
-            >
-              <RefreshCw className="w-3 h-3" />
-              Reset
-            </button>
+
+            <div className="text-[#4b5563]" title="Settings">
+              <Settings className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
+            </div>
           </div>
 
-          <div className="flex-grow overflow-y-auto py-6 space-y-4 pr-1 scrollbar-thin">
-            <AnimatePresence initial={false}>
-              {messages.map((msg) => (
-                <motion.div
-                  key={msg.id}
-                  initial={{ opacity: 0, y: 10, filter: "blur(4px)", scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-5 py-3.5 text-sm leading-relaxed ${
-                      msg.sender === "user"
-                        ? "bg-blue-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(59,130,246,0.15)]"
-                        : "bg-[#131416]/90 border border-white/[0.04] text-[#e5e2e1] rounded-bl-none"
-                    }`}
-                  >
-                    {msg.text}
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {isLoading && (
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex justify-start"
-              >
-                <div className="bg-[#131416]/90 border border-white/[0.04] rounded-2xl rounded-bl-none px-5 py-3.5 text-sm text-[#9ca3af] flex items-center gap-2.5">
-                  <span className="flex gap-1">
-                    <motion.span 
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
-                      className="w-1.5 h-1.5 rounded-full bg-blue-400"
-                    />
-                    <motion.span 
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
-                      className="w-1.5 h-1.5 rounded-full bg-blue-400"
-                    />
-                    <motion.span 
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
-                      className="w-1.5 h-1.5 rounded-full bg-blue-400"
-                    />
-                  </span>
-                  <span className="text-xs font-mono">Evaluating background datasets...</span>
+          {/* Main Chat Content Area */}
+          <div className="flex-grow flex flex-col justify-between p-5 md:p-7 h-full overflow-hidden">
+            <div className="flex justify-between items-center pb-4 border-b border-white/[0.04]">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                  <Terminal className="w-4 h-4" />
                 </div>
-              </motion.div>
-            )}
-
-            {errorMessage && (
-              <div className="flex justify-center">
-                <div className="bg-red-500/15 border border-red-500/20 rounded-2xl p-4 flex items-start gap-3 w-full text-xs text-red-400">
-                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    <div className="font-bold">Execution Interrupted</div>
-                    <p>{errorMessage}</p>
+                <div>
+                  <h4 className="text-sm font-bold text-white leading-none font-heading">Recruiter Assistant</h4>
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    <motion.span 
+                      animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.1, 0.9] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
+                    ></motion.span>
+                    <span className="text-[10px] font-mono font-medium text-emerald-400/80 uppercase tracking-tighter">Live</span>
                   </div>
                 </div>
               </div>
-            )}
-
-            {messages.length === 1 && !isLoading && (
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="pt-4 space-y-3"
+              
+              <button
+                onClick={handleResetChat}
+                className="px-3 py-1.5 rounded-lg border border-white/[0.03] text-[#9ca3af]/60 hover:text-white hover:bg-white/5 hover:border-white/10 active:scale-95 transition-all text-[10px] flex items-center gap-1.5 font-bold uppercase tracking-wider"
+                title="Reset Chat History"
               >
-                <span className="text-[10px] font-bold text-[#9ca3af] tracking-[0.15em] uppercase block pl-1">
-                  SUGGESTED QUESTIONS
-                </span>
-                <div className="flex flex-wrap gap-2.5">
-                  {suggestionPrompts.map((prompt, index) => (
-                    <button
-                      key={prompt}
-                      type="button"
-                      onClick={() => handleSendMessage(prompt)}
-                      className={`inline-flex items-center text-xs text-[#d1d5db] hover:text-white bg-[#0e0f10] hover:bg-[#151618] border border-white/[0.08] hover:border-blue-500/35 px-4.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm active:scale-95 text-left ${
-                        index >= 3 ? "hidden md:inline-flex" : "inline-flex"
+                <RefreshCw className="w-3 h-3" />
+                Reset
+              </button>
+            </div>
+
+            <div className="flex-grow overflow-y-auto py-6 space-y-4 pr-1 scrollbar-thin">
+              <AnimatePresence initial={false}>
+                {messages.map((msg) => (
+                  <motion.div
+                    key={msg.id}
+                    initial={{ opacity: 0, y: 10, filter: "blur(4px)", scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
+                    className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+                  >
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-5 py-3.5 text-sm leading-relaxed ${
+                        msg.sender === "user"
+                          ? "bg-blue-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(59,130,246,0.15)]"
+                          : "bg-[#131416]/90 border border-white/[0.04] text-[#e5e2e1] rounded-bl-none"
                       }`}
                     >
-                      {prompt}
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-            
-            <div ref={messagesEndRef} />
-          </div>
+                      {msg.text}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSendMessage(inputText);
-            }}
-            className="flex gap-2 pt-4 border-t border-white/[0.04] items-center"
-          >
-            <input
-              type="text"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="Ask me: 'Is Rahul familiar with MongoDB?'"
-              className="flex-grow bg-[#131416]/80 border border-white/[0.04] text-white px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-blue-500/50 transition-all font-sans"
-              disabled={isLoading}
-            />
-            <button
-              type="submit"
-              disabled={!inputText.trim() || isLoading}
-              className="w-[52px] h-[52px] shrink-0 rounded-xl bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-[0_4px_15px_rgba(59,130,246,0.25)] hover:scale-105 active:scale-95 disabled:hover:scale-100 disabled:opacity-30 disabled:bg-[#131416] disabled:shadow-none transition-all duration-300"
+              {isLoading && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-start"
+                >
+                  <div className="bg-[#131416]/90 border border-white/[0.04] rounded-2xl rounded-bl-none px-5 py-3.5 text-sm text-[#9ca3af] flex items-center gap-2.5">
+                    <span className="flex gap-1">
+                      <motion.span 
+                        animate={{ y: [0, -4, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                        className="w-1.5 h-1.5 rounded-full bg-blue-400"
+                      />
+                      <motion.span 
+                        animate={{ y: [0, -4, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
+                        className="w-1.5 h-1.5 rounded-full bg-blue-400"
+                      />
+                      <motion.span 
+                        animate={{ y: [0, -4, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
+                        className="w-1.5 h-1.5 rounded-full bg-blue-400"
+                      />
+                    </span>
+                    <span className="text-xs font-mono">Evaluating background datasets...</span>
+                  </div>
+                </motion.div>
+              )}
+
+              {errorMessage && (
+                <div className="flex justify-center">
+                  <div className="bg-red-500/15 border border-red-500/20 rounded-2xl p-4 flex items-start gap-3 w-full text-xs text-red-400">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <div className="font-bold">Execution Interrupted</div>
+                      <p>{errorMessage}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {messages.length === 1 && !isLoading && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="pt-4 space-y-3"
+                >
+                  <span className="text-[10px] font-bold text-[#9ca3af] tracking-[0.15em] uppercase block pl-1">
+                    SUGGESTED QUESTIONS
+                  </span>
+                  <div className="flex flex-wrap gap-2.5">
+                    {suggestionPrompts.map((prompt, index) => (
+                      <button
+                        key={prompt}
+                        type="button"
+                        onClick={() => handleSendMessage(prompt)}
+                        className={`inline-flex items-center text-xs text-[#d1d5db] hover:text-white bg-[#0e0f10] hover:bg-[#151618] border border-white/[0.08] hover:border-blue-500/35 px-4.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm active:scale-95 text-left ${
+                          index >= 3 ? "hidden md:inline-flex" : "inline-flex"
+                        }`}
+                      >
+                        {prompt}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+              
+              <div ref={messagesEndRef} />
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendMessage(inputText);
+              }}
+              className="flex gap-2 pt-4 border-t border-white/[0.04] items-center"
             >
-              <Send className="w-5 h-5" />
-            </button>
-          </form>
+              <input
+                type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                placeholder="Ask me: 'Is Rahul familiar with MongoDB?'"
+                className="flex-grow bg-[#131416]/80 border border-white/[0.04] text-white px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-blue-500/50 transition-all font-sans"
+                disabled={isLoading}
+              />
+              <button
+                type="submit"
+                disabled={!inputText.trim() || isLoading}
+                className="w-[52px] h-[52px] shrink-0 rounded-xl bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-[0_4px_15px_rgba(59,130,246,0.25)] hover:scale-105 active:scale-95 disabled:hover:scale-100 disabled:opacity-30 disabled:bg-[#131416] disabled:shadow-none transition-all duration-300"
+              >
+                <Send className="w-5 h-5" />
+              </button>
+            </form>
+          </div>
         </motion.div>
       </motion.div>
     </section>

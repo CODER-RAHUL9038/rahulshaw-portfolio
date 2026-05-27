@@ -6,15 +6,17 @@ function getGeminiClient(): GoogleGenAI {
   if (!aiClient) {
     const key = process.env.GEMINI_API_KEY;
     if (!key) {
-      throw new Error("GEMINI_API_KEY environment variable is required to power the Recruiter Assistant.");
+      throw new Error(
+        "GEMINI_API_KEY environment variable is required to power the Recruiter Assistant.",
+      );
     }
     aiClient = new GoogleGenAI({
       apiKey: key,
       httpOptions: {
         headers: {
           "User-Agent": "aistudio-build",
-        }
-      }
+        },
+      },
     });
   }
   return aiClient;
@@ -24,16 +26,22 @@ export async function POST(request: Request) {
   try {
     const { message, history } = await request.json();
     if (!message || typeof message !== "string") {
-      return NextResponse.json({ error: "A message string is required." }, { status: 400 });
+      return NextResponse.json(
+        { error: "A message string is required." },
+        { status: 400 },
+      );
     }
 
     // Check if API key exists before triggering client
     const key = process.env.GEMINI_API_KEY;
     if (!key) {
-      return NextResponse.json({
-        error: "API Key Not Found",
-        text: "I am ready and online, but my Gemini API key has not been configured in the system Secrets yet. Please check the Secrets section in the settings to unlock my artificial intelligence capabilities!"
-      }, { status: 200 });
+      return NextResponse.json(
+        {
+          error: "API Key Not Found",
+          text: "I am ready and online, but my Gemini API key has not been configured in the system Secrets yet. Please check the Secrets section in the settings to unlock my artificial intelligence capabilities!",
+        },
+        { status: 200 },
+      );
     }
 
     const ai = getGeminiClient();
@@ -81,14 +89,20 @@ Respond strictly inside this context. Format answers beautifully with markdown l
       },
     });
 
-    const responseText = response.text || "I was unable to formulate a response at this moment. Let's try again in a bit!";
+    const responseText =
+      response.text ||
+      "I was unable to formulate a response at this moment. Let's try again in a bit!";
     return NextResponse.json({ text: responseText });
-
   } catch (err: any) {
     console.error("Gemini Assistant error:", err);
-    return NextResponse.json({
-      error: "Internal Server Error",
-      text: "Apologies! I encountered an unexpected error while querying my cognitive core: " + err.message
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: "Internal Server Error",
+        text:
+          "Apologies! I encountered an unexpected error while querying my cognitive core: " +
+          err.message,
+      },
+      { status: 500 },
+    );
   }
 }

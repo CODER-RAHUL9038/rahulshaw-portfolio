@@ -24,7 +24,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Ask Rahul's AI", href: "#ai-agent" },
-    { name: "Contact", href: "#contact" },
+    { name: "Hire Me", href: "#contact" },
   ];
 
   const handleLinkClick = (
