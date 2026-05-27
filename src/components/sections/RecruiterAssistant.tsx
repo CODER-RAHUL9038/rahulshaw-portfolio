@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles, Plus, MessageSquare, History, User, Settings } from "lucide-react";
+import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles } from "lucide-react";
 import { ChatMessage } from "../../types";
 import { motion, AnimatePresence, Variants } from "motion/react";
 
@@ -134,7 +134,7 @@ export default function RecruiterAssistant() {
             </motion.div>
             <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
               Rahul's Ai <br />
-              Assitant
+              Assistant
             </motion.h2>
             <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
               Need on-demand verification? Query my custom-trained LLM model server to evaluate standard job alignment, technology choices, or professional highlights in real-time.
@@ -146,7 +146,7 @@ export default function RecruiterAssistant() {
               <Cpu className="w-5 h-5 text-blue-400 shrink-0" />
               <div>
                 <div className="text-[10px] text-[#9ca3af] font-mono uppercase tracking-wider">AI MODEL</div>
-                <div className="text-xs font-bold text-white mt-0.5">Gemini 3.5</div>
+                <div className="text-xs font-bold text-white mt-0.5">Gemini 2.5 Flash</div>
               </div>
             </div>
             <div className="p-4 bg-[#0f1012]/40 border border-white/[0.04] rounded-2xl flex items-center gap-3">
@@ -160,37 +160,7 @@ export default function RecruiterAssistant() {
         </div>
 
         {/* Right column: Chat workspace */}
-        <motion.div variants={textRevealVariants} className="rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] md:h-[520px] flex flex-row overflow-hidden">
-          {/* Internal Sidebar (Thin) */}
-          <div className="hidden md:flex w-[68px] border-r border-white/[0.05] bg-white/[0.01] flex-col items-center py-8 justify-between shrink-0">
-            <div className="flex flex-col items-center gap-8">
-              <button 
-                onClick={handleResetChat}
-                className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-blue-400 hover:bg-blue-600/20 hover:border-blue-600/30 transition-all active:scale-90"
-                title="New Chat"
-              >
-                <Plus className="w-5 h-5" />
-              </button>
-              
-              <div className="flex flex-col items-center gap-6 text-[#4b5563]">
-                <div title="Recent Chats">
-                  <MessageSquare className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
-                </div>
-                <div title="History">
-                  <History className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
-                </div>
-                <div title="My Profile">
-                  <User className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
-                </div>
-              </div>
-            </div>
-
-            <div className="text-[#4b5563]" title="Settings">
-              <Settings className="w-5 h-5 hover:text-[#9ca3af] transition-colors cursor-pointer" />
-            </div>
-          </div>
-
-          {/* Main Chat Content Area */}
+        <motion.div variants={textRevealVariants} className="rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] md:h-[520px] flex flex-col overflow-hidden">
           <div className="flex-grow flex flex-col justify-between p-5 md:p-7 h-full overflow-hidden">
             <div className="flex justify-between items-center pb-4 border-b border-white/[0.04]">
               <div className="flex items-center gap-3">
@@ -220,7 +190,7 @@ export default function RecruiterAssistant() {
               </button>
             </div>
 
-            <div className="flex-grow overflow-y-auto py-6 space-y-4 pr-1 scrollbar-thin">
+            <div className="flex-grow overflow-y-auto py-6 space-y-4 pr-2 chatbot-scrollbar">
               <AnimatePresence initial={false}>
                 {messages.map((msg) => (
                   <motion.div

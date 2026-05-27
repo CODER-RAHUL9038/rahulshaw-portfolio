@@ -43,7 +43,7 @@ Replace:
 “Gemini 3.5 Flash”
 
 With:
-“Gemini 3.5”
+“Gemini 2.5”
 Current message is too long.
 
 Replace with something cleaner:

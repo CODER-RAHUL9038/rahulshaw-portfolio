@@ -29,7 +29,7 @@ A high-performance, cinematic portfolio application built with the latest modern
 - **Icons**: Lucide React
 
 ### AI Integration
-- **LLM**: Gemini 1.5 Flash
+- **LLM**: Gemini 2.5 Flash
 - **SDK**: Google Generative AI SDK (`@google/genai`)
 
 ## 📂 Project Structure

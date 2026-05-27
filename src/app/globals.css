@@ -76,7 +76,7 @@
     pointer-events: none;
   }
 
-  /* Custom scrollbar */
+  /* Custom global scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -89,5 +89,27 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #3b82f6;
+  }
+}
+
+@layer utilities {
+  /* Modern Thin Scrollbar for Chat */
+  .chatbot-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .chatbot-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .chatbot-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+  }
+  
+  .chatbot-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
   }
 }
