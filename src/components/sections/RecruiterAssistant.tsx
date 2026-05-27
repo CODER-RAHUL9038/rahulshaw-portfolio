@@ -264,12 +264,14 @@ export default function RecruiterAssistant() {
                   SUGGESTED QUESTIONS
                 </span>
                 <div className="flex flex-wrap gap-2.5">
-                  {suggestionPrompts.map((prompt) => (
+                  {suggestionPrompts.map((prompt, index) => (
                     <button
                       key={prompt}
                       type="button"
                       onClick={() => handleSendMessage(prompt)}
-                      className="inline-flex items-center text-xs text-[#d1d5db] hover:text-white bg-[#0e0f10] hover:bg-[#151618] border border-white/[0.08] hover:border-blue-500/35 px-4.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm active:scale-95 text-left"
+                      className={`inline-flex items-center text-xs text-[#d1d5db] hover:text-white bg-[#0e0f10] hover:bg-[#151618] border border-white/[0.08] hover:border-blue-500/35 px-4.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm active:scale-95 text-left ${
+                        index >= 3 ? "hidden md:inline-flex" : "inline-flex"
+                      }`}
                     >
                       {prompt}
                     </button>
