@@ -155,6 +155,7 @@ export default function CoreStack() {
 
         {/* Directory Wrapper Panel */}
         <motion.div 
+          id="skills"
           ref={directoryRef}
           variants={textRevealVariants}
           className="rounded-[2.5rem] border border-white/[0.05] bg-[#090a0b]/80 p-8 md:p-12 space-y-10 shadow-[0_30px_70px_rgba(0,0,0,0.4)] relative"
