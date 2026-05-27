@@ -119,10 +119,10 @@ export default function RecruiterAssistant() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
-        className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-start"
+        className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-center"
       >
         {/* Left column info */}
-        <div className="space-y-8 lg:sticky lg:top-28">
+        <div className="space-y-8">
           <div className="space-y-4">
             <motion.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-blue-400" />
