@@ -20,7 +20,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
 
   const navLinks = [
     { name: "Projects", href: "#projects" },
-    { name: "Tech Stack", href: "#stack" },
+    { name: "Skills", href: "#stack" },
     { name: "Experience", href: "#experience" },
     { name: "Ask Rahul's AI", href: "#ai-agent" },
     { name: "Contact", href: "#contact" },
