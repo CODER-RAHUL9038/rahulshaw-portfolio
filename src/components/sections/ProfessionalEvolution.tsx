@@ -1,13 +1,101 @@
-import React from "react";
+"use client";
+
+import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { experiences } from "../../data/experience";
 import { Briefcase, MapPin, Milestone, Award, Star, GraduationCap } from "lucide-react";
-import { motion, useScroll, useSpring, Variants } from "motion/react";
+import { motion, MotionValue, useScroll, useSpring, useTransform, Variants } from "motion/react";
+
+function TimelineNode({
+  isHighlighted,
+  nodeCenter,
+  progressHeight,
+}: {
+  isHighlighted: boolean;
+  nodeCenter: number;
+  progressHeight: MotionValue<number>;
+}) {
+  const isReached = useTransform(progressHeight, (height) => height >= nodeCenter - 1);
+  const borderColor = useTransform(isReached, (reached) =>
+    reached ? "rgba(96, 165, 250, 1)" : "rgba(59, 130, 246, 0.65)"
+  );
+  const boxShadow = useTransform(isReached, (reached) =>
+    reached
+      ? "0 0 15px rgba(59,130,246,0.9)"
+      : "0 0 10px rgba(59,130,246,0.3)"
+  );
+
+  return (
+    <motion.div
+      className="w-[14px] h-[14px] rounded-full bg-[#050505] border-[3px] hover:scale-125 transition-transform duration-300"
+      style={{
+        borderColor: isHighlighted ? "rgba(96, 165, 250, 1)" : borderColor,
+        boxShadow: isHighlighted ? "0 0 15px rgba(59,130,246,0.9)" : boxShadow,
+      }}
+    ></motion.div>
+  );
+}
 
 export default function ProfessionalEvolution() {
-  const { scrollYProgress } = useScroll();
-  const scaleY = useSpring(scrollYProgress, {
-    damping: 30,
-    restDelta: 0.001
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [nodeCenters, setNodeCenters] = useState<number[]>([]);
+  const [lineTravel, setLineTravel] = useState(1);
+  const [lineHeightPx, setLineHeightPx] = useState(1);
+
+  const measureTimeline = useCallback(() => {
+    const line = lineRef.current;
+    if (!line) return;
+
+    const lineRect = line.getBoundingClientRect();
+    const centers = nodeRefs.current.map((node) => {
+      if (!node) return 0;
+      const nodeRect = node.getBoundingClientRect();
+      return nodeRect.top + nodeRect.height / 2 - lineRect.top;
+    });
+
+    const lastCenter = centers[centers.length - 1] ?? 1;
+    setNodeCenters(centers);
+    setLineTravel(Math.max(lastCenter, 1));
+    setLineHeightPx(Math.max(lineRect.height, 1));
+  }, []);
+
+  useLayoutEffect(() => {
+    measureTimeline();
+
+    const resizeObserver = new ResizeObserver(measureTimeline);
+    if (timelineRef.current) resizeObserver.observe(timelineRef.current);
+    if (lineRef.current) resizeObserver.observe(lineRef.current);
+
+    window.addEventListener("resize", measureTimeline);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measureTimeline);
+    };
+  }, [measureTimeline]);
+
+  const { scrollYProgress } = useScroll({
+    target: lineRef,
+    offset: ["start center", "end center"],
+  });
+  const clampedTimelineProgress = useTransform(scrollYProgress, [0, 1], [0, 1], {
+    clamp: true,
+  });
+  const nodeProgressStops = nodeCenters.map((center) =>
+    Math.min(Math.max(center / lineHeightPx, 0), 1)
+  );
+  const lineHeight = useTransform(
+    clampedTimelineProgress,
+    [0, ...nodeProgressStops, 1],
+    [0, ...nodeCenters, lineTravel],
+    { clamp: true }
+  );
+  const smoothLineHeight = useSpring(lineHeight, {
+    stiffness: 260,
+    damping: 34,
+    mass: 0.45,
+    restDelta: 0.001,
   });
 
   const textRevealVariants: Variants = {
@@ -56,12 +144,12 @@ export default function ProfessionalEvolution() {
         </motion.div>
 
         {/* Alternate Timelines Frame */}
-        <div className="relative max-w-5xl mx-auto">
+        <div ref={timelineRef} className="relative max-w-5xl mx-auto">
           {/* Main vertical center timeline connector line */}
-          <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 w-[2px] bg-white/5 overflow-hidden">
+          <div ref={lineRef} className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 w-[2px] bg-white/5 overflow-hidden">
              <motion.div 
-                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 origin-top h-full"
-                style={{ scaleY }}
+                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 origin-top"
+                style={{ height: smoothLineHeight }}
              />
           </div>
 
@@ -129,12 +217,17 @@ export default function ProfessionalEvolution() {
                   </div>
 
                   {/* Central Node Dot placement */}
-                  <div className="absolute left-[25px] md:relative md:left-0 md:translate-x-0 order-1 md:order-2 z-10 flex items-center justify-center">
-                    <div className={`w-[14px] h-[14px] rounded-full bg-[#050505] border-[3px] hover:scale-125 transition-transform duration-300 ${
-                      isHighlighted 
-                        ? "border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.9)]" 
-                        : "border-blue-500/65 shadow-[0_0_10px_rgba(59,130,246,0.3)]"
-                    }`}></div>
+                  <div
+                    ref={(node) => {
+                      nodeRefs.current[index] = node;
+                    }}
+                    className="absolute left-[25px] top-1/2 -translate-y-1/2 md:relative md:left-0 md:top-auto md:translate-x-0 md:translate-y-0 order-1 md:order-2 z-10 flex items-center justify-center"
+                  >
+                    <TimelineNode
+                      isHighlighted={Boolean(isHighlighted)}
+                      nodeCenter={nodeCenters[index] ?? 0}
+                      progressHeight={smoothLineHeight}
+                    />
                   </div>
 
                   {/* Right Side Container (Displays card on odd, empty block on even) */}
