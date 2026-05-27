@@ -160,7 +160,7 @@ export default function RecruiterAssistant() {
         </div>
 
         {/* Right column: Chat workspace */}
-        <motion.div variants={textRevealVariants} className="p-5 md:p-7 rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[480px] md:h-[520px] flex flex-col justify-between">
+        <motion.div variants={textRevealVariants} className="p-5 md:p-7 rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] md:h-[520px] flex flex-col justify-between">
           <div className="flex justify-between items-center pb-4 border-b border-white/[0.04]">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
