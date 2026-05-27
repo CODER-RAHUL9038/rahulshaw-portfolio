@@ -22,7 +22,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     { name: "Projects", href: "#projects" },
     { name: "Tech Stack", href: "#stack" },
     { name: "Experience", href: "#experience" },
-    { name: "Ask Rahul AI", href: "#ai-agent" },
+    { name: "Ask Rahul's AI", href: "#ai-agent" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -35,7 +35,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     const target = document.querySelector(href);
     if (target) {
       const topOffset =
-        target.getBoundingClientRect().top + window.scrollY - 80;
+        target.getBoundingClientRect().top + window.scrollY - 40;
       window.scrollTo({
         top: topOffset,
         behavior: "smooth",
