@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { skills } from "../../data/skills";
-import { Atom, Globe, Cpu, Terminal, Database, Lock, GitBranch, Wind, Code, Sparkles, MessageSquareCode, Network, Layers, Zap, GitFork, Container, Radio, Check } from "lucide-react";
+import { Atom, Globe, Cpu, Terminal, Database, Sparkles, Check } from "lucide-react";
 import { motion, Variants, AnimatePresence } from "motion/react";
 
 export default function CoreStack() {
@@ -9,7 +9,6 @@ export default function CoreStack() {
   const directoryRef = useRef<HTMLDivElement>(null);
 
   const SKILL_LIMIT = 10;
-
   const categories = ["ALL", "BACKEND", "FRONTEND", "AI WORKFLOWS", "DATABASES", "TOOLS"];
 
   const filteredSkills = skills.filter((skill) => {
@@ -20,14 +19,12 @@ export default function CoreStack() {
   const displayedSkills = isExpanded ? filteredSkills : filteredSkills.slice(0, SKILL_LIMIT);
   const hasMore = filteredSkills.length > SKILL_LIMIT;
 
-  // Reset expansion when category changes
   useEffect(() => {
     setIsExpanded(false);
   }, [activeTab]);
 
-  // Handle scroll to top of directory when tab changes
   useEffect(() => {
-    if (directoryRef.current) {
+    if (directoryRef.current && activeTab !== "ALL") {
       const topOffset = directoryRef.current.getBoundingClientRect().top + window.scrollY - 100;
       window.scrollTo({
         top: topOffset,
@@ -40,32 +37,42 @@ export default function CoreStack() {
     {
       id: "react",
       name: "React.js",
-      subtitle: "Interactive Component Views",
-      icon: <Atom className="w-6 h-6 text-blue-400" />
+      subtitle: "UI Logic & Views",
+      icon: <Atom className="w-5 h-5" />,
+      color: "#61DAFB",
+      glow: "rgba(97, 218, 251, 0.15)"
     },
     {
       id: "nextjs",
       name: "Next.js 15",
-      subtitle: "Server Actions & Router Layouts",
-      icon: <Globe className="w-6 h-6 text-blue-400" />
+      subtitle: "Full-Stack System",
+      icon: <Globe className="w-5 h-5" />,
+      color: "#FFFFFF",
+      glow: "rgba(255, 255, 255, 0.1)"
     },
     {
       id: "nodejs",
       name: "Node.js",
-      subtitle: "Async Non-blocking Engine",
-      icon: <Cpu className="w-6 h-6 text-blue-500" />
+      subtitle: "Backend Engine",
+      icon: <Cpu className="w-5 h-5" />,
+      color: "#339933",
+      glow: "rgba(51, 153, 51, 0.15)"
     },
     {
       id: "express",
       name: "Express.js",
-      subtitle: "Secure API Server Framework",
-      icon: <Terminal className="w-6 h-6 text-blue-400" />
+      subtitle: "API Middleware",
+      icon: <Terminal className="w-5 h-5" />,
+      color: "#eeeeee",
+      glow: "rgba(238, 238, 238, 0.08)"
     },
     {
       id: "mongodb",
       name: "MongoDB",
-      subtitle: "NoSQL Flexible Data Store",
-      icon: <Database className="w-6 h-6 text-blue-500" />
+      subtitle: "Data Persistence",
+      icon: <Database className="w-5 h-5" />,
+      color: "#47A248",
+      glow: "rgba(71, 162, 72, 0.15)"
     }
   ];
 
@@ -91,15 +98,12 @@ export default function CoreStack() {
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+    hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)",
-      transition: { 
-        duration: 0.5, 
-        ease: [0.16, 1, 0.3, 1] as const 
-      }
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -110,7 +114,7 @@ export default function CoreStack() {
       <motion.div 
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
         className="space-y-16 relative z-10"
       >
         {/* Section Header */}
@@ -119,33 +123,47 @@ export default function CoreStack() {
             variants={textRevealVariants}
             className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
           >
-            Core Stack
+            Tech Stack
           </motion.h2>
           <motion.p 
             variants={textRevealVariants}
             className="text-[#9ca3af] leading-relaxed text-sm md:text-base max-w-2xl font-sans"
           >
-            Standard engineering toolkit for robust, production-grade applications.
+            Technologies I work with for building scalable web applications, APIs, and responsive user experiences.
           </motion.p>
         </div>
 
-        {/* Dynamic upper grid */}
+        {/* Dynamic upper grid - Reverted to md:grid-cols-5 and gap-4 */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {topPillars.map((pillar, idx) => (
             <motion.div
               key={pillar.id}
               variants={textRevealVariants}
               transition={{ delay: idx * 0.1 }}
-              className="py-12 px-6 rounded-3xl border border-white/[0.04] bg-[#0c0d0e]/60 backdrop-blur-md flex flex-col items-center text-center justify-center space-y-5 hover:border-blue-500/20 hover:bg-[#111214]/80 transition-all duration-300 group"
+              whileHover={{ y: -5 }}
+              className="py-12 px-6 rounded-3xl border border-white/[0.04] bg-[#0c0d0e]/60 backdrop-blur-md flex flex-col items-center text-center justify-center space-y-5 hover:border-blue-500/20 hover:bg-[#111214]/80 transition-all duration-300 group relative overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-2xl bg-blue-500/5 border border-blue-500/15 flex items-center justify-center group-hover:bg-blue-500/10 group-hover:border-blue-500/30 transition-all shadow-[0_0_15px_rgba(59,130,246,0.05)]">
-                {pillar.icon}
+              {/* Pillar Glow Effect - Kept as Improvement */}
+              <div 
+                className="absolute -top-10 -right-10 w-24 h-24 blur-[35px] rounded-full transition-all duration-700 opacity-10 group-hover:opacity-25"
+                style={{ backgroundColor: pillar.color }}
+              ></div>
+
+              <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:border-transparent transition-all duration-500 shadow-inner"
+                   style={{ 
+                     color: pillar.color,
+                     boxShadow: `0 0 15px -5px ${pillar.glow}`
+                   }}
+              >
+                <div className="transition-transform duration-500 group-hover:scale-110">
+                  {pillar.icon}
+                </div>
               </div>
               <div className="space-y-2">
                 <h3 className="font-heading text-lg font-bold text-white tracking-tight leading-tight">
                   {pillar.name}
                 </h3>
-                <p className="text-[11px] text-[#9ca3af] max-w-[130px] mx-auto leading-relaxed">
+                <p className="text-[11px] font-mono text-[#6b7280] uppercase tracking-wider group-hover:text-[#9ca3af] transition-colors">
                   {pillar.subtitle}
                 </p>
               </div>
@@ -153,12 +171,12 @@ export default function CoreStack() {
           ))}
         </div>
 
-        {/* Directory Wrapper Panel */}
+        {/* Directory Wrapper Panel - Reverted spacing and padding */}
         <motion.div 
           id="skills"
           ref={directoryRef}
           variants={textRevealVariants}
-          className="rounded-[2.5rem] border border-white/[0.05] bg-[#090a0b]/80 p-8 md:p-12 space-y-10 shadow-[0_30px_70px_rgba(0,0,0,0.4)] relative"
+          className="rounded-[2.5rem] border border-white/[0.05] bg-[#090a0b]/80 p-8 md:p-12 space-y-10 shadow-[0_30px_70px_rgba(0,0,0,0.4)] relative backdrop-blur-xl"
         >
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/[0.04]">
             <div className="space-y-1">
@@ -191,7 +209,7 @@ export default function CoreStack() {
           </div>
 
           <motion.div 
-            key={`${activeTab}-${isExpanded}`} // Ensures animation on expansion too
+            key={`${activeTab}-${isExpanded}`}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -214,7 +232,7 @@ export default function CoreStack() {
                       {skill.name}
                     </h4>
                     <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
-                      {skill.category}
+                      {skill.category.split(' ')[0]}
                     </span>
                   </div>
                 </motion.div>
@@ -223,31 +241,23 @@ export default function CoreStack() {
           </motion.div>
 
           {/* Show More / Less Toggle */}
-          <AnimatePresence>
-            {hasMore && (
-              <motion.div 
-                key={`toggle-${activeTab}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="flex justify-center pt-8"
+          {hasMore && (
+            <div className="flex justify-center pt-8">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="group flex items-center gap-2 px-8 py-3 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 text-[#9ca3af] hover:text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-lg"
               >
-                <button
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className="group flex items-center gap-2 px-8 py-3 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 text-[#9ca3af] hover:text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-lg"
+                {isExpanded ? "Show Less" : `Show ${filteredSkills.length - SKILL_LIMIT} More`}
+                <motion.span
+                  animate={{ y: isExpanded ? -2 : 2 }}
+                  transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
+                  className="font-mono text-blue-400"
                 >
-                  {isExpanded ? "Show Less" : `Show ${filteredSkills.length - SKILL_LIMIT} More`}
-                  <motion.span
-                    animate={{ y: isExpanded ? -2 : 2 }}
-                    transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
-                    className="font-mono text-blue-400"
-                  >
-                    {isExpanded ? "↑" : "↓"}
-                  </motion.span>
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  {isExpanded ? "↑" : "↓"}
+                </motion.span>
+              </button>
+            </div>
+          )}
         </motion.div>
       </motion.div>
     </section>

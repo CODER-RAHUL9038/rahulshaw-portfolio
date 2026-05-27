@@ -19,9 +19,9 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: "Projects", href: "#projects" },
     { name: "Tech Stack", href: "#stack" },
     { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Ask Rahul's AI", href: "#ai-agent" },
     { name: "Contact", href: "#contact" },
@@ -62,7 +62,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     closed: {
       x: "100%",
       transition: {
-        duration: 0.35,
+        duration: 0.25,
         ease: [0.16, 1, 0.3, 1] as const,
         when: "afterChildren",
       },
@@ -70,10 +70,10 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
     open: {
       x: 0,
       transition: {
-        duration: 0.4,
+        duration: 0.28,
         ease: [0.16, 1, 0.3, 1] as const,
         when: "beforeChildren",
-        staggerChildren: 0.05,
+        staggerChildren: 0.04,
       },
     },
   };
@@ -208,7 +208,7 @@ export default function Navbar({ onResumeClick }: NavbarProps) {
             >
               {/* Internal Close Button */}
               <div className="flex justify-end px-6 mb-4">
-                <button 
+                <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="p-2 rounded-xl bg-white/5 text-[#9ca3af] hover:text-white transition-all active:scale-90"
                   aria-label="Close menu"

@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { projects } from "../../data/projects";
 import { Project } from "../../types";
-import { Github, ExternalLink, ArrowUpRight, RotateCcw, Sparkles } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  ArrowUpRight,
+  RotateCcw,
+  Sparkles,
+} from "lucide-react";
 import { motion, Variants } from "motion/react";
 
 const flipTransition = {
@@ -35,7 +41,11 @@ function ProjectDetailBlock({
   index: number;
 }) {
   return (
-    <motion.div custom={index} variants={detailRevealVariants} className="space-y-2">
+    <motion.div
+      custom={index}
+      variants={detailRevealVariants}
+      className="space-y-2"
+    >
       <h4 className="text-[10px] font-bold uppercase tracking-[0.22em] text-blue-300/80">
         {title}
       </h4>
@@ -188,7 +198,11 @@ function ProjectFlipCard({
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(96,165,250,0.14),transparent_34%),radial-gradient(circle_at_100%_100%,rgba(255,255,255,0.06),transparent_30%)]"></div>
             <motion.div
               animate={{ opacity: isFlipped ? [0.7, 1, 0.78] : 0.7 }}
-              transition={{ duration: 3.2, repeat: isFlipped ? Infinity : 0, ease: "easeInOut" }}
+              transition={{
+                duration: 3.2,
+                repeat: isFlipped ? Infinity : 0,
+                ease: "easeInOut",
+              }}
               className="absolute inset-0 rounded-[2rem] border border-blue-300/10"
             ></motion.div>
 
@@ -270,12 +284,12 @@ function ProjectFlipCard({
 export default function FeaturedProjects() {
   const textRevealVariants: Variants = {
     hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
-    }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+    },
   };
 
   const containerVariants: Variants = {
@@ -283,17 +297,20 @@ export default function FeaturedProjects() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   return (
-    <section id="projects" className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative">
+    <section
+      id="projects"
+      className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative"
+    >
       {/* Background neon dust glow */}
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none"></div>
 
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
@@ -301,7 +318,10 @@ export default function FeaturedProjects() {
         className="space-y-16"
       >
         {/* Section Header */}
-        <motion.div variants={textRevealVariants} className="space-y-4 max-w-2xl">
+        <motion.div
+          variants={textRevealVariants}
+          className="space-y-4 max-w-2xl"
+        >
           <div className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans">
             Curated Showcases
           </div>
@@ -309,14 +329,22 @@ export default function FeaturedProjects() {
             Featured Projects
           </h2>
           <p className="text-[#9ca3af] leading-relaxed text-base">
-            Exploring the bounds of robust backend systems, advanced state machine coordination, and sleek user experiences.
+            A selection of full-stack applications focused on backend systems,
+            responsive interfaces, and real-world development workflows.
           </p>
         </motion.div>
 
         {/* Project display index cards */}
-        <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {projects.map((project) => (
-            <ProjectFlipCard key={project.id} project={project} variants={textRevealVariants} />
+            <ProjectFlipCard
+              key={project.id}
+              project={project}
+              variants={textRevealVariants}
+            />
           ))}
         </motion.div>
       </motion.div>
