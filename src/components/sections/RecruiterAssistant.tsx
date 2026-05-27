@@ -119,7 +119,7 @@ export default function RecruiterAssistant() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
-        className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-center"
+        className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16 items-start"
       >
         {/* Left column info */}
         <div className="space-y-8">
