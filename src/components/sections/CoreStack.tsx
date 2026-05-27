@@ -228,7 +228,7 @@ export default function CoreStack() {
                     <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-sm font-bold text-white tracking-tight truncate leading-tight">
+                    <h4 className="text-sm font-normal text-white tracking-tight truncate leading-tight">
                       {skill.name}
                     </h4>
                     <span className="text-[9px] font-mono font-medium text-[#9ca3af] uppercase tracking-wider block mt-0.5">
@@ -247,7 +247,7 @@ export default function CoreStack() {
                 onClick={() => setIsExpanded(!isExpanded)}
                 className="group flex items-center gap-2 px-8 py-3 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 text-[#9ca3af] hover:text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-lg"
               >
-                {isExpanded ? "Show Less" : `Show ${filteredSkills.length - SKILL_LIMIT} More`}
+                {isExpanded ? "Show Less" : `Show  More`}
                 <motion.span
                   animate={{ y: isExpanded ? -2 : 2 }}
                   transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}

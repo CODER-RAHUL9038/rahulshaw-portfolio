@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { projects } from "../../data/projects";
 import { Project } from "../../types";
 import {
@@ -10,7 +10,7 @@ import {
   RotateCcw,
   Sparkles,
 } from "lucide-react";
-import { motion, Variants } from "motion/react";
+import { motion, useInView, Variants } from "motion/react";
 
 const flipTransition = {
   duration: 0.62,
@@ -57,13 +57,19 @@ function ProjectDetailBlock({
 function ProjectFlipCard({
   project,
   variants,
+  resetSignal,
 }: {
   project: Project;
   variants: Variants;
+  resetSignal: number;
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const toggleCard = () => setIsFlipped((current) => !current);
+
+  useEffect(() => {
+    setIsFlipped(false);
+  }, [resetSignal]);
 
   return (
     <motion.div
@@ -282,6 +288,19 @@ function ProjectFlipCard({
 }
 
 export default function FeaturedProjects() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [resetSignal, setResetSignal] = useState(0);
+  const isProjectsInView = useInView(sectionRef, {
+    amount: 0.05,
+    once: false,
+  });
+
+  useEffect(() => {
+    if (!isProjectsInView) {
+      setResetSignal((current) => current + 1);
+    }
+  }, [isProjectsInView]);
+
   const textRevealVariants: Variants = {
     hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: {
@@ -304,6 +323,7 @@ export default function FeaturedProjects() {
 
   return (
     <section
+      ref={sectionRef}
       id="projects"
       className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative"
     >
@@ -344,6 +364,7 @@ export default function FeaturedProjects() {
               key={project.id}
               project={project}
               variants={textRevealVariants}
+              resetSignal={resetSignal}
             />
           ))}
         </motion.div>
