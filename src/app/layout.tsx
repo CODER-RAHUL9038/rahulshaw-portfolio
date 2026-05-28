@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   title: "Rahul Shaw's Portfolio",
   icons: {
     icon: [
-      { url: "/favicon.png" },
-      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
     ],
-    shortcut: "/favicon.png",
+    shortcut: "/favicon.svg",
     apple: "/favicon.png",
   },
   description:
