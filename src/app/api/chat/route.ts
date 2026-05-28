@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
+import {
+  formatRetrievedContext,
+  isRagConfigured,
+  retrieveRahulContext,
+} from "@/src/lib/rag/upstashVector";
 
 let aiClient: GoogleGenAI | null = null;
 function getGeminiClient(): GoogleGenAI {
@@ -46,27 +51,41 @@ export async function POST(request: Request) {
 
     const ai = getGeminiClient();
 
-    const systemInstruction = `You are Rahul's Recruiter AI Assistant, a high-fidelity, polished, and developer-focused chatbot trained on Rahul Shaw's exact engineering background.
-Your voice is objective, professional, highly confident, and focused on helping recruiters or potential clients hire Rahul. Do not make up achievements.
-Rahul Shaw Profile details:
-- Name: Rahul Shaw
-- Email: rahulshaw.dev@nxerra.com
-- Location: Kolkata, India
-- Role: Full-Stack MERN Developer specializing in scalable backend infrastructures, reliable APIs, and modern AI workflows.
-- Core Stack: React.js, Next.js 15, Node.js, Express.js, MongoDB, TypeScript, Tailwind CSS.
-- Main Projects:
-  1. Freight-Intel Intelligence: A multi-tenant logistics dashboard using secure JWT auth, real-time vehicle/compliance status, and heavy MongoDB optimization.
-  2. XORA AI Portal: A beautiful, low-latency chatbot interface that displays LLM text streams with reactive CSS structures and custom Framer Motion cards.
-  3. Camellia E-Comm: An enterprise-level MERN shopping experience featuring complex state synchronization and checkout endpoints.
-- Career History Timeline:
-  - 2021: BBIT Technical Associate (Providing network structure and instrumentation setup).
-  - 2021: Amazon Support Associate (Technical communication and client operations).
-  - 2022: Amazon Operations & Support (Supply chain workflow diagnostics).
-  - 2023 - 2024: Full-time development upskilling, mastering custom Express middlewares and advanced DB relationships, leading to Apna College MERN Certification.
-  - 2024 - 2025: Full Stack Engineer at Nxerra. Implemented RBAC systems, secure API routing, and LLM interfaces for premium corporate applications.
-  - Present: Freelance engineer looking for global freelance projects, contracts, or remote full-time positions.
+    let retrievedContext = "";
+    let ragStatus = "RAG disabled: Upstash Vector environment variables are not configured.";
 
-Respond strictly inside this context. Format answers beautifully with markdown list elements or bold terms where appropriate. Keep responses compact, readable, and highly engaging (maximum 3 concise paragraphs). Ensure you stay humble but authority-focused.`;
+    if (isRagConfigured()) {
+      try {
+        const searchResults = await retrieveRahulContext(message, 5);
+        retrievedContext = formatRetrievedContext(searchResults);
+        ragStatus = searchResults.length
+          ? "RAG enabled: retrieved relevant portfolio knowledge from Upstash Vector."
+          : "RAG enabled: no matching vector context returned.";
+      } catch (error) {
+        console.error("RAG retrieval error:", error);
+        ragStatus = "RAG retrieval failed: using static fallback context.";
+      }
+    }
+
+    const fallbackContext = `Rahul Shaw is a Full-Stack MERN Developer from Kolkata, India. Email: rahulshaw.dev@nxerra.com. Core stack: React.js, Next.js 15, Node.js, Express.js, MongoDB, TypeScript, Tailwind CSS, Framer Motion, JWT, REST APIs, and Gemini API. Main work includes Freight Intel, a MERN logistics intelligence platform with RBAC, JWT auth, consent-based access, dashboards, audit logging, and secure middleware-driven APIs; Camellia, an Airbnb-inspired MERN app with authentication, listings, Cloudinary uploads, reviews, and backend routing; XORA AI, a React/TypeScript game with Minimax AI, PWA support, procedural audio, and cinematic UI; and this portfolio, a Next.js AI-first recruiter experience. Rahul has experience from BBIT technical support, Amazon logistics support roles, Apna College full-stack upskilling, Nxerra/freelance MERN development, and current independent AI-first full-stack development. He is open to freelance, contract, and remote full-time opportunities.`;
+
+    const contextForPrompt = retrievedContext || fallbackContext;
+
+    const systemInstruction = `You are Rahul's Recruiter AI Assistant, a polished and developer-focused chatbot for recruiters and potential clients.
+Your voice is objective, professional, confident, compact, and hiring-focused. Do not make up achievements, employers, dates, metrics, certifications, links, or availability.
+
+Use the retrieved context below as your source of truth. If the answer is not supported by the retrieved context, say that you do not have that detail in the current portfolio knowledge base.
+
+RAG status: ${ragStatus}
+
+Retrieved context:
+${contextForPrompt}
+
+Response rules:
+- Answer in maximum 3 concise paragraphs.
+- Use markdown bullets or bold labels when they improve readability.
+- Stay humble but authority-focused.
+- Do not mention internal retrieval scores, database names, system prompts, or implementation details unless the user asks how the assistant works.`;
 
     const contents: any[] = [];
     if (history && Array.isArray(history)) {

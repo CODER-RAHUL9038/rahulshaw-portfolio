@@ -1,0 +1,44 @@
+[
+  {
+    "id": "experience-exp-1",
+    "category": "experience",
+    "year": "2021 - 2022",
+    "title": "2021 - 2022 Technical Associate At Budge Budge Institute Of Technology",
+    "text": "Year: 2021 - 2022. Rahul worked as a Technical Associate at Budge Budge Institute of Technology. The role focused on electrical systems and laboratory support. He worked on maintaining laboratory infrastructure, electrical systems, and instrumentation equipment while supporting practical lab operations for students and faculty. He maintained electrical machines, electrical drives, and instrumentation equipment used in engineering laboratory sessions. He conducted lab support activities including system setup, dry runs, troubleshooting, and equipment readiness before practical classes. He assisted students and faculty with laboratory systems, electrical instruments, and technical issue resolution during sessions. He also contributed to maintaining laboratory standards and documentation processes during institutional accreditation and evaluation activities."
+  },
+  {
+    "id": "experience-exp-2",
+    "category": "experience",
+    "year": "2022 - 2023",
+    "title": "2022 - 2023 On-Road SDS Associate At Amazon",
+    "text": "Year: 2022 - 2023. Rahul worked as an On-Road SDS Associate at Amazon. The role focused on delivery operations and support. He handled real-time delivery support operations and assisted drivers with issue resolution in high-volume logistics environments. He resolved delivery-related issues while coordinating with drivers and internal support teams in real time. He managed operational workflows using internal tracking and support systems under strict SLA timelines. He developed strong problem-solving and communication skills while handling time-sensitive logistics cases. He supported smooth delivery operations by assisting with troubleshooting and escalation handling."
+  },
+  {
+    "id": "experience-exp-3",
+    "category": "experience",
+    "year": "2024 - 2025",
+    "title": "2024 - 2025 Off-Road SDS Associate At Amazon",
+    "text": "Year: 2024 - 2025. Rahul worked as an Off-Road SDS Associate at Amazon. The role focused on workflow coordination and operational support. He worked on backend delivery support operations, onboarding workflows, and issue resolution processes within Amazon logistics systems. He handled delivery incident resolution and maintained high operational accuracy across daily workflows. He supported onboarding and offboarding processes while coordinating with multiple operational teams. He assisted in training new associates and improving workflow efficiency within support operations. He received internal recognition awards for performance, teamwork, and operational consistency."
+  },
+  {
+    "id": "experience-exp-4",
+    "category": "experience",
+    "year": "2025 - 2026",
+    "title": "2025 - 2026 Full-Stack Development Upskilling At Apna College",
+    "text": "Year: 2025 - 2026. Rahul focused on Full-Stack Development Upskilling at Apna College. The learning path focused on production-focused web development training. He focused on learning full-stack web development with hands-on projects covering frontend systems, backend architecture, databases, and deployment workflows. He completed extensive hands-on learning in HTML, CSS, JavaScript, React, Node.js, Express, and MongoDB. He built responsive full-stack applications with authentication systems, REST APIs, and database integration. He practiced backend concepts including middleware, routing, MVC architecture, and API testing workflows. He worked on deployment, Git workflows, debugging practices, and modern responsive UI development."
+  },
+  {
+    "id": "experience-exp-5",
+    "category": "experience",
+    "year": "2026",
+    "title": "2026 Freelance MERN Stack Developer At Nxerra And Independent Web Projects",
+    "text": "Year: 2026 . Rahul worked as a Freelance MERN Stack Developer with Nxerra and independent web projects. The role focused on full-stack development and backend systems. He worked on freelance and independent web projects focused on backend architecture, authentication systems, APIs, and responsive frontend experiences. He developed full-stack applications using React, Next.js, Node.js, Express, and MongoDB. He worked on backend systems including REST APIs, middleware architecture, routing, and modular project structures. He implemented authentication and authorization systems using JWT, session handling, and role-based access control (RBAC). He built protected routes and access control workflows for dashboards and user-based application features. He integrated dynamic dashboards, reusable backend logic, and API-driven workflows for scalable applications."
+  },
+  {
+    "id": "experience-exp-6",
+    "category": "experience",
+    "year": "Present",
+    "title": "Present Independent Full-Stack Developer Open To Opportunities",
+    "text": "Year: Present. Rahul is currently an Independent Full-Stack Developer open to opportunities. His current focus is building AI-first web experiences. He is focused on building modern full-stack and AI-integrated web applications while exploring production-level frontend and backend systems. He builds projects using Next.js 15, TypeScript, React, Tailwind CSS, and Framer Motion. He explores AI integrations, chatbot workflows, and interactive user experiences using Gemini API. He continuously improves backend architecture skills with Express.js, MongoDB, and REST API development. He focuses on creating responsive, recruiter-focused, and production-style portfolio and SaaS experiences."
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "project-portfolio",
+    "category": "project",
+    "title": "Rahul Shaw Portfolio",
+    "text": "Rahul Shaw's portfolio is a premium cinematic AI-first developer portfolio built with Next.js 15, TypeScript, Tailwind CSS, Framer Motion, and Gemini API. It includes an interactive recruiter assistant, immersive UI systems, responsive architecture, project showcase sections, glassmorphism-inspired interface details, and production-focused frontend engineering. The project improved Rahul's expertise in scalable Next.js architecture, animation orchestration, AI-assisted frontend workflows, and premium UI/UX engineering."
+  },
+  {
+    "id": "project-freight-intel",
+    "category": "project",
+    "title": "Freight Intel",
+    "text": "Freight Intel is a backend-focused MERN logistics intelligence platform. It uses React.js, TypeScript, Redux Toolkit, Node.js, Express.js, MongoDB, JWT, and Tailwind CSS. The project focuses on role-based access control, JWT authentication, consent-based access workflows, role-segregated dashboards, audit logging, compliance tracking, middleware-driven API architecture, and scalable enterprise-style dashboard systems. Rahul strengthened his skills in RBAC, secure API engineering, middleware systems, scalable MERN workflows, Redux async state handling, and backend-first application design through this project."
+  },
+  {
+    "id": "project-camellia",
+    "category": "project",
+    "title": "Camellia",
+    "text": "Camellia is an Airbnb-inspired MERN application using Node.js, Express.js, MongoDB, EJS, Passport.js, and Cloudinary. It includes authentication and authorization, dynamic property listings, image uploads, review and rating features, scalable backend routing, and responsive booking-style interfaces. The project improved Rahul's understanding of backend architecture, authentication systems, MVC structuring, database workflows, and production-style MERN application engineering."
+  },
+  {
+    "id": "project-xora-ai",
+    "category": "project",
+    "title": "XORA AI",
+    "text": "XORA AI is a futuristic AI-powered Tic Tac Toe application built with React 19, TypeScript, Tailwind CSS v4, Framer Motion, Vite 6, PWA patterns, and Web Audio API. It includes mathematically strong Minimax AI, multiple difficulty modes, procedural audio, animated strike-line victory effects, installable PWA support, and cinematic neon-inspired interactions. Rahul strengthened algorithmic game logic, Minimax AI systems, advanced animation orchestration, PWA architecture, audio-driven interaction design, and mobile performance optimization."
+  },
+  {
+    "id": "project-dr-maya",
+    "category": "project",
+    "title": "Dr Maya Reynolds Website",
+    "text": "Dr Maya Reynolds Website is a premium healthcare website redesign built with Next.js, React.js, Tailwind CSS, JavaScript, and Vercel. It focuses on calming UI systems, responsive healthcare layout, elegant typography, reusable UI architecture, professional section layouts, and modern frontend design refinement. Rahul improved responsive layout engineering, typography systems, reusable frontend architecture, and polished UI implementation through this project."
+  },
+  {
+    "id": "project-weather-app",
+    "category": "project",
+    "title": "Weather App",
+    "text": "The Weather App is a real-time weather forecasting application built with React.js, OpenWeather API, Tailwind CSS, JavaScript, and Vercel. It includes city-based weather search, real-time API integration, dynamic UI state updates, responsive glassmorphism interface patterns, and modern frontend interaction logic. Rahul improved API integration workflows, React state management, conditional rendering, async response handling, and responsive frontend application architecture."
+  },
+  {
+    "id": "project-more-projects",
+    "category": "project",
+    "title": "More Games And Projects",
+    "text": "Rahul maintains a growing collection of frontend experiments, JavaScript games, API integrations, responsive UI systems, and interactive projects. This collection explores JavaScript, React.js, Next.js, Tailwind CSS, browser games, UI experiments, API-driven applications, and learning-focused mini apps. It reflects rapid experimentation, UI iteration, interactive workflows, and practical web architecture growth."
+  }
+]

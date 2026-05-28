@@ -137,7 +137,7 @@ export default function RecruiterAssistant() {
               Assistant
             </motion.h2>
             <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
-              Need on-demand verification? Query my custom-trained LLM model server to evaluate standard job alignment, technology choices, or professional highlights in real-time.
+              Need on-demand verification? Query my RAG-powered Gemini assistant to evaluate job alignment, technology choices, or professional highlights with dynamic portfolio context.
             </motion.p>
           </div>
 
@@ -237,7 +237,7 @@ export default function RecruiterAssistant() {
                         className="w-1.5 h-1.5 rounded-full bg-blue-400"
                       />
                     </span>
-                    <span className="text-xs font-mono">Evaluating background datasets...</span>
+                    <span className="text-xs font-mono">Analyzing Rahul's engineering journey...</span>
                   </div>
                 </motion.div>
               )}
