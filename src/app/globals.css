@@ -33,11 +33,21 @@
   /* Custom glassmorphism card styling */
   .glass-card {
     background: rgba(15, 16, 18, 0.65);
-
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.06);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Force GPU acceleration */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  /* Higher blur only on desktop where performance is better */
+  @media (min-width: 1024px) {
+    .glass-card {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
   }
 
   .glass-card:hover {

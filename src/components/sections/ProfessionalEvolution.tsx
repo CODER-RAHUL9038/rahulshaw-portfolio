@@ -92,10 +92,10 @@ export default function ProfessionalEvolution() {
     { clamp: true }
   );
   const smoothLineHeight = useSpring(lineHeight, {
-    stiffness: 260,
-    damping: 34,
-    mass: 0.45,
-    restDelta: 0.001,
+    stiffness: 150,
+    damping: 30,
+    mass: 0.8,
+    restDelta: 0.01,
   });
 
   const textRevealVariants: Variants = {
@@ -119,7 +119,7 @@ export default function ProfessionalEvolution() {
 
   return (
     <section id="experience" className="pt-16 pb-24 px-6 max-w-7xl mx-auto relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-500/[0.02] blur-[160px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-500/[0.015] blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="space-y-20">
         {/* Section Header */}
