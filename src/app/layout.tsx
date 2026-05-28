@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rahul Shaw | Backend-Heavy MERN Developer",
-
+  title: "Rahul Shaw's Portfolio",
+  icons: {
+    icon: "/favicon.svg",
+  },
   description:
     "Premium full-stack developer portfolio showcasing scalable MERN applications, secure APIs, AI-assisted workflows, and production-focused engineering.",
 
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
   creator: "Rahul Shaw",
 
   openGraph: {
-    title: "Rahul Shaw | Backend-Heavy MERN Developer",
+    title: "Rahul Shaw's Portfolio",
 
     description:
       "Modern developer portfolio showcasing scalable MERN applications, backend-focused engineering, AI-assisted workflows, and interactive project experiences.",
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Rahul Shaw | Backend-Heavy MERN Developer",
+    title: "Rahul Shaw's Portfolio",
 
     description:
       "Premium full-stack developer portfolio with scalable MERN applications, secure APIs, and AI-assisted workflows.",
