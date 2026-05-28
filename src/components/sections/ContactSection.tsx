@@ -26,19 +26,39 @@ export default function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) return;
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send message.");
+      }
+
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", message: "" });
       
       setTimeout(() => setSubmitSuccess(false), 5000);
-    }, 1500);
+    } catch (err: any) {
+      console.error("Form submission error:", err);
+      // Fallback: Still show success in UI for better UX if the user hasn't configured the backend yet,
+      // or we could alert. But the user asked for functional.
+      // I will alert the error so the user knows if configuration is missing.
+      alert(err.message || "Apologies! There was an error sending your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
