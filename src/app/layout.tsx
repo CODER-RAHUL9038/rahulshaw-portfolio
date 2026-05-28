@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Rahul Shaw's Portfolio",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/favicon.png",
   },
   description:
     "Premium full-stack developer portfolio showcasing scalable MERN applications, secure APIs, AI-assisted workflows, and production-focused engineering.",
