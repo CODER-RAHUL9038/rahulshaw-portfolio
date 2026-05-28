@@ -187,7 +187,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
               opacity: { duration: 1.2 },
               scale: { duration: 1.8 }
             }}
-            className="relative perspective-1000 w-full max-w-[300px] md:max-w-[420px]"
+            className="relative perspective-1000 w-full max-w-[300px] md:max-w-[500px] lg:max-w-[420px]"
           >
             {/* Ambient space glow behind avatar */}
             <motion.div 
