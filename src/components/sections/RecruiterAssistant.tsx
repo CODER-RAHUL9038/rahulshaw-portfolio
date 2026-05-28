@@ -26,7 +26,7 @@ export default function RecruiterAssistant() {
       {
         id: "init",
         sender: "assistant",
-        text: "Hi, I’m Rahul’s AI recruiter assistant. Ask about his MERN stack projects, backend systems, frontend architecture, technical skills, or development experience."
+        text: "Hi, I’m Rahul’s RAG-powered AI recruiter assistant. I have real-time access to his full technical documentation, projects, and professional history to provide precise answers."
       }
     ]);
   }, []);
@@ -108,7 +108,7 @@ export default function RecruiterAssistant() {
       {
         id: "init",
         sender: "assistant",
-        text: "Hi, I’m Rahul’s AI recruiter assistant. Ask about his MERN stack projects, backend systems, frontend architecture, technical skills, or development experience."
+        text: "Hi, I’m Rahul’s RAG-powered AI recruiter assistant. I have real-time access to his full technical documentation, projects, and professional history to provide precise answers."
       }
     ]);
     setInputText("");
@@ -237,7 +237,7 @@ export default function RecruiterAssistant() {
                         className="w-1.5 h-1.5 rounded-full bg-blue-400"
                       />
                     </span>
-                    <span className="text-xs font-mono">Analyzing Rahul's engineering journey...</span>
+                    <span className="text-xs font-mono">Analyzing Rahul's  journey...</span>
                   </div>
                 </motion.div>
               )}

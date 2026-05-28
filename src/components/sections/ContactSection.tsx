@@ -42,7 +42,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative">
+    <section id="contact" className="pt-10 pb-20 px-6 max-w-7xl mx-auto relative">
       <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <motion.div 

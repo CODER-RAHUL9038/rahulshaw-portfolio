@@ -145,6 +145,18 @@ export const skills: Skill[] = [
     icon: "Cpu",
   },
   {
+    id: "rag-context",
+    name: "RAG & Vector Context",
+    category: "AI WORKFLOWS",
+    icon: "Database",
+  },
+  {
+    id: "embeddings-search",
+    name: "Embeddings & Semantic Search",
+    category: "AI WORKFLOWS",
+    icon: "Search",
+  },
+  {
     id: "prompt-eng",
     name: "Prompt Engineering",
     category: "AI WORKFLOWS",
