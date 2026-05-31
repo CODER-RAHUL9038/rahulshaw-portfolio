@@ -1,96 +1,112 @@
-# Cinematic Portfolio | Rahul Shaw
+# 🌌 Rahul Shaw | AI-First Cinematic Portfolio
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.0-FF69B4?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Gemini AI](https://img.shields.io/badge/Gemini_2.5-Intelligence-4285F4?style=for-the-badge&logo=google-gemini&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-A high-performance, cinematic portfolio application built with the latest modern web technologies. This project showcases a deep focus on backend-heavy MERN development, scalable systems, and interactive AI integration.
+> **A high-performance, cinematic digital experience engineered with a focus on AI integration, backend-heavy architecture, and premium visual storytelling.**
 
-## 🚀 Key Features
+---
 
-- **Cinematic UI/UX**: Dark-themed, high-fidelity design with glassmorphism, gradient borders, and smooth entrance animations.
-- **AI Recruiter Assistant**: Integrated Gemini 1.5 Flash AI assistant to answer questions about my professional background and skills.
-- **Dynamic Skill Directory**: Interactive categorization of engineering tools, frameworks, and workflows with staggered reveal animations.
-- **Responsive Engineering**: Fully optimized for mobile, tablet, and desktop views with a dedicated side-drawer navigation.
-- **Performance Optimized**: Built with Next.js 16 and React 19 for rapid page loads and fluid transitions.
-- **Type Safety**: End-to-end TypeScript implementation for robust and maintainable code.
+## 📸 Visual Showcase
 
-## 🛠️ Tech Stack
+### 🌠 Cinematic Hero
+![Hero View](./public/snaps/hero.png)
 
-### Core
+### 🖥️ Full Desktop Experience
+![Desktop View](./public/snaps/Desktop%20view.png)
+
+---
+
+## 🤖 AI-Centric Features
+
+### 🧠 Gemini-Powered Recruiter Assistant
+Integrated with **Gemini 2.5 Flash**, the portfolio features a custom-built AI agent designed to evaluate technical depth, project impact, and professional alignment in real-time. It provides recruiters with an interactive, on-demand verification layer.
+
+### 🛡️ Production-Grade Intelligence
+- **RAG-Ready Architecture**: Capable of ingesting dynamic project documentation for high-fidelity responses.
+- **Secure AI Workflows**: Optimized prompt engineering with strict formatting controls for a clean, professional recruiter experience.
+- **Real-Time Analysis**: Low-latency interaction cycles powered by Vercel edge edge functions and Next.js server components.
+
+---
+
+## 🚀 Core Engineering Highlights
+
+- **Premium UI/UX**: Dark-mode primary design with custom glassmorphism effects, cinematic background gradients, and hardware-accelerated animations via **Framer Motion**.
+- **Backend-Heavy MERN Stack**: Engineered for scalability, featuring secure REST APIs, role-based access logic (RBAC), and complex data relationships.
+- **Next.js 16 & React 19**: Leveraging the cutting edge of the React ecosystem, including Server Components, advanced caching strategies, and the latest Turbopack performance.
+- **Technical Milestone Timeline**: An interactive, scroll-synchronized professional evolution map that tracks engineering growth through high-fidelity visual nodes.
+- **Responsive Mastery**: Fluid, break-point optimized engineering ensuring a "native app" feel across mobile, tablet, and ultra-wide displays.
+
+---
+
+## 🛠️ Technical Manifesto
+
+### The Engine
 - **Framework**: Next.js 16 (App Router)
-- **Library**: React 19
-- **Language**: TypeScript
+- **Runtime**: Node.js & Bun
+- **Language**: Strict-Mode TypeScript
 
-### Styling & Animation
-- **Styling**: Tailwind CSS 4.0
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
+### Aesthetics & Motion
+- **Style Engine**: Tailwind CSS 4.0 (PostCSS 8)
+- **Motion**: Framer Motion (motion/react)
+- **Iconography**: Official Brand SVGs + Lucide React
 
-### AI Integration
-- **LLM**: Gemini 2.5 Flash
-- **SDK**: Google Generative AI SDK (`@google/genai`)
+### Artificial Intelligence
+- **Model**: Google Gemini 2.5 Flash
+- **Orchestration**: Google Generative AI SDK
+- **Knowledge Base**: Upstash Vector (Optional RAG)
 
-## 📂 Project Structure
+---
+
+## 📂 Architecture
 
 ```text
 src/
-├── app/              # Page routes, global styles, and API handlers
-├── components/       # UI Components
-│   ├── layout/       # Structural (Navbar, Footer)
-│   ├── sections/     # Homepage sections (Hero, Stack, Projects)
-│   └── shared/       # Reusable UI elements (Modals)
-├── data/             # Centralized content management
-└── types.ts          # TypeScript interface definitions
+├── app/              # High-performance routes & API architecture
+├── components/       # Component-driven UI modularity
+│   ├── layout/       # Structural scaffolding (Navbar, Footer)
+│   ├── sections/     # Premium feature blocks (Hero, AI Chat, Tech Stack)
+│   └── shared/       # Highly reusable, atomic UI primitives
+├── data/             # Decoupled content & knowledge repository
+└── types.ts          # Centralized TypeScript contract definitions
 ```
 
-## 🛠️ Getting Started
+---
 
-### Prerequisites
-- Node.js (Latest LTS recommended)
-- NPM or Yarn
+## 🛠️ Local Development
 
 ### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/CODER-RAHUL9038/rahulshaw-portfolio.git
-   cd rahulshaw-portfolio
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment Variables:**
-   Create a `.env.local` file in the root directory and add your Gemini API Key:
-   ```env
-   GEMINI_API_KEY=your_api_key_here
-   ```
-
-4. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 📦 Build & Deployment
-
-To create a production build:
 ```bash
-npm run build
+# Clone the repository
+git clone https://github.com/CODER-RAHUL9038/rahulshaw-portfolio.git
+
+# Navigate to project
+cd rahulshaw-portfolio
+
+# Install premium dependencies
+npm install
+
+# Configure Secrets (.env.local)
+GEMINI_API_KEY=your_key_here
 ```
 
-The application is optimized for deployment on platforms like Vercel or Netlify.
+### Development Execution
+```bash
+npm run dev
+```
 
-## 🤝 Contact
+---
 
-**Rahul Shaw** - Full-Stack MERN Engineer
+## 🤝 Connect & Collaborate
+
+**Rahul Shaw** - Full-Stack MERN & AI Systems Engineer
+- **Live Demo**: [rahul-shaw-ai-portfolio.vercel.app](https://rahul-shaw-ai-portfolio.vercel.app/)
 - **GitHub**: [@CODER-RAHUL9038](https://github.com/CODER-RAHUL9038)
 - **LinkedIn**: [rahulshaw-dev](https://www.linkedin.com/in/rahulshaw-dev)
 - **Email**: [rahulshaw903866@gmail.com](mailto:rahulshaw903866@gmail.com)
 
 ---
-*Built with ❤️ using the Next.js 16 + React 19 Ecosystem.*
+*Built with precision using the Next.js 16 + React 19 Cinematic Ecosystem.*
