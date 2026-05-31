@@ -121,6 +121,16 @@ export default function Footer() {
             <motion.ul variants={textRevealVariants} className="space-y-4">
               <li>
                 <a
+                  href="https://github.com/CODER-RAHUL9038/PORTFOLIO"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
+                >
+                  Personal Portfolio
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://freight-intel-tau.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -137,16 +147,6 @@ export default function Footer() {
                   className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
                 >
                   XORA AI Portal
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://weatherapp-gules-sigma-87.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
-                >
-                  Weather App
                 </a>
               </li>
               <li>

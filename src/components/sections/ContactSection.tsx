@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Github, Linkedin, MessageCircle, Globe } from "lucide-react";
 import { motion, Variants } from "motion/react";
 
 export default function ContactSection() {
@@ -122,11 +122,11 @@ export default function ContactSection() {
 
           <motion.div
             variants={textRevealVariants}
-            className="space-y-6 pt-4 border-t border-white/5"
+            className="space-y-3 pt-4 border-t border-white/5"
           >
             <a
               href="mailto:rahulshaw903866@gmail.com"
-              className="flex items-center gap-4 group p-4 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
+              className="flex items-center gap-4 group p-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
             >
               <div className="w-11 h-11 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform">
                 <Mail className="w-5 h-5" />
@@ -141,7 +141,7 @@ export default function ContactSection() {
               </div>
             </a>
 
-            <div className="flex items-center gap-4 p-4 border border-brand-border bg-[#0f1012]/40 rounded-2xl">
+            <div className="flex items-center gap-4 p-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl">
               <div className="w-11 h-11 rounded-xl bg-indigo-500/5 border border-indigo-500/10 flex items-center justify-center text-indigo-400">
                 <MapPin className="w-5 h-5" />
               </div>
@@ -152,6 +152,48 @@ export default function ContactSection() {
                 <div className="text-sm font-bold text-white">
                   Kolkata, India
                 </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 p-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl">
+              <div className="w-11 h-11 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400">
+                <Globe className="w-5 h-5" />
+              </div>
+              <div className="flex gap-4">
+                <a
+                  href="https://github.com/CODER-RAHUL9038"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors"
+                  title="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/rahulshaw-dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:rahulshaw903866@gmail.com"
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors"
+                  title="Email Direct"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://wa.me/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9ca3af] hover:text-emerald-400 transition-colors"
+                  title="WhatsApp"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                </a>
               </div>
             </div>
           </motion.div>
