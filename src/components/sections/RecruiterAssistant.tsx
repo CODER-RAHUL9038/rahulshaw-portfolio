@@ -115,6 +115,17 @@ export default function RecruiterAssistant() {
     setErrorMessage(null);
   };
 
+  const headingVariants: Variants = {
+    hidden: { y: "100%" },
+    visible: {
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
   return (
     <section id="ai-agent" className="pt-16 pb-24 px-6 max-w-7xl mx-auto relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/[0.015] blur-[100px] rounded-full pointer-events-none"></div>
@@ -132,10 +143,12 @@ export default function RecruiterAssistant() {
               <Sparkles className="w-4 h-4 text-blue-400" />
               Ai chatbot
             </motion.div>
-            <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
-              Rahul's Ai <br />
-              Assistant
-            </motion.h2>
+            <div className="overflow-hidden">
+              <motion.h2 variants={headingVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+                Rahul's Ai <br />
+                Assistant
+              </motion.h2>
+            </div>
             <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
               Need on-demand verification? Query my RAG-powered Gemini assistant to evaluate job alignment, technology choices, or professional highlights with dynamic portfolio context.
             </motion.p>
@@ -171,40 +184,49 @@ export default function RecruiterAssistant() {
                   <h4 className="text-sm font-bold text-white leading-none font-heading">Recruiter Assistant</h4>
                   <div className="flex items-center gap-1.5 mt-1.5">
                     <motion.span 
-                      animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.1, 0.9] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
+                      animate={{ 
+                        opacity: [0.4, 1, 0.4], 
+                        scale: [0.9, 1.2, 0.9],
+                        boxShadow: [
+                          "0 0 0px rgba(16,185,129,0)",
+                          "0 0 12px rgba(16,185,129,0.6)",
+                          "0 0 0px rgba(16,185,129,0)"
+                        ]
+                      }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-2.5 h-2.5 rounded-full bg-emerald-500"
                     ></motion.span>
-                    <span className="text-[10px] font-mono font-medium text-emerald-400/80 uppercase tracking-tighter">Live</span>
+                    <span className="text-[10px] font-mono font-bold text-emerald-400/90 uppercase tracking-widest">Live Presence</span>
                   </div>
                 </div>
               </div>
               
               <button
                 onClick={handleResetChat}
-                className="px-3 py-1.5 rounded-lg border border-white/[0.03] text-[#9ca3af]/60 hover:text-white hover:bg-white/5 hover:border-white/10 active:scale-95 transition-all text-[10px] flex items-center gap-1.5 font-bold uppercase tracking-wider"
+                className="px-4 py-2 rounded-xl border border-white/[0.03] text-[#9ca3af]/60 hover:text-white hover:bg-white/5 hover:border-white/10 active:scale-95 transition-all text-[10px] flex items-center gap-1.5 font-bold uppercase tracking-widest"
                 title="Reset Chat History"
               >
-                <RefreshCw className="w-3 h-3" />
-                Reset
+                <RefreshCw className="w-3.5 h-3.5" />
+                Clear
               </button>
             </div>
 
-            <div className="flex-grow overflow-y-auto py-6 space-y-4 pr-2 chatbot-scrollbar">
-              <AnimatePresence initial={false}>
+            <div className="flex-grow overflow-y-auto py-6 space-y-6 pr-2 chatbot-scrollbar">
+              <AnimatePresence initial={false} mode="popLayout">
                 {messages.map((msg) => (
                   <motion.div
                     key={msg.id}
-                    initial={{ opacity: 0, y: 10, filter: "blur(4px)", scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
+                    initial={{ opacity: 0, y: 15, scale: 0.97, filter: "blur(5px)" }}
+                    animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
                     className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-2xl px-5 py-3.5 text-sm leading-relaxed ${
+                      className={`max-w-[85%] rounded-[1.25rem] px-5 py-3.5 text-sm leading-relaxed ${
                         msg.sender === "user"
-                          ? "bg-blue-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(59,130,246,0.15)]"
-                          : "bg-[#131416]/90 border border-white/[0.04] text-[#e5e2e1] rounded-bl-none"
+                          ? "bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-br-none shadow-[0_10px_25px_-5px_rgba(59,130,246,0.3)]"
+                          : "bg-[#16171a] border border-white/[0.05] text-[#e5e2e1] rounded-bl-none shadow-lg"
                       }`}
                     >
                       {msg.text}
@@ -219,35 +241,35 @@ export default function RecruiterAssistant() {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-[#131416]/90 border border-white/[0.04] rounded-2xl rounded-bl-none px-5 py-3.5 text-sm text-[#9ca3af] flex items-center gap-2.5">
-                    <span className="flex gap-1">
+                  <div className="bg-[#16171a] border border-white/[0.05] rounded-[1.25rem] rounded-bl-none px-5 py-4 text-sm text-[#9ca3af] flex items-center gap-3 shadow-md">
+                    <span className="flex gap-1.5">
                       <motion.span 
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1, 0.8] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: 0 }}
                         className="w-1.5 h-1.5 rounded-full bg-blue-400"
                       />
                       <motion.span 
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
+                        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1, 0.8] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
                         className="w-1.5 h-1.5 rounded-full bg-blue-400"
                       />
                       <motion.span 
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
+                        animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1, 0.8] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
                         className="w-1.5 h-1.5 rounded-full bg-blue-400"
                       />
                     </span>
-                    <span className="text-xs font-mono">Analyzing Rahul's  journey...</span>
+                    <span className="text-xs font-mono tracking-tight">Synthesizing Rahul's journey...</span>
                   </div>
                 </motion.div>
               )}
 
               {errorMessage && (
                 <div className="flex justify-center">
-                  <div className="bg-red-500/15 border border-red-500/20 rounded-2xl p-4 flex items-start gap-3 w-full text-xs text-red-400">
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 flex items-start gap-3 w-full text-xs text-red-400">
                     <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                     <div className="space-y-1">
-                      <div className="font-bold">Execution Interrupted</div>
+                      <div className="font-bold">Execution Error</div>
                       <p>{errorMessage}</p>
                     </div>
                   </div>
@@ -258,24 +280,26 @@ export default function RecruiterAssistant() {
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="pt-4 space-y-3"
+                  transition={{ delay: 0.6 }}
+                  className="pt-6 space-y-4"
                 >
-                  <span className="text-[10px] font-bold text-[#9ca3af] tracking-[0.15em] uppercase block pl-1">
-                    SUGGESTED QUESTIONS
+                  <span className="text-[10px] font-bold text-[#6b7280] tracking-[0.2em] uppercase block pl-1">
+                    Contextual Suggestions
                   </span>
                   <div className="flex flex-wrap gap-2.5">
                     {suggestionPrompts.map((prompt, index) => (
-                      <button
+                      <motion.button
                         key={prompt}
                         type="button"
+                        whileHover={{ y: -2, scale: 1.02, borderColor: "rgba(59, 130, 246, 0.4)" }}
+                        whileTap={{ scale: 0.98 }}
                         onClick={() => handleSendMessage(prompt)}
-                        className={`inline-flex items-center text-xs text-[#d1d5db] hover:text-white bg-[#0e0f10] hover:bg-[#151618] border border-white/[0.08] hover:border-blue-500/35 px-4.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm active:scale-95 text-left ${
+                        className={`inline-flex items-center text-xs text-[#9ca3af] hover:text-white bg-[#111214] border border-white/[0.06] px-5 py-3 rounded-2xl transition-all duration-300 cursor-pointer shadow-sm ${
                           index >= 3 ? "hidden md:inline-flex" : "inline-flex"
                         }`}
                       >
                         {prompt}
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 </motion.div>

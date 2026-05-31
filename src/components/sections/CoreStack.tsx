@@ -76,6 +76,17 @@ export default function CoreStack() {
     }
   ];
 
+  const headingVariants: Variants = {
+    hidden: { y: "100%" },
+    visible: {
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
   const textRevealVariants: Variants = {
     hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
@@ -119,12 +130,14 @@ export default function CoreStack() {
       >
         {/* Section Header */}
         <div className="space-y-3">
-          <motion.h2 
-            variants={textRevealVariants}
-            className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
-          >
-            Tech Stack
-          </motion.h2>
+          <div className="overflow-hidden">
+            <motion.h2 
+              variants={headingVariants}
+              className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
+            >
+              Tech Stack
+            </motion.h2>
+          </div>
           <motion.p 
             variants={textRevealVariants}
             className="text-[#9ca3af] leading-relaxed text-sm md:text-base max-w-2xl font-sans"

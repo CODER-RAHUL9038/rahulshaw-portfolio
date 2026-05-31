@@ -15,23 +15,48 @@ function TimelineNode({
   progressHeight: MotionValue<number>;
 }) {
   const isReached = useTransform(progressHeight, (height) => height >= nodeCenter - 1);
+  
+  const scale = useSpring(useTransform(isReached, (reached) => reached ? 1.2 : 1), {
+    stiffness: 300,
+    damping: 20
+  });
+
   const borderColor = useTransform(isReached, (reached) =>
-    reached ? "rgba(96, 165, 250, 1)" : "rgba(59, 130, 246, 0.65)"
+    reached ? "rgba(96, 165, 250, 1)" : "rgba(255, 255, 255, 0.1)"
   );
+  
+  const backgroundColor = useTransform(isReached, (reached) =>
+    reached ? "rgba(59, 130, 246, 1)" : "#050505"
+  );
+
   const boxShadow = useTransform(isReached, (reached) =>
     reached
-      ? "0 0 15px rgba(59,130,246,0.9)"
-      : "0 0 10px rgba(59,130,246,0.3)"
+      ? "0 0 20px rgba(59,130,246,0.8)"
+      : "0 0 0px rgba(59,130,246,0)"
   );
 
   return (
     <motion.div
-      className="w-[14px] h-[14px] rounded-full bg-[#050505] border-[3px] hover:scale-125 transition-transform duration-300"
+      className="w-[12px] h-[12px] rounded-full border-[2.5px] z-20 relative"
       style={{
+        scale,
         borderColor: isHighlighted ? "rgba(96, 165, 250, 1)" : borderColor,
-        boxShadow: isHighlighted ? "0 0 15px rgba(59,130,246,0.9)" : boxShadow,
+        backgroundColor: isHighlighted ? "rgba(59, 130, 246, 1)" : backgroundColor,
+        boxShadow: isHighlighted ? "0 0 20px rgba(59,130,246,0.8)" : boxShadow,
       }}
-    ></motion.div>
+    >
+      <AnimatePresence>
+        {isHighlighted && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 2.5 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="absolute inset-0 rounded-full bg-blue-500/20 -z-10"
+          />
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -98,23 +123,15 @@ export default function ProfessionalEvolution() {
     restDelta: 0.01,
   });
 
-  const textRevealVariants: Variants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
-    }
-  };
-
-  const getIcon = (role: string) => {
-    const r = role.toLowerCase();
-    if (r.includes("nxerra")) return <Briefcase className="w-4 h-4 text-blue-400" />;
-    if (r.includes("freelance")) return <Star className="w-4 h-4 text-amber-400" />;
-    if (r.includes("apna college") || r.includes("upskilling")) return <GraduationCap className="w-4 h-4 text-cyan-400" />;
-    if (r.includes("amazon")) return <Milestone className="w-4 h-4 text-orange-400" />;
-    return <Award className="w-4 h-4 text-indigo-400" />;
+  const headingVariants: Variants = {
+    hidden: { y: "100%" },
+    visible: {
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
   };
 
   return (
@@ -123,25 +140,28 @@ export default function ProfessionalEvolution() {
 
       <div className="space-y-20">
         {/* Section Header */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: "some" }}
-          className="text-center space-y-3"
-        >
-          <motion.h2 
-            variants={textRevealVariants}
-            className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
-          >
-            Professional Evolution
-          </motion.h2>
+        <div className="text-center space-y-3">
+          <div className="overflow-hidden">
+            <motion.h2 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: "some" }}
+              variants={headingVariants}
+              className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
+            >
+              Professional Evolution
+            </motion.h2>
+          </div>
           <motion.p 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: "some" }}
             variants={textRevealVariants}
             className="text-[#9ca3af] leading-relaxed text-sm md:text-base max-w-xl mx-auto font-sans"
           >
             Technical milestones and engineering growth.
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Alternate Timelines Frame */}
         <div ref={timelineRef} className="relative max-w-5xl mx-auto">

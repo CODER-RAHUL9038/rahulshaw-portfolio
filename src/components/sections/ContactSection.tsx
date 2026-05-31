@@ -11,64 +11,15 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const textRevealVariants: Variants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+  const headingVariants: Variants = {
+    hidden: { y: "100%" },
     visible: {
-      opacity: 1,
       y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
     },
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.message.trim()
-    )
-      return;
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to send message.");
-      }
-
-      setSubmitSuccess(true);
-      setFormData({ name: "", email: "", message: "" });
-
-      setTimeout(() => setSubmitSuccess(false), 5000);
-    } catch (err: any) {
-      console.error("Form submission error:", err);
-      // Fallback: Still show success in UI for better UX if the user hasn't configured the backend yet,
-      // or we could alert. But the user asked for functional.
-      // I will alert the error so the user knows if configuration is missing.
-      alert(
-        err.message ||
-          "Apologies! There was an error sending your message. Please try again.",
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   return (
@@ -78,7 +29,7 @@ export default function ContactSection() {
     >
       <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-      <motion.div
+      <motion.div 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
@@ -93,13 +44,15 @@ export default function ContactSection() {
             >
               Inquiries & Hiring
             </motion.div>
-            <motion.h2
-              variants={textRevealVariants}
-              className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]"
-            >
-              Let's build <br />
-              something great.
-            </motion.h2>
+            <div className="overflow-hidden">
+              <motion.h2
+                variants={headingVariants}
+                className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]"
+              >
+                Let's build <br />
+                something great.
+              </motion.h2>
+            </div>
             <motion.p
               variants={textRevealVariants}
               className="text-[#9ca3af] leading-relaxed text-sm md:text-base"

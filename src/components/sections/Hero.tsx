@@ -16,6 +16,9 @@ const ROLES = [
 ];
 
 export default function Hero({ onResumeClick }: HeroProps) {
+  const { scrollY } = useScroll();
+  const parallaxY = useTransform(scrollY, [0, 500], [0, 100]);
+
   const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const target = document.querySelector("#projects");
@@ -29,14 +32,12 @@ export default function Hero({ onResumeClick }: HeroProps) {
     }
   };
 
-  const textRevealVariants: Variants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+  const headingVariants: Variants = {
+    hidden: { y: "100%" },
     visible: (custom: number) => ({
-      opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       transition: {
-        duration: 0.8,
+        duration: 0.9,
         delay: (custom || 0) * 0.1,
         ease: [0.16, 1, 0.3, 1] as const,
       },
@@ -51,21 +52,33 @@ export default function Hero({ onResumeClick }: HeroProps) {
           <div className="space-y-6 md:space-y-10">
             {/* Headline block */}
             <div className="space-y-4 md:space-y-6">
-              <motion.h1 
-                custom={1}
-                initial="hidden"
-                animate="visible"
-                variants={textRevealVariants}
-                className="font-heading text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-white max-w-[12ch] md:max-w-none"
-              >
-                Building Fast, <br className="hidden md:block" />{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.15)]">
-                  Reliable
-                </span>{" "}
-                Web Systems.
-              </motion.h1>
+              <h1 className="font-heading text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-white max-w-[12ch] md:max-w-none">
+                <div className="overflow-hidden">
+                  <motion.div
+                    custom={1}
+                    initial="hidden"
+                    animate="visible"
+                    variants={headingVariants}
+                  >
+                    Building Fast,
+                  </motion.div>
+                </div>
+                <div className="overflow-hidden">
+                  <motion.div
+                    custom={2}
+                    initial="hidden"
+                    animate="visible"
+                    variants={headingVariants}
+                  >
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.15)]">
+                      Reliable
+                    </span>{" "}
+                    Web Systems.
+                  </motion.div>
+                </div>
+              </h1>
               <motion.p 
-                custom={2}
+                custom={3}
                 initial="hidden"
                 animate="visible"
                 variants={textRevealVariants}
@@ -191,6 +204,7 @@ export default function Hero({ onResumeClick }: HeroProps) {
           >
             {/* Ambient space glow behind avatar */}
             <motion.div 
+              style={{ y: parallaxY }}
               animate={{ 
                 opacity: [0.35, 0.5, 0.35],
                 scale: [1, 1.04, 1]

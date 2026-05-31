@@ -10,7 +10,7 @@ import {
   RotateCcw,
   Sparkles,
 } from "lucide-react";
-import { motion, useInView, Variants } from "motion/react";
+import { motion, useInView, Variants, useMotionValue, useSpring, useTransform } from "motion/react";
 
 const flipTransition = {
   duration: 0.62,
@@ -64,8 +64,37 @@ function ProjectFlipCard({
   resetSignal: number;
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-  const toggleCard = () => setIsFlipped((current) => !current);
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (isFlipped) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const toggleCard = () => {
+    setIsFlipped((current) => !current);
+    handleMouseLeave();
+  };
 
   useEffect(() => {
     setIsFlipped(false);
@@ -74,15 +103,21 @@ function ProjectFlipCard({
   return (
     <motion.div
       variants={variants}
-      whileHover={{ y: -8 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={`relative h-full [perspective:1300px] max-md:[perspective:1000px] ${
         isFlipped ? "z-20" : "z-0"
       }`}
     >
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
+        style={{ 
+          rotateX: isFlipped ? 0 : rotateX,
+          rotateY: isFlipped ? 180 : rotateY,
+          transformStyle: "preserve-3d"
+        }}
         transition={flipTransition}
-        className="relative h-full rounded-[2rem] [transform-style:preserve-3d]"
+        className="relative h-full rounded-[2rem]"
       >
         <div
           role="button"
@@ -301,22 +336,13 @@ export default function FeaturedProjects() {
     }
   }, [isProjectsInView]);
 
-  const textRevealVariants: Variants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+  const headingVariants: Variants = {
+    hidden: { y: "100%" },
     visible: {
-      opacity: 1,
       y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-    },
-  };
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
   };
@@ -338,21 +364,29 @@ export default function FeaturedProjects() {
         className="space-y-16"
       >
         {/* Section Header */}
-        <motion.div
-          variants={textRevealVariants}
-          className="space-y-4 max-w-2xl"
-        >
-          <div className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans">
+        <div className="space-y-4 max-w-2xl">
+          <motion.div
+            variants={textRevealVariants}
+            className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans"
+          >
             Curated Showcases
+          </motion.div>
+          <div className="overflow-hidden">
+            <motion.h2
+              variants={headingVariants}
+              className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
+            >
+              Featured Projects
+            </motion.h2>
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-            Featured Projects
-          </h2>
-          <p className="text-[#9ca3af] leading-relaxed text-base">
+          <motion.p
+            variants={textRevealVariants}
+            className="text-[#9ca3af] leading-relaxed text-base"
+          >
             A selection of full-stack applications focused on backend systems,
             responsive interfaces, and real-world development workflows.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         {/* Project display index cards */}
         <motion.div
