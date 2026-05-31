@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Rahul Shaw Portfolio",
     images: [
       {
-        url: "/projects/portfolio.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "Rahul Shaw Portfolio Preview",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
 
     description:
       "Premium full-stack developer portfolio with scalable MERN applications, secure APIs, and AI-assisted workflows.",
-    images: ["/projects/portfolio.png"],
+    images: ["/og.png"],
   },
 
   robots: {
