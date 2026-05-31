@@ -1,5 +1,17 @@
 import React from "react";
-import { Terminal, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { SiGithub, SiGmail, SiWhatsapp } from "@icons-pack/react-simple-icons";
+
+const LinkedInIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.6 1.098-1.071 1.834-1.378.736-.308 1.533-.443 2.327-.396 3.703 0 4.384 2.438 4.384 5.607v6.058h-.01zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+import { Terminal, MapPin } from "lucide-react";
 import { motion, Variants } from "motion/react";
 
 export default function Footer() {
@@ -53,7 +65,7 @@ export default function Footer() {
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="GitHub"
               >
-                <Github className="w-5 h-5" />
+                <SiGithub className="w-5 h-5" />
               </a>
               <a
                 href="https://www.linkedin.com/in/rahulshaw-dev"
@@ -62,14 +74,24 @@ export default function Footer() {
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="LinkedIn"
               >
-                <Linkedin className="w-5 h-5" />
+                <LinkedInIcon className="w-5 h-5" />
               </a>
               <a
                 href="mailto:rahulshaw903866@gmail.com"
-                className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-drop-glow/10 hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
+                className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="Email Direct"
               >
-                <Mail className="w-5 h-5" />
+                <SiGmail className="w-5 h-5" />
+              </a>
+              <a
+                href="https://wa.me/918240522820"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-emerald-500/10 hover:border-emerald-500/50 hover:text-emerald-400 transition-all text-[#9ca3af]"
+                title="Chat on WhatsApp"
+                aria-label="Chat on WhatsApp"
+              >
+                <SiWhatsapp className="w-5 h-5" />
               </a>
             </motion.div>
           </div>

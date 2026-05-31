@@ -1,4 +1,5 @@
-import { X, Printer, Mail, MapPin, Globe, Terminal, Award } from "lucide-react";
+import { SiGmail as Gmail } from "@icons-pack/react-simple-icons";
+import { X, Printer, MapPin, Globe, Terminal, Award } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface ResumeModalProps {
@@ -86,8 +87,8 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                   </div>
                   <div className="text-xs font-mono text-[#9ca3af] space-y-1 md:text-right print:text-gray-600">
                     <div className="flex items-center md:justify-end gap-1.5">
-                      <Mail className="w-3.5 h-3.5 text-blue-500" />
-                      <span>rahulshaw.dev@nxerra.com</span>
+                      <Gmail className="w-3.5 h-3.5 text-blue-500" />
+                      <span>rahulshaw903866@gmail.com</span>
                     </div>
                     <div className="flex items-center md:justify-end gap-1.5">
                       <MapPin className="w-3.5 h-3.5 text-blue-500" />

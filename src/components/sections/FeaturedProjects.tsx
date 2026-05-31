@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { projects } from "../../data/projects";
 import { Project } from "../../types";
+import { SiGithub } from "@icons-pack/react-simple-icons";
 import {
-  Github,
   ExternalLink,
   ArrowUpRight,
   RotateCcw,
@@ -169,7 +169,7 @@ function ProjectFlipCard({
                   className="w-10 h-10 rounded-xl bg-[#0f1012]/85 border border-white/5 flex items-center justify-center text-white hover:text-blue-400 hover:border-blue-500/50 hover:bg-black/85 transition-all text-xs"
                   title="GitHub Repository"
                 >
-                  <Github className="w-5 h-5" />
+                  <SiGithub className="w-5 h-5" />
                 </a>
               )}
               {project.live && (
