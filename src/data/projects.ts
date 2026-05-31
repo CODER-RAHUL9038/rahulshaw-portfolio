@@ -23,7 +23,7 @@ export const projects: Project[] = [
 
     github: "https://github.com/CODER-RAHUL9038/rahulshaw-portfolio",
 
-    live: "https://rahulshaw.carrd.co",
+    live: "https://rahul-shaw-ai-portfolio.vercel.app/",
 
     status: "Production Ready",
 

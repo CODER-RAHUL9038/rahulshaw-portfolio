@@ -143,7 +143,7 @@ export default function Footer() {
             <motion.ul variants={textRevealVariants} className="space-y-4">
               <li>
                 <a
-                  href="https://github.com/CODER-RAHUL9038/PORTFOLIO"
+                  href="https://rahul-shaw-ai-portfolio.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base"
