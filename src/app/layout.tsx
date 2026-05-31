@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rahulshaw-portfolio.vercel.app"),
   title: "Rahul Shaw's Portfolio",
   icons: {
     icon: "/favicon.png",
@@ -45,6 +46,14 @@ export const metadata: Metadata = {
     locale: "en_US",
 
     siteName: "Rahul Shaw Portfolio",
+    images: [
+      {
+        url: "/projects/portfolio.png",
+        width: 1200,
+        height: 630,
+        alt: "Rahul Shaw Portfolio Preview",
+      },
+    ],
   },
 
   twitter: {
@@ -54,6 +63,7 @@ export const metadata: Metadata = {
 
     description:
       "Premium full-stack developer portfolio with scalable MERN applications, secure APIs, and AI-assisted workflows.",
+    images: ["/projects/portfolio.png"],
   },
 
   robots: {
