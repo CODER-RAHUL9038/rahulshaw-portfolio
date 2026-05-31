@@ -42,8 +42,8 @@ export default function RecruiterAssistant() {
   }, [messages, isLoading]);
 
   const suggestionPrompts = [
+    "Tell me about Rahul",
     "Tell me about Rahul's MERN experience",
-    "What projects has Rahul built?",
     "Explain Freight-Intel",
     "What technologies does Rahul use?",
     "Is Rahul available for freelance work?"
@@ -238,7 +238,7 @@ export default function RecruiterAssistant() {
                         className="w-1.5 h-1.5 rounded-full bg-blue-400"
                       />
                     </span>
-                    <span className="text-xs font-mono">Processing your request...</span>
+                    <span className="text-xs font-mono">Analyzing Rahul's journey...</span>
                   </div>
                 </motion.div>
               )}
