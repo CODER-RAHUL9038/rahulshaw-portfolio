@@ -323,6 +323,8 @@ export default function ProfessionalEvolution() {
           </div>
         </div>
       </div>
+      {/* Section Partition */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>
   );
 }
