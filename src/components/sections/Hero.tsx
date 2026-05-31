@@ -1,7 +1,7 @@
 import React from "react";
 import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react";
 import Typewriter from "typewriter-effect";
-import { motion, Variants } from "motion/react";
+import { motion, Variants, useScroll, useTransform } from "motion/react";
 
 interface HeroProps {
   onResumeClick: () => void;
@@ -38,6 +38,20 @@ export default function Hero({ onResumeClick }: HeroProps) {
       y: 0,
       transition: {
         duration: 0.9,
+        delay: (custom || 0) * 0.1,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    }),
+  };
+
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.8,
         delay: (custom || 0) * 0.1,
         ease: [0.16, 1, 0.3, 1] as const,
       },

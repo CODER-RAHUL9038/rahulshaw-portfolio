@@ -3,7 +3,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { experiences } from "../../data/experience";
 import { Briefcase, MapPin, Milestone, Award, Star, GraduationCap } from "lucide-react";
-import { motion, MotionValue, useScroll, useSpring, useTransform, Variants } from "motion/react";
+import { motion, MotionValue, useScroll, useSpring, useTransform, Variants, AnimatePresence } from "motion/react";
 
 function TimelineNode({
   isHighlighted,
@@ -16,7 +16,8 @@ function TimelineNode({
 }) {
   const isReached = useTransform(progressHeight, (height) => height >= nodeCenter - 1);
   
-  const scale = useSpring(useTransform(isReached, (reached) => reached ? 1.2 : 1), {
+  const targetScale = useTransform(isReached, (reached) => reached ? 1.2 : 1);
+  const scale = useSpring(targetScale as any, {
     stiffness: 300,
     damping: 20
   });
@@ -132,6 +133,25 @@ export default function ProfessionalEvolution() {
         ease: [0.16, 1, 0.3, 1] as const,
       },
     },
+  };
+
+  const textRevealVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+    }
+  };
+
+  const getIcon = (role: string) => {
+    const r = role.toLowerCase();
+    if (r.includes("nxerra")) return <Briefcase className="w-4 h-4 text-blue-400" />;
+    if (r.includes("freelance")) return <Star className="w-4 h-4 text-amber-400" />;
+    if (r.includes("apna college") || r.includes("upskilling")) return <GraduationCap className="w-4 h-4 text-cyan-400" />;
+    if (r.includes("amazon")) return <Milestone className="w-4 h-4 text-orange-400" />;
+    return <Award className="w-4 h-4 text-indigo-400" />;
   };
 
   return (
