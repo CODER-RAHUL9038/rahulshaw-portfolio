@@ -25,7 +25,7 @@ export default function Home() {
       <Navbar />
 
       {/* 2. Main content tracks */}
-      <main>
+      <main id="main-content">
         {/* Cinematic splash greeting */}
         <Hero />
 

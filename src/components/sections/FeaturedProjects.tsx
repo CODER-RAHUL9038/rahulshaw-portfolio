@@ -138,6 +138,8 @@ function ProjectFlipCard({
             <motion.img
               src={project.image}
               alt={project.title}
+              width={1600}
+              height={1000}
               loading="lazy"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.6 }}

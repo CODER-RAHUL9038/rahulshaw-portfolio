@@ -264,6 +264,8 @@ export default function Hero() {
                 <div className="w-full h-full rounded-[2.2rem] overflow-hidden border-2 border-[#131416]/70 shadow-2xl relative bg-[#0a0a0a]">
                   <img
                     alt="Rahul Shaw"
+                    width={500}
+                    height={575}
                     className="w-full h-full object-cover object-top scale-100 group-hover:scale-102 transition-transform duration-700 select-none pointer-events-none"
                     referrerPolicy="no-referrer"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuD79pwVB9xieOO1DQzVI0qnn27GHQNS7haldVjSKK_PUjKMOGa09VMagxeylvTTka0WTcGIXEuvTNZ8yPYrlztTgnfLLQb4ILOoifErYEwPLOdTU1beq5nO_XGtPHCvq_piWCmT2ylp2qIyiH1ltP2LMDHvPnk0jfw8-u7oe7kuqkx1EvCJDOCsy-3egtpYLpJL3GiWUSpCO6jmk3Ri8ivldIntKRg5EU5zkd84KzECKV4mILw959R-Huc5POPDqhKaRTVk1RoXpkE"
