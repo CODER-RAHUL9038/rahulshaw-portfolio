@@ -138,12 +138,14 @@ export default function CoreStack() {
               Tech Stack
             </motion.h2>
           </div>
-          <motion.p 
-            variants={textRevealVariants}
-            className="text-[#9ca3af] leading-relaxed text-sm md:text-base max-w-2xl font-sans"
-          >
-            Technologies I work with for building scalable web applications, APIs, and responsive user experiences.
-          </motion.p>
+          <div className="overflow-hidden">
+            <motion.p 
+              variants={textRevealVariants}
+              className="text-[#9ca3af] leading-relaxed text-sm md:text-base max-w-2xl font-sans"
+            >
+              Technologies I work with for building scalable web applications, APIs, and responsive user experiences.
+            </motion.p>
+          </div>
         </div>
 
         {/* Dynamic upper grid - Reverted to md:grid-cols-5 and gap-4 */}

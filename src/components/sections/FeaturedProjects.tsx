@@ -385,12 +385,14 @@ export default function FeaturedProjects() {
       >
         {/* Section Header */}
         <div className="space-y-4 max-w-2xl">
-          <motion.div
-            variants={textRevealVariants}
-            className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans"
-          >
-            Curated Showcases
-          </motion.div>
+          <div className="overflow-hidden">
+            <motion.div
+              variants={textRevealVariants}
+              className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans"
+            >
+              Curated Showcases
+            </motion.div>
+          </div>
           <div className="overflow-hidden">
             <motion.h2
               variants={headingVariants}
@@ -399,13 +401,15 @@ export default function FeaturedProjects() {
               Featured Projects
             </motion.h2>
           </div>
-          <motion.p
-            variants={textRevealVariants}
-            className="text-[#9ca3af] leading-relaxed text-base"
-          >
-            A selection of full-stack applications focused on backend systems,
-            responsive interfaces, and real-world development workflows.
-          </motion.p>
+          <div className="overflow-hidden">
+            <motion.p
+              variants={textRevealVariants}
+              className="text-[#9ca3af] leading-relaxed text-base"
+            >
+              A selection of full-stack applications focused on backend systems,
+              responsive interfaces, and real-world development workflows.
+            </motion.p>
+          </div>
         </div>
 
         {/* Project display index cards */}
