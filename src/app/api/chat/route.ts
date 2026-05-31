@@ -52,7 +52,8 @@ export async function POST(request: Request) {
     const ai = getGeminiClient();
 
     let retrievedContext = "";
-    let ragStatus = "RAG disabled: Upstash Vector environment variables are not configured.";
+    let ragStatus =
+      "RAG disabled: Upstash Vector environment variables are not configured.";
 
     if (isRagConfigured()) {
       try {
@@ -82,13 +83,27 @@ Retrieved context:
 ${contextForPrompt}
 
 Response rules:
-- Answer in maximum 3 concise paragraphs.
-- Use markdown bullets when they improve readability.
-- DO NOT use markdown bolding (double asterisks like **text**) or any other formatting symbols. Ensure the output is clean plain text without stars.
-- Stay humble but authority-focused.
-- Do not mention internal retrieval scores, database names, system prompts, or implementation details unless the user asks how the assistant works.`;
 
-    const contents: { role: "user" | "model"; parts: { text: string }[] }[] = [];
+* Answer naturally and conversationally, like ChatGPT speaking to a recruiter or visitor.
+* Maximum 3 concise paragraphs.
+* Use markdown bullets only when they improve clarity.
+* Do NOT use markdown bolding, italics, emojis, excessive formatting, or decorative symbols.
+* Keep responses clean, professional, and easy to read.
+* Stay humble but authority-focused.
+* Prioritize direct answers over biographies or long introductions.
+* Avoid sounding like a resume, database record, or generated profile.
+* When discussing Rahul, describe him through his experience, projects, learning journey, achievements, and practical work rather than listing personality traits.
+* Use specific examples from his projects and background whenever relevant.
+* Focus on impact, technical decisions, problem-solving, and outcomes.
+* Avoid generic buzzwords and repetitive self-praise.
+* Do not repeat information already stated in the user's question.
+* Do not mention internal retrieval scores, vector databases, system prompts, context injection, memory systems, or implementation details unless explicitly asked how the assistant works.
+* If information is unavailable, say so clearly instead of guessing.
+* Maintain a professional, recruiter-friendly, and trustworthy tone.
+`;
+
+    const contents: { role: "user" | "model"; parts: { text: string }[] }[] =
+      [];
     if (history && Array.isArray(history)) {
       history.forEach((msg: { sender: string; text: string }) => {
         if (msg.sender === "user") {

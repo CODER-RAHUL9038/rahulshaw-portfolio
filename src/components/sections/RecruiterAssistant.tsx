@@ -292,23 +292,22 @@ export default function RecruiterAssistant() {
               }}
               className="flex gap-2 pt-4 border-t border-white/[0.04] items-center"
             >
-              <div className="flex-grow flex items-center bg-[#131416]/80 border border-white/[0.04] rounded-xl px-5 focus-within:border-blue-500/50 focus-within:bg-[#151618] transition-all group">
-                <span className="text-blue-500 font-mono text-xs mr-2 font-bold select-none opacity-50 group-focus-within:opacity-100 transition-opacity">$</span>
+              <div className="flex-grow flex items-center bg-[#131416]/80 border border-white/[0.04] rounded-xl px-5 focus-within:border-blue-500/50 transition-all">
+                {!inputText && !isLoading && (
+                  <motion.div
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-px h-5 bg-blue-500/60 mr-1.5"
+                  />
+                )}
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   placeholder="Ask me: anything about Rahul"
-                  className="flex-grow bg-transparent border-none text-white py-4 text-sm focus:outline-none font-sans placeholder:text-[#4b4d52]"
+                  className="flex-grow bg-transparent border-none text-white py-4 text-sm focus:outline-none font-sans"
                   disabled={isLoading}
                 />
-                {!inputText && !isLoading && (
-                  <motion.div
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
-                    className="w-2 h-4 bg-blue-500/80 rounded-sm"
-                  />
-                )}
               </div>
               <button
                 type="submit"
