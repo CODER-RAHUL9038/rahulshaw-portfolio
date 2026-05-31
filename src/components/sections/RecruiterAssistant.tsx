@@ -42,7 +42,7 @@ export default function RecruiterAssistant() {
   }, [messages, isLoading]);
 
   const suggestionPrompts = [
-    "Tell me about Rahul",
+    "Tell me more about Rahul",
     "Tell me about Rahul's MERN experience",
     "Explain Freight-Intel",
     "What technologies does Rahul use?",
