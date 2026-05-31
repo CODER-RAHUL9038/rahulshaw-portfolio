@@ -12,10 +12,10 @@
 ## 📸 Visual Showcase
 
 ### 🌠 Cinematic Hero
-![Hero View](./public/snaps/hero.png)
+![Hero View](public/snaps/hero.png)
 
 ### 🖥️ Full Desktop Experience
-![Desktop View](./public/snaps/Desktop%20view.png)
+![Desktop View](public/snaps/desktop-view.png)
 
 ---
 
