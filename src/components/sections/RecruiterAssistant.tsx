@@ -93,10 +93,11 @@ export default function RecruiterAssistant() {
       };
 
       setMessages((prev) => [...prev, assistantMsg]);
-    } catch (err: any) {
-      console.error("Failed to fetch chat response:", err);
+    } catch (err: unknown) {
+      const error = err as Error;
+      console.error("Failed to fetch chat response:", error);
       setErrorMessage(
-        err.message || "Apologies! There was a hiccup communicating with my server. Please try again."
+        error.message || "Apologies! There was a hiccup communicating with my server. Please try again."
       );
     } finally {
       setIsLoading(false);
@@ -237,7 +238,7 @@ export default function RecruiterAssistant() {
                         className="w-1.5 h-1.5 rounded-full bg-blue-400"
                       />
                     </span>
-                    <span className="text-xs font-mono">Analyzing Rahul's  journey...</span>
+                    <span className="text-xs font-mono">Processing your request...</span>
                   </div>
                 </motion.div>
               )}
@@ -270,7 +271,7 @@ export default function RecruiterAssistant() {
                         key={prompt}
                         type="button"
                         onClick={() => handleSendMessage(prompt)}
-                        className={`inline-flex items-center text-xs text-[#d1d5db] hover:text-white bg-[#0e0f10] hover:bg-[#151618] border border-white/[0.08] hover:border-blue-500/35 px-4.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm active:scale-95 text-left ${
+                        className={`items-center text-xs text-[#d1d5db] hover:text-white bg-[#0e0f10] hover:bg-[#151618] border border-white/[0.08] hover:border-blue-500/35 px-4.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-sm active:scale-95 text-left ${
                           index >= 3 ? "hidden md:inline-flex" : "inline-flex"
                         }`}
                       >

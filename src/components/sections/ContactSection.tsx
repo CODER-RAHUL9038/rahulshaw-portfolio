@@ -80,10 +80,11 @@ export default function ContactSection() {
       setFormData({ name: "", email: "", message: "" });
 
       setTimeout(() => setSubmitSuccess(false), 5000);
-    } catch (err: any) {
-      console.error("Form submission error:", err);
+    } catch (err: unknown) {
+      const error = err as Error;
+      console.error("Form submission error:", error);
       alert(
-        err.message ||
+        error.message ||
           "Apologies! There was an error sending your message. Please try again.",
       );
     } finally {

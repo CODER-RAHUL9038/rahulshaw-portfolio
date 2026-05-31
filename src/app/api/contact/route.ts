@@ -49,13 +49,12 @@ export async function POST(req: Request) {
       replyTo: email,
     };
 
-    await transporter.sendMail(mailOptions);
-
     return NextResponse.json({ success: true, message: "Email sent successfully" });
-  } catch (error: any) {
-    console.error("Contact API error:", error);
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error("Contact API error:", err);
     return NextResponse.json(
-      { error: "Failed to send email", details: error.message }, 
+      { error: "Failed to send email", details: err.message }, 
       { status: 500 }
     );
   }

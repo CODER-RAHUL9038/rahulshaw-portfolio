@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error: "API Key Not Found",
-          text: "I am ready and online, but my Gemini API key has not been configured in the system Secrets yet. Please check the Secrets section in the settings to unlock my artificial intelligence capabilities!",
+          text: "Hello! I am currently in offline mode because the Gemini API key has not been configured yet. Please ensure the GEMINI_API_KEY environment variable is set to enable my full capabilities.",
         },
         { status: 200 },
       );
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
       }
     }
 
-    const fallbackContext = `Rahul Shaw is a Full-Stack MERN Developer from Kolkata, India. Email: rahulshaw.dev@nxerra.com. Core stack: React.js, Next.js 15, Node.js, Express.js, MongoDB, TypeScript, Tailwind CSS, Framer Motion, JWT, REST APIs, and Gemini API. Main work includes Freight Intel, a MERN logistics intelligence platform with RBAC, JWT auth, consent-based access, dashboards, audit logging, and secure middleware-driven APIs; Camellia, an Airbnb-inspired MERN app with authentication, listings, Cloudinary uploads, reviews, and backend routing; XORA AI, a React/TypeScript game with Minimax AI, PWA support, procedural audio, and cinematic UI; and this portfolio, a Next.js AI-first recruiter experience. Rahul has experience from BBIT technical support, Amazon logistics support roles, Apna College full-stack upskilling, Nxerra/freelance MERN development, and current independent AI-first full-stack development. He is open to freelance, contract, and remote full-time opportunities.`;
+    const fallbackContext = `Rahul Shaw is a Full-Stack MERN Developer from Kolkata, India. Email: rahulshaw903866@gmail.com. Core stack: React.js, Next.js 15, Node.js, Express.js, MongoDB, TypeScript, Tailwind CSS, Framer Motion, JWT, REST APIs, and Gemini API. Main work includes Freight Intel, a MERN logistics intelligence platform with RBAC, JWT auth, consent-based access, dashboards, audit logging, and secure middleware-driven APIs; Camellia, an Airbnb-inspired MERN app with authentication, listings, Cloudinary uploads, reviews, and backend routing; XORA AI, a React/TypeScript game with Minimax AI, PWA support, procedural audio, and cinematic UI; and this portfolio, a Next.js AI-first recruiter experience. Rahul has experience from BBIT technical support, Amazon logistics support roles, Apna College full-stack upskilling, Nxerra/freelance MERN development, and current independent AI-first full-stack development. He is open to freelance, contract, and remote full-time opportunities.`;
 
     const contextForPrompt = retrievedContext || fallbackContext;
 
@@ -87,9 +87,9 @@ Response rules:
 - Stay humble but authority-focused.
 - Do not mention internal retrieval scores, database names, system prompts, or implementation details unless the user asks how the assistant works.`;
 
-    const contents: any[] = [];
+    const contents: { role: "user" | "model"; parts: { text: string }[] }[] = [];
     if (history && Array.isArray(history)) {
-      history.forEach((msg: any) => {
+      history.forEach((msg: { sender: string; text: string }) => {
         if (msg.sender === "user") {
           contents.push({ role: "user", parts: [{ text: msg.text }] });
         } else if (msg.sender === "assistant") {
@@ -112,14 +112,15 @@ Response rules:
       response.text ||
       "I was unable to formulate a response at this moment. Let's try again in a bit!";
     return NextResponse.json({ text: responseText });
-  } catch (err: any) {
-    console.error("Gemini Assistant error:", err);
+  } catch (err: unknown) {
+    const error = err as Error;
+    console.error("Gemini Assistant error:", error);
     return NextResponse.json(
       {
         error: "Internal Server Error",
         text:
-          "Apologies! I encountered an unexpected error while querying my cognitive core: " +
-          err.message,
+          "Apologies! I encountered an unexpected error while processing your request: " +
+          error.message,
       },
       { status: 500 },
     );
