@@ -292,14 +292,24 @@ export default function RecruiterAssistant() {
               }}
               className="flex gap-2 pt-4 border-t border-white/[0.04] items-center"
             >
-              <input
-                type="text"
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                placeholder="Ask me: 'Is Rahul familiar with MongoDB?'"
-                className="flex-grow bg-[#131416]/80 border border-white/[0.04] text-white px-5 py-4 rounded-xl text-sm focus:outline-none focus:border-blue-500/50 transition-all font-sans"
-                disabled={isLoading}
-              />
+              <div className="flex-grow flex items-center bg-[#131416]/80 border border-white/[0.04] rounded-xl px-5 focus-within:border-blue-500/50 focus-within:bg-[#151618] transition-all group">
+                <span className="text-blue-500 font-mono text-xs mr-2 font-bold select-none opacity-50 group-focus-within:opacity-100 transition-opacity">$</span>
+                <input
+                  type="text"
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  placeholder="Ask me: anything about Rahul"
+                  className="flex-grow bg-transparent border-none text-white py-4 text-sm focus:outline-none font-sans placeholder:text-[#4b4d52]"
+                  disabled={isLoading}
+                />
+                {!inputText && !isLoading && (
+                  <motion.div
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
+                    className="w-2 h-4 bg-blue-500/80 rounded-sm"
+                  />
+                )}
+              </div>
               <button
                 type="submit"
                 disabled={!inputText.trim() || isLoading}
