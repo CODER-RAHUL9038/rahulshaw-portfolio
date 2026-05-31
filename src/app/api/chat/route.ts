@@ -83,7 +83,8 @@ ${contextForPrompt}
 
 Response rules:
 - Answer in maximum 3 concise paragraphs.
-- Use markdown bullets or bold labels when they improve readability.
+- Use markdown bullets when they improve readability.
+- DO NOT use markdown bolding (double asterisks like **text**) or any other formatting symbols. Ensure the output is clean plain text without stars.
 - Stay humble but authority-focused.
 - Do not mention internal retrieval scores, database names, system prompts, or implementation details unless the user asks how the assistant works.`;
 
