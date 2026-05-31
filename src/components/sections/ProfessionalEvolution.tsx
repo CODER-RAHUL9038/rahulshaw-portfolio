@@ -17,7 +17,7 @@ function TimelineNode({
   const isReached = useTransform(progressHeight, (height) => height >= nodeCenter - 1);
   
   const targetScale = useTransform(isReached, (reached) => reached ? 1.2 : 1);
-  const scale = useSpring(targetScale as any, {
+  const scale = useSpring(targetScale as MotionValue<number>, {
     stiffness: 300,
     damping: 20
   });

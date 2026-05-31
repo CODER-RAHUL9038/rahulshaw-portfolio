@@ -313,6 +313,8 @@ export default function RecruiterAssistant() {
                 type="submit"
                 disabled={!inputText.trim() || isLoading}
                 className="w-[52px] h-[52px] shrink-0 rounded-xl bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-[0_4px_15px_rgba(59,130,246,0.25)] hover:scale-105 active:scale-95 disabled:hover:scale-100 disabled:opacity-30 disabled:bg-[#131416] disabled:shadow-none transition-all duration-300"
+                aria-label="Send Message"
+                title="Send Message"
               >
                 <Send className="w-5 h-5" />
               </button>

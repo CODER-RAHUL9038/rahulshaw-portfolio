@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, Terminal, FileDown } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "motion/react";
 
-interface NavbarProps {
-  onResumeClick: () => void;
-}
-
-export default function Navbar({ onResumeClick }: NavbarProps) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

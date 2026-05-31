@@ -9,11 +9,8 @@ import ProfessionalEvolution from "../components/sections/ProfessionalEvolution"
 import RecruiterAssistant from "../components/sections/RecruiterAssistant";
 import ContactSection from "../components/sections/ContactSection";
 import Footer from "../components/layout/Footer";
-import ResumeModal from "../components/shared/ResumeModal";
 
 export default function Home() {
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
-
   useEffect(() => {
     // Reset scroll to top on refresh/load
     if ("scrollRestoration" in window.history) {
@@ -25,12 +22,12 @@ export default function Home() {
   return (
     <div className="bg-[#050505] min-h-screen text-[#e5e2e1] antialiased selection:bg-blue-500/30 selection:text-white overflow-x-hidden">
       {/* 1. Transparent floating header */}
-      <Navbar onResumeClick={() => setIsResumeOpen(true)} />
+      <Navbar />
 
       {/* 2. Main content tracks */}
       <main>
         {/* Cinematic splash greeting */}
-        <Hero onResumeClick={() => setIsResumeOpen(true)} />
+        <Hero />
 
         {/* Dynamic skills category dashboard */}
         <CoreStack />
@@ -50,9 +47,6 @@ export default function Home() {
 
       {/* 3. Metrics monitoring footer */}
       <Footer />
-
-      {/* 4. A4 print-optimized Resume modal */}
-      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </div>
   );
 }
