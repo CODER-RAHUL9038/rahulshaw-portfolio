@@ -6,29 +6,36 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const textRevealVariants: Variants = {
     hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
-    }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+    },
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) return;
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    )
+      return;
 
     setIsSubmitting(true);
 
@@ -48,24 +55,30 @@ export default function ContactSection() {
 
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", message: "" });
-      
+
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (err: any) {
       console.error("Form submission error:", err);
       // Fallback: Still show success in UI for better UX if the user hasn't configured the backend yet,
       // or we could alert. But the user asked for functional.
       // I will alert the error so the user knows if configuration is missing.
-      alert(err.message || "Apologies! There was an error sending your message. Please try again.");
+      alert(
+        err.message ||
+          "Apologies! There was an error sending your message. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="pt-10 pb-20 px-6 max-w-7xl mx-auto relative">
+    <section
+      id="contact"
+      className="pt-10 pb-20 px-6 max-w-7xl mx-auto relative"
+    >
       <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
@@ -74,19 +87,33 @@ export default function ContactSection() {
         {/* Left column text details */}
         <div className="space-y-8 lg:sticky lg:top-28">
           <div className="space-y-4">
-            <motion.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500">
+            <motion.div
+              variants={textRevealVariants}
+              className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500"
+            >
               Inquiries & Hiring
             </motion.div>
-            <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+            <motion.h2
+              variants={textRevealVariants}
+              className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]"
+            >
               Let's build <br />
               something great.
             </motion.h2>
-            <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base">
-              I am actively seeking software consulting gigs, fast-paced contract developments, or Full-Stack Node/MERN engineering positions globally. Let's start the dialogue.
+            <motion.p
+              variants={textRevealVariants}
+              className="text-[#9ca3af] leading-relaxed text-sm md:text-base"
+            >
+              I am actively seeking software consulting gigs, fast-paced
+              contract developments, or Full-Stack Node/MERN engineering
+              positions globally. Let's start the dialogue.
             </motion.p>
           </div>
 
-          <motion.div variants={textRevealVariants} className="space-y-6 pt-4 border-t border-white/5">
+          <motion.div
+            variants={textRevealVariants}
+            className="space-y-6 pt-4 border-t border-white/5"
+          >
             <a
               href="mailto:rahulshaw903866@gmail.com"
               className="flex items-center gap-4 group p-4 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
@@ -95,8 +122,12 @@ export default function ContactSection() {
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-xs text-[#9ca3af] font-mono uppercase tracking-wider">Email Address</div>
-                <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">rahulshaw903866@gmail.com</div>
+                <div className="text-xs text-[#9ca3af] font-mono uppercase tracking-wider">
+                  Email Address
+                </div>
+                <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                  rahulshaw903866@gmail.com
+                </div>
               </div>
             </a>
 
@@ -105,17 +136,24 @@ export default function ContactSection() {
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-xs text-[#9ca3af] font-mono uppercase tracking-wider">Mailing Address</div>
-                <div className="text-sm font-bold text-white">Kolkata, India</div>
+                <div className="text-xs text-[#9ca3af] font-mono uppercase tracking-wider">
+                  Mailing Address
+                </div>
+                <div className="text-sm font-bold text-white">
+                  Kolkata, India
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
 
         {/* Right column form container */}
-        <motion.div variants={textRevealVariants} className="p-8 rounded-[2.2rem] border border-brand-border bg-[#0f1012]/50 backdrop-blur-xl relative shadow-2xl">
+        <motion.div
+          variants={textRevealVariants}
+          className="p-8 rounded-[2.2rem] border border-brand-border bg-[#0f1012]/50 backdrop-blur-xl relative shadow-2xl"
+        >
           {submitSuccess ? (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="py-16 flex flex-col items-center justify-center text-center space-y-4"
@@ -127,13 +165,17 @@ export default function ContactSection() {
                 Message Received!
               </h3>
               <p className="text-[#9ca3af] max-w-sm text-sm">
-                Thank you for reaching out. I've received your query and will get back to you within 24 business hours as Rahul.
+                Thank you for reaching out. I've received your query and will
+                get back to you within 24 business hours as Rahul.
               </p>
             </motion.div>
           ) : (
             <form onSubmit={handleFormSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label htmlFor="form-input-name" className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">
+                <label
+                  htmlFor="form-input-name"
+                  className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]"
+                >
                   Your Full Name
                 </label>
                 <input
@@ -150,7 +192,10 @@ export default function ContactSection() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="form-input-email" className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">
+                <label
+                  htmlFor="form-input-email"
+                  className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]"
+                >
                   Email Address
                 </label>
                 <input
@@ -167,8 +212,11 @@ export default function ContactSection() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="form-input-message" className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]">
-                  Project Inquiry & Hiring
+                <label
+                  htmlFor="form-input-message"
+                  className="text-xs font-bold uppercase tracking-wider text-[#9ca3af]"
+                >
+                  Project Inquiry or Hiring
                 </label>
                 <textarea
                   id="form-input-message"
@@ -185,17 +233,26 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                disabled={isSubmitting || !formData.name.trim() || !formData.email.trim() || !formData.message.trim()}
+                disabled={
+                  isSubmitting ||
+                  !formData.name.trim() ||
+                  !formData.email.trim() ||
+                  !formData.message.trim()
+                }
                 className="group flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold px-8 py-4 rounded-2xl shadow-[0_10px_35px_rgba(59,130,246,0.2)] hover:shadow-[0_15px_45px_rgba(59,130,246,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-300 min-w-[200px] w-full"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
-                    <motion.span 
+                    <motion.span
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full" 
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
                     />
-                    Dispatching Query...
+                    Connecting you with Rahul...
                   </span>
                 ) : (
                   <>
