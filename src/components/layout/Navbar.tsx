@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { Menu, X, Terminal, FileDown } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "motion/react";

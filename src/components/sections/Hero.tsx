@@ -1,8 +1,13 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { SiGithub, SiGmail } from "@icons-pack/react-simple-icons";
 import { ArrowRight, Download } from "lucide-react";
-import Typewriter from "typewriter-effect";
+
+const Typewriter = dynamic(() => import("typewriter-effect"), { ssr: false });
+
 import { motion, Variants, useScroll, useTransform } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (

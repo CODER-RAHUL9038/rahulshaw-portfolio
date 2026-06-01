@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import { skills } from "../../data/skills";
 import { Atom, Globe, Cpu, Terminal, Database, Sparkles, Check } from "lucide-react";

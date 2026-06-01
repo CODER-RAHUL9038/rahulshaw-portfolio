@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { SiGithub, SiGmail, SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Mail, MapPin, Send, CheckCircle2, Globe } from "lucide-react";

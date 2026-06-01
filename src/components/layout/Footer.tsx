@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { SiGithub, SiGmail, SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Terminal, MapPin } from "lucide-react";

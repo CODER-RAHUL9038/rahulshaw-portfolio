@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles } from "lucide-react";
 import { ChatMessage } from "../../types";

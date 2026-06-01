@@ -1,5 +1,24 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 const baseUrl = "https://rahul-shaw-ai-portfolio.vercel.app";
 
@@ -134,7 +153,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="scroll-smooth bg-[#050505]">
+    <html lang="en" className={`scroll-smooth bg-[#050505] ${inter.variable} ${plusJakartaSans.variable} ${jetBrainsMono.variable}`}>
       <head>
         <script
           type="application/ld+json"

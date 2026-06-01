@@ -1,26 +1,21 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Navbar from "../components/layout/Navbar";
 import Hero from "../components/sections/Hero";
-import CoreStack from "../components/sections/CoreStack";
-import FeaturedProjects from "../components/sections/FeaturedProjects";
-import ProfessionalEvolution from "../components/sections/ProfessionalEvolution";
-import RecruiterAssistant from "../components/sections/RecruiterAssistant";
-import ContactSection from "../components/sections/ContactSection";
-import Footer from "../components/layout/Footer";
+import ScrollRestorer from "../components/shared/ScrollRestorer";
+
+// Dynamic imports for below-the-fold components to optimize Performance/TBT
+const CoreStack = dynamic(() => import("../components/sections/CoreStack"));
+const FeaturedProjects = dynamic(() => import("../components/sections/FeaturedProjects"));
+const ProfessionalEvolution = dynamic(() => import("../components/sections/ProfessionalEvolution"));
+const RecruiterAssistant = dynamic(() => import("../components/sections/RecruiterAssistant"));
+const ContactSection = dynamic(() => import("../components/sections/ContactSection"));
+const Footer = dynamic(() => import("../components/layout/Footer"));
 
 export default function Home() {
-  useEffect(() => {
-    // Reset scroll to top on refresh/load
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="bg-[#050505] min-h-screen text-[#e5e2e1] antialiased selection:bg-blue-500/30 selection:text-white overflow-x-hidden">
+      <ScrollRestorer />
+      
       {/* 1. Transparent floating header */}
       <Navbar />
 
