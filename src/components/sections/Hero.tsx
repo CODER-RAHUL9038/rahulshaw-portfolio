@@ -228,8 +228,8 @@ export default function Hero() {
         {/* Hero Right Avatar Visual */}
         <div className="relative flex justify-center lg:justify-end lg:pr-4 z-20 w-full min-w-0 order-1 lg:order-2 mb-6 lg:mb-0">
           <motion.div 
-            initial={{ opacity: 0, x: 40, scale: 0.9, rotateY: 15, filter: "blur(10px)" }}
-            animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, x: 40, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ 
               duration: 1.8, 
               ease: [0.16, 1, 0.3, 1] as const, 
@@ -237,7 +237,7 @@ export default function Hero() {
               opacity: { duration: 1.2 },
               scale: { duration: 1.8 }
             }}
-            className="relative perspective-1000 w-full max-w-[300px] md:max-w-[500px] lg:max-w-[420px]"
+            className="relative w-full max-w-[300px] md:max-w-[500px] lg:max-w-[420px]"
           >
             {/* Ambient space glow behind avatar - Optimized to CSS animation */}
             <motion.div 
@@ -253,15 +253,17 @@ export default function Hero() {
               <div 
                 className="absolute inset-[-1px] rounded-[2.5rem] bg-gradient-to-r from-blue-600 via-transparent to-purple-600 bg-[length:300%_300%] z-[-1] opacity-25 blur-[10px] animate-pulse-glow"
               />
-              <div className="w-full h-full p-1.5 rounded-[2.5rem] border border-blue-500/15 bg-[#0f1012]/80 backdrop-blur-md overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.1)] relative z-10">
+              <div className="w-full h-full p-1.5 rounded-[2.5rem] border border-blue-500/15 bg-[#0f1012]/80 overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.1)] relative z-10">
                 <div className="w-full h-full rounded-[2.2rem] overflow-hidden border-2 border-[#131416]/70 shadow-2xl relative bg-[#0a0a0a]">
                   <Image
                     alt="Rahul Shaw"
                     width={500}
                     height={575}
                     priority
-                    className="w-full h-full object-cover object-top scale-100 group-hover:scale-102 transition-transform duration-700 select-none pointer-events-none"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD79pwVB9xieOO1DQzVI0qnn27GHQNS7haldVjSKK_PUjKMOGa09VMagxeylvTTka0WTcGIXEuvTNZ8yPYrlztTgnfLLQb4ILOoifErYEwPLOdTU1beq5nO_XGtPHCvq_piWCmT2ylp2qIyiH1ltP2LMDHvPnk0jfw8-u7oe7kuqkx1EvCJDOCsy-3egtpYLpJL3GiWUSpCO6jmk3Ri8ivldIntKRg5EU5zkd84KzECKV4mILw959R-Huc5POPDqhKaRTVk1RoXpkE"
+                    unoptimized
+                    quality={100}
+                    className="w-full h-full object-cover scale-100 transition-transform duration-700 select-none pointer-events-none"
+                    src="/rahul.png"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
