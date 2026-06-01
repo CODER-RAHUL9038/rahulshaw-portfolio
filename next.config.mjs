@@ -2,7 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: ["192.168.29.163", "192.168.29.163:3000"],
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
