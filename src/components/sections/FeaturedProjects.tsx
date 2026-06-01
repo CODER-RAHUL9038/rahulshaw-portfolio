@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { projects } from "../../data/projects";
 import { Project } from "../../types";
 import { SiGithub } from "@icons-pack/react-simple-icons";
@@ -135,16 +136,13 @@ function ProjectFlipCard({
         >
           {/* Image Frame */}
           <div className="relative aspect-[16/10] overflow-hidden border-b border-brand-border bg-[#0a0a0a]">
-            <motion.img
+            <Image
               src={project.image}
               alt={project.title}
               width={1600}
               height={1000}
               loading="lazy"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.6 }}
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 select-none"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent"></div>
 
