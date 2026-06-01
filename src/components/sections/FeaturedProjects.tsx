@@ -392,7 +392,7 @@ export default function FeaturedProjects() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: "some" }}
+        viewport={{ once: true, amount: 0.1 }}
         variants={containerVariants}
         className="space-y-16"
       >

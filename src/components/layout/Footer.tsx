@@ -223,11 +223,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6 text-xs text-[#9ca3af] font-mono">
             <span className="flex items-center gap-2">
-              <motion.span 
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1.5 h-1.5 rounded-full bg-blue-500"
-              ></motion.span>
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-status-pulse"></span>
               Uptime 99.9%
             </span>
           </div>

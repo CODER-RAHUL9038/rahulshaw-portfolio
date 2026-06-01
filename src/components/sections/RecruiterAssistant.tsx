@@ -173,11 +173,7 @@ export default function RecruiterAssistant() {
                 <div>
                   <h4 className="text-sm font-bold text-white leading-none font-heading">Recruiter Assistant</h4>
                   <div className="flex items-center gap-1.5 mt-1.5">
-                    <motion.span 
-                      animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.1, 0.9] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
-                    ></motion.span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-status-pulse"></span>
                     <span className="text-[10px] font-mono font-medium text-emerald-400/80 uppercase tracking-tighter">Live</span>
                   </div>
                 </div>
@@ -224,21 +220,9 @@ export default function RecruiterAssistant() {
                 >
                   <div className="bg-[#131416]/90 border border-white/[0.04] rounded-2xl rounded-bl-none px-5 py-3.5 text-sm text-[#9ca3af] flex items-center gap-2.5">
                     <span className="flex gap-1">
-                      <motion.span 
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
-                        className="w-1.5 h-1.5 rounded-full bg-blue-400"
-                      />
-                      <motion.span 
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
-                        className="w-1.5 h-1.5 rounded-full bg-blue-400"
-                      />
-                      <motion.span 
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
-                        className="w-1.5 h-1.5 rounded-full bg-blue-400"
-                      />
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-dot-bounce [animation-delay:0s]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-dot-bounce [animation-delay:0.15s]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-dot-bounce [animation-delay:0.3s]" />
                     </span>
                     <span className="text-xs font-mono">Analyzing Rahul's journey...</span>
                   </div>
@@ -296,11 +280,7 @@ export default function RecruiterAssistant() {
             >
               <div className="flex-grow flex items-center bg-[#131416]/80 border border-white/[0.04] rounded-xl px-5 focus-within:border-blue-500/50 transition-all">
                 {!inputText && !isLoading && (
-                  <motion.div
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-px h-5 bg-blue-500/60 mr-1.5"
-                  />
+                  <div className="w-px h-5 bg-blue-500/60 mr-1.5 animate-blink" />
                 )}
                 <input
                   type="text"

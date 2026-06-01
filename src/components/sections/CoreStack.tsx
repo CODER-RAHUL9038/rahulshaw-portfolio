@@ -233,13 +233,12 @@ export default function CoreStack() {
             viewport={{ once: true, amount: 0.1 }}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
           >
-            <AnimatePresence mode="popLayout">
-              {displayedSkills.map((skill) => (
-                <motion.div
-                  key={skill.id}
-                  variants={itemVariants}
-                  className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
-                >
+            {displayedSkills.map((skill) => (
+              <motion.div
+                key={skill.id}
+                variants={itemVariants}
+                className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
+              >
                   <div className="w-7 h-7 rounded-lg bg-blue-950/40 border border-blue-500/25 flex items-center justify-center shrink-0">
                     <Check className="w-3.5 h-3.5 text-blue-400 font-extrabold stroke-[3.5]" />
                   </div>
@@ -253,7 +252,6 @@ export default function CoreStack() {
                   </div>
                 </motion.div>
               ))}
-            </AnimatePresence>
           </motion.div>
 
           {/* Show More / Less Toggle */}
@@ -264,13 +262,9 @@ export default function CoreStack() {
                 className="group flex items-center gap-2 px-8 py-3 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 text-[#9ca3af] hover:text-white text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-lg"
               >
                 {isExpanded ? "Show Less" : `Show  More`}
-                <motion.span
-                  animate={{ y: isExpanded ? -2 : 2 }}
-                  transition={{ duration: 0.6, repeat: Infinity, repeatType: "mirror" }}
-                  className="font-mono text-blue-400"
-                >
-                  {isExpanded ? "↑" : "↓"}
-                </motion.span>
+                <span className={`font-mono text-blue-400 transition-transform duration-300 group-hover:translate-y-0.5 ${isExpanded ? "-rotate-180" : ""}`}>
+                  ↓
+                </span>
               </button>
             </div>
           )}

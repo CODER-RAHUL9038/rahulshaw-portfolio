@@ -268,11 +268,7 @@ export default function Hero() {
                   {/* Visual branding in portrait margins */}
                   <div className="absolute bottom-4 left-6 right-6 flex justify-between items-center bg-black/40 backdrop-blur-md border border-white/5 py-2 px-4 rounded-xl">
                     <div className="flex items-center gap-1.5">
-                      <motion.span 
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-1.5 h-1.5 rounded-full bg-emerald-500"
-                      ></motion.span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-status-pulse"></span>
                       <span className="text-[10px] font-mono text-emerald-400 font-bold tracking-tighter uppercase">
                         Available For Projects
                       </span>
