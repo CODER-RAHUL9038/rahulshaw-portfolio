@@ -104,6 +104,7 @@ function ProjectFlipCard({
   return (
     <motion.div
       variants={variants}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`relative h-full [perspective:1300px] max-md:[perspective:1000px] ${
@@ -429,6 +430,10 @@ export default function FeaturedProjects() {
       </motion.div>
       {/* Section Partition */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+    </section>
+  );
+}
+iv className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>
   );
 }

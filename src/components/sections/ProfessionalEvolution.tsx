@@ -38,12 +38,14 @@ function TimelineNode({
 
   return (
     <motion.div
-      className="w-[12px] h-[12px] rounded-full border-[2.5px] z-20 relative"
+      className={`w-[12px] h-[12px] rounded-full border-[2.5px] z-20 relative transition-all duration-500 ease-out will-change-transform ${
+        isReached ? "border-blue-400 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.8)]" : "border-white/10 bg-[#050505] shadow-none"
+      }`}
       style={{
         scale,
-        borderColor: isHighlighted ? "rgba(96, 165, 250, 1)" : borderColor,
-        backgroundColor: isHighlighted ? "rgba(59, 130, 246, 1)" : backgroundColor,
-        boxShadow: isHighlighted ? "0 0 20px rgba(59,130,246,0.8)" : boxShadow,
+        borderColor: isHighlighted ? "rgba(96, 165, 250, 1)" : undefined,
+        backgroundColor: isHighlighted ? "rgba(59, 130, 246, 1)" : undefined,
+        boxShadow: isHighlighted ? "0 0 20px rgba(59,130,246,0.8)" : undefined,
       }}
     >
       <AnimatePresence>
@@ -188,8 +190,8 @@ export default function ProfessionalEvolution() {
           {/* Main vertical center timeline connector line */}
           <div ref={lineRef} className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 w-[2px] bg-white/5 overflow-hidden">
              <motion.div 
-                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 origin-top"
-                style={{ height: smoothLineHeight }}
+                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 origin-top will-change-transform"
+                style={{ scaleY, height: "100%" }}
              />
           </div>
 
@@ -325,6 +327,10 @@ export default function ProfessionalEvolution() {
       </div>
       {/* Section Partition */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+    </section>
+  );
+}
+t-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>
   );
 }
