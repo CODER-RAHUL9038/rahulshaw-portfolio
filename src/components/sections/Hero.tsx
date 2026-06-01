@@ -32,6 +32,13 @@ const ROLES = [
 export default function Hero() {
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 500], [0, 100]);
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    // Delay non-critical JS execution until after hydration
+    const timer = setTimeout(() => setIsMounted(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -131,17 +138,19 @@ export default function Hero() {
                 &gt;
               </span>
               <div className="tracking-tight">
-                <Typewriter
-                  options={{
-                    strings: ROLES,
-                    autoStart: true,
-                    loop: true,
-                    delay: 80,
-                    deleteSpeed: 40,
-                    wrapperClassName: "typewriter-text",
-                    cursorClassName: "typewriter-cursor text-blue-500",
-                  }}
-                />
+                {isMounted && (
+                  <Typewriter
+                    options={{
+                      strings: ROLES,
+                      autoStart: true,
+                      loop: true,
+                      delay: 80,
+                      deleteSpeed: 40,
+                      wrapperClassName: "typewriter-text",
+                      cursorClassName: "typewriter-cursor text-blue-500",
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
 
@@ -230,42 +239,19 @@ export default function Hero() {
             }}
             className="relative perspective-1000 w-full max-w-[300px] md:max-w-[500px] lg:max-w-[420px]"
           >
-            {/* Ambient space glow behind avatar */}
+            {/* Ambient space glow behind avatar - Optimized to CSS animation */}
             <motion.div 
               style={{ y: parallaxY }}
-              animate={{ 
-                opacity: [0.35, 0.5, 0.35],
-                scale: [1, 1.04, 1]
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none will-change-transform"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none will-change-transform animate-ambient-glow"
             />
 
             <motion.div 
-              animate={{ y: [0, -10, 0] }}
               style={{ y: parallaxY }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="relative w-full aspect-[1/1.15] will-change-transform"
+              className="relative w-full aspect-[1/1.15] will-change-transform animate-float-avatar"
             >
-              {/* Dynamic visual framing containing the primary portrait */}
-              <motion.div 
-                animate={{ 
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="absolute inset-[-1px] rounded-[2.5rem] bg-gradient-to-r from-blue-600 via-transparent to-purple-600 bg-[length:300%_300%] z-[-1] opacity-25 blur-[10px]"
+              {/* Dynamic visual framing containing the primary portrait - Optimized to CSS animation */}
+              <div 
+                className="absolute inset-[-1px] rounded-[2.5rem] bg-gradient-to-r from-blue-600 via-transparent to-purple-600 bg-[length:300%_300%] z-[-1] opacity-25 blur-[10px] animate-pulse-glow"
               />
               <div className="w-full h-full p-1.5 rounded-[2.5rem] border border-blue-500/15 bg-[#0f1012]/80 backdrop-blur-md overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.1)] relative z-10">
                 <div className="w-full h-full rounded-[2.2rem] overflow-hidden border-2 border-[#131416]/70 shadow-2xl relative bg-[#0a0a0a]">

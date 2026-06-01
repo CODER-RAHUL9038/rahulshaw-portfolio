@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { LazyMotion, domAnimation } from "motion/react";
 import "./globals.css";
 
 const inter = Inter({
@@ -161,7 +162,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased text-[#e5e2e1] bg-[#050505] selection:bg-blue-500/30 selection:text-white min-h-screen relative overflow-x-hidden">
-        {children}
+        <LazyMotion features={domAnimation} strict>
+          {children}
+        </LazyMotion>
       </body>
     </html>
   );

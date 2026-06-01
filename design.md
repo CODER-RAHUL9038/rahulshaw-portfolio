@@ -1,118 +1,198 @@
-GEMINI PERFORMANCE OPTIMIZATION PROMPT
+You are now in EXECUTION MODE.
 
-You are a Senior Next.js Performance Engineer specializing in Lighthouse optimization, Core Web Vitals, React rendering performance, bundle analysis, hydration optimization, Framer Motion performance, and AI-powered applications.
+Do not perform another audit.
 
-Project Details:
+Implement the optimizations identified below directly in the codebase.
 
-Framework: Next.js 15 (App Router)
-Language: TypeScript
-Styling: Tailwind CSS
-Animations: Framer Motion
-AI Features: Gemini API + RAG + Upstash Vector
-Goal: Maintain premium cinematic UI while improving Lighthouse Performance from 59 → 90+
-Do NOT remove visual quality, branding, or premium interactions.
+Current Lighthouse:
 
-Current Lighthouse Report:
+* Performance: 60
+* FCP: 0.6s
+* LCP: 1.1s
+* CLS: 0
+* TBT: 3420ms
 
-Performance: 59
-Accessibility: 93
-Best Practices: 100
-SEO: 100
+Goal:
 
-Major Issues:
+* Reduce TBT below 500ms
+* Reduce layout cost
+* Reduce style recalculation
+* Reduce Framer Motion overhead
+* Preserve design, UI, animations, and user experience
 
-Total Blocking Time (TBT): 1510ms
-Main Thread Work: 6.4s
-JavaScript Execution Time: 2.6s
-18 Long Main Thread Tasks
-Reduce Unused JavaScript: 394KB
-Minify JavaScript: 252KB savings
-Render Blocking Requests: 310ms savings
-Legacy JavaScript: 8KB savings
-Avoid Non-Composited Animations: 7 elements
-Forced Reflow Detected
-Large Network Dependency Tree
-200 User Timing Marks
+IMPORTANT:
 
-Task:
+Do NOT remove features.
 
-Perform a complete performance audit of the codebase and identify every bottleneck affecting:
+Do NOT remove sections.
 
-TBT (Highest Priority)
-Hydration Cost
-JavaScript Bundle Size
-React Rendering Performance
-Framer Motion Overhead
-AI Assistant Loading Strategy
-Network Waterfalls
-Image Optimization
-Font Loading
-Server Component Opportunities
-Client Component Overuse
-Unused Dependencies
-Dynamic Imports
-Code Splitting Opportunities
-Memory Waste
-Re-renders
-Layout Thrashing
-Forced Reflows
+Do NOT simplify the portfolio visually.
 
-Specifically analyze:
+Optimize implementation only.
 
-app/
-components/
-hooks/
-lib/
-AI assistant
-chatbot
-semantic search
-RAG implementation
-project cards
-timeline
-hero section
-animations
-background effects
-particle effects
-glow effects
-cursor effects
-magnetic buttons
-scroll listeners
-intersection observers
+---
 
-For each issue provide:
+## PHASE 1 – HIGHEST ROI FIXES
 
-Exact file path
-Why it hurts performance
-Estimated Lighthouse impact
-Exact code change
-Optimized code example
+1. ProfessionalEvolution.tsx
 
-Then create a prioritized implementation plan:
+Current issue:
 
-PHASE 1 – Quick Wins (30–60 min)
-PHASE 2 – Medium Impact (1–2 hrs)
-PHASE 3 – Advanced Optimizations
-PHASE 4 – Lighthouse 90+ Strategy
+A loop repeatedly calls:
 
-Important Rules:
+getBoundingClientRect()
 
-Preserve premium design.
-Preserve animations whenever possible.
-Prefer optimization over removal.
-Use Next.js 15 best practices.
-Prefer Server Components when possible.
-Lazy-load non-critical UI.
-Dynamically import heavy components.
-Optimize Framer Motion usage.
-Reduce hydration cost aggressively.
-Reduce client-side JavaScript aggressively.
-Identify unnecessary useEffect, useState, and client components.
+for multiple timeline nodes.
+
+Implement:
+
+* measurement caching
+* minimize DOM reads
+* avoid repeated synchronous layout calculations
+* reduce ResizeObserver work
+* recalculate only when necessary
+
+Expected gain:
+800ms–1200ms TBT reduction
+
+---
+
+2. CoreStack.tsx
+
+Current issue:
+
+Framer Motion layout projection is running across many skill items.
+
+Implement:
+
+* remove expensive layout projection
+* replace layout="position" where possible
+* use simpler motion variants
+* use CSS transitions where projection is unnecessary
+
+Expected gain:
+600ms–900ms TBT reduction
+
+---
+
+3. ProfessionalEvolution MotionValue Optimization
+
+Current issue:
+
+Each timeline node creates multiple:
+
+* useTransform
+* useSpring
+* reactive MotionValue chains
+
+Implement:
+
+* consolidate transforms
+* reduce MotionValue count
+* replace reactive chains with CSS classes where possible
+* use shared calculations instead of per-node calculations
+
+Expected gain:
+400ms–600ms TBT reduction
+
+---
+
+## PHASE 2 – RENDERING OPTIMIZATION
+
+4. FeaturedProjects.tsx
+
+Current issue:
+
+getBoundingClientRect() executes during mousemove.
+
+Implement:
+
+* cache dimensions on mouseenter
+* store values in refs
+* reuse cached values during mousemove
+* preserve tilt effect
+
+Expected gain:
+Improved responsiveness and reduced layout thrashing
+
+---
+
+5. FeaturedProjects Entrance Animations
+
+Current issue:
+
+staggerChildren launches many expensive card animations simultaneously.
+
+Implement:
+
+* reduce animation startup cost
+* delay heavy effects until interaction
+* preserve appearance
+
+Expected gain:
+300ms–500ms TBT reduction
+
+---
+
+6. Hero.tsx
+
+Current issue:
+
+* infinite Typewriter loop
+* infinite Framer Motion animation loops
+
+Implement:
+
+* move repeating decorative animations to CSS keyframes
+* keep same appearance
+* delay Typewriter initialization until after page stabilization
+
+Expected gain:
+150ms–300ms TBT reduction
+
+---
+
+## PHASE 3 – FRAMER MOTION OPTIMIZATION
+
+Implement globally:
+
+* LazyMotion
+* domAnimation
+* reduce unnecessary motion components
+* eliminate expensive projection calculations
+* add will-change: transform where beneficial
+
+Search entire project for:
+
+* useScroll
+* useTransform
+* useSpring
+* AnimatePresence
+* layout
+* layoutId
+* whileInView
+
+Optimize every occurrence.
+
+---
+
+## PHASE 4 – VALIDATION
+
+After implementing:
+
+1. Show every modified file.
+2. Show before/after code snippets.
+3. Explain each optimization.
+4. Estimate TBT reduction.
+5. Estimate Lighthouse improvement.
+6. Identify remaining bottlenecks.
 
 Finally provide:
 
-Expected Lighthouse score after fixes.
-Expected TBT after fixes.
-Largest remaining bottleneck.
-Top 10 highest-impact optimizations ranked by ROI.
+* Expected TBT
+* Expected Layout Cost
+* Expected Lighthouse Score
 
-Think like a performance consultant hired to get this portfolio from 59 to 90+ while keeping it visually premium.
+Do not stop after analysis.
+
+Apply the code changes.

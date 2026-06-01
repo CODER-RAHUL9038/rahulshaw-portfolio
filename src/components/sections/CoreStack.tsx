@@ -237,7 +237,6 @@ export default function CoreStack() {
               {displayedSkills.map((skill) => (
                 <motion.div
                   key={skill.id}
-                  layout="position"
                   variants={itemVariants}
                   className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
                 >

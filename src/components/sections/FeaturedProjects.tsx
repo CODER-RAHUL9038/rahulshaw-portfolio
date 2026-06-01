@@ -65,18 +65,28 @@ function ProjectFlipCard({
   resetSignal: number;
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
+  
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 25 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 25 });
 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
+  const handleMouseEnter = () => {
+    if (cardRef.current) {
+      rectRef.current = cardRef.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (isFlipped) return;
-    const rect = event.currentTarget.getBoundingClientRect();
+    if (isFlipped || !rectRef.current) return;
+    
+    const rect = rectRef.current;
     const width = rect.width;
     const height = rect.height;
     const mouseX = event.clientX - rect.left;
@@ -90,6 +100,7 @@ function ProjectFlipCard({
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
+    rectRef.current = null;
   };
 
   const toggleCard = () => {
@@ -103,7 +114,9 @@ function ProjectFlipCard({
 
   return (
     <motion.div
+      ref={cardRef}
       variants={variants}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`relative h-full [perspective:1300px] max-md:[perspective:1000px] ${

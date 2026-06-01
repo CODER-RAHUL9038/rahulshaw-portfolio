@@ -14,38 +14,30 @@ function TimelineNode({
   nodeCenter: number;
   progressHeight: MotionValue<number>;
 }) {
-  const isReached = useTransform(progressHeight, (height) => height >= nodeCenter - 1);
+  const [isReached, setIsReached] = useState(false);
   
-  const targetScale = useTransform(isReached, (reached) => reached ? 1.2 : 1);
-  const scale = useSpring(targetScale as MotionValue<number>, {
-    stiffness: 300,
-    damping: 20
-  });
-
-  const borderColor = useTransform(isReached, (reached) =>
-    reached ? "rgba(96, 165, 250, 1)" : "rgba(255, 255, 255, 0.1)"
-  );
-  
-  const backgroundColor = useTransform(isReached, (reached) =>
-    reached ? "rgba(59, 130, 246, 1)" : "#050505"
-  );
-
-  const boxShadow = useTransform(isReached, (reached) =>
-    reached
-      ? "0 0 20px rgba(59,130,246,0.8)"
-      : "0 0 0px rgba(59,130,246,0)"
-  );
+  // Use a single listener instead of 5+ transforms to reduce MotionValue overhead
+  useLayoutEffect(() => {
+    const unsubscribe = progressHeight.on("change", (latest) => {
+      const reached = latest >= nodeCenter - 1;
+      if (reached !== isReached) {
+        setIsReached(reached);
+      }
+    });
+    return () => unsubscribe();
+  }, [progressHeight, nodeCenter, isReached]);
 
   return (
-    <motion.div
+    <div
       className={`w-[12px] h-[12px] rounded-full border-[2.5px] z-20 relative transition-all duration-500 ease-out will-change-transform ${
-        isReached ? "border-blue-400 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.8)]" : "border-white/10 bg-[#050505] shadow-none"
+        isReached 
+          ? "border-blue-400 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.8)] scale-110" 
+          : "border-white/10 bg-[#050505] shadow-none scale-100"
       }`}
       style={{
-        scale,
-        borderColor: isHighlighted ? "rgba(96, 165, 250, 1)" : undefined,
-        backgroundColor: isHighlighted ? "rgba(59, 130, 246, 1)" : undefined,
-        boxShadow: isHighlighted ? "0 0 20px rgba(59,130,246,0.8)" : undefined,
+        borderColor: isHighlighted && !isReached ? "rgba(96, 165, 250, 1)" : undefined,
+        backgroundColor: isHighlighted && !isReached ? "rgba(59, 130, 246, 1)" : undefined,
+        boxShadow: isHighlighted && !isReached ? "0_0_20px_rgba(59,130,246,0.8)" : undefined,
       }}
     >
       <AnimatePresence>
@@ -59,7 +51,7 @@ function TimelineNode({
           />
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
@@ -75,11 +67,18 @@ export default function ProfessionalEvolution() {
     const line = lineRef.current;
     if (!line) return;
 
+    // Batch DOM reads to avoid layout thrashing
     const lineRect = line.getBoundingClientRect();
+    const lineTop = lineRect.top;
+    
+    // Pre-calculate all node rects in one pass if possible, or at least minimize recalculations
     const centers = nodeRefs.current.map((node) => {
       if (!node) return 0;
+      // Using offsetTop + height / 2 if they share a common ancestor could be faster,
+      // but if layout is complex, getBoundingClientRect is safer. 
+      // We minimize the damage by only reading, not writing in this loop.
       const nodeRect = node.getBoundingClientRect();
-      return nodeRect.top + nodeRect.height / 2 - lineRect.top;
+      return nodeRect.top + nodeRect.height / 2 - lineTop;
     });
 
     const lastCenter = centers[centers.length - 1] ?? 1;
