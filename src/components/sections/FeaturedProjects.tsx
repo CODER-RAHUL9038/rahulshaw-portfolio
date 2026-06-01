@@ -11,7 +11,7 @@ import {
   RotateCcw,
   Sparkles,
 } from "lucide-react";
-import { motion, useInView, Variants, useMotionValue, useSpring, useTransform } from "motion/react";
+import { m, useInView, Variants, useMotionValue, useSpring, useTransform } from "motion/react";
 
 const flipTransition = {
   duration: 0.62,
@@ -42,7 +42,7 @@ function ProjectDetailBlock({
   index: number;
 }) {
   return (
-    <motion.div
+    <m.div
       custom={index}
       variants={detailRevealVariants}
       className="space-y-2"
@@ -51,7 +51,7 @@ function ProjectDetailBlock({
         {title}
       </h4>
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -113,7 +113,7 @@ function ProjectFlipCard({
   }, [resetSignal]);
 
   return (
-    <motion.div
+    <m.div
       ref={cardRef}
       variants={variants}
       onMouseEnter={handleMouseEnter}
@@ -123,7 +123,7 @@ function ProjectFlipCard({
         isFlipped ? "z-20" : "z-0"
       }`}
     >
-      <motion.div
+      <m.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         style={{ 
           rotateX: isFlipped ? 0 : rotateX,
@@ -250,7 +250,7 @@ function ProjectFlipCard({
         >
           <div className="relative h-full rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(20,21,24,0.96),rgba(8,9,12,0.98))] shadow-[0_24px_70px_-36px_rgba(59,130,246,0.55)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(96,165,250,0.14),transparent_34%),radial-gradient(circle_at_100%_100%,rgba(255,255,255,0.06),transparent_30%)]"></div>
-            <motion.div
+            <m.div
               animate={{ opacity: isFlipped ? [0.7, 1, 0.78] : 0.7 }}
               transition={{
                 duration: 3.2,
@@ -258,14 +258,14 @@ function ProjectFlipCard({
                 ease: "easeInOut",
               }}
               className="absolute inset-0 rounded-[2rem] border border-blue-300/10"
-            ></motion.div>
+            ></m.div>
 
-            <motion.div
+            <m.div
               initial="hidden"
               animate={isFlipped ? "visible" : "hidden"}
               className="relative z-10 h-full overflow-y-auto p-5 md:p-6 flex flex-col gap-4"
             >
-              <motion.div
+              <m.div
                 custom={0}
                 variants={detailRevealVariants}
                 className="flex items-start justify-between gap-4 border-b border-white/10 pb-4"
@@ -282,7 +282,7 @@ function ProjectFlipCard({
                 <span className="shrink-0 rounded-xl border border-white/10 bg-white/[0.04] p-2 text-white/80 transition-colors hover:text-blue-300">
                   <RotateCcw className="h-4 w-4" />
                 </span>
-              </motion.div>
+              </m.div>
 
               <ProjectDetailBlock title="Project Overview" index={1}>
                 <p className="text-[12px] leading-relaxed text-[#c6cad1]">
@@ -327,11 +327,11 @@ function ProjectFlipCard({
                   </p>
                 </ProjectDetailBlock>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -389,7 +389,7 @@ export default function FeaturedProjects() {
       {/* Background neon dust glow */}
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-      <motion.div
+      <m.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
@@ -399,34 +399,34 @@ export default function FeaturedProjects() {
         {/* Section Header */}
         <div className="space-y-4 max-w-2xl">
           <div className="overflow-hidden">
-            <motion.div
+            <m.div
               variants={textRevealVariants}
               className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-sans"
             >
               Curated Showcases
-            </motion.div>
+            </m.div>
           </div>
           <div className="overflow-hidden">
-            <motion.h2
+            <m.h2
               variants={headingVariants}
               className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
             >
               Featured Projects
-            </motion.h2>
+            </m.h2>
           </div>
           <div className="overflow-hidden">
-            <motion.p
+            <m.p
               variants={textRevealVariants}
               className="text-[#9ca3af] leading-relaxed text-base"
             >
               A selection of full-stack applications focused on backend systems,
               responsive interfaces, and real-world development workflows.
-            </motion.p>
+            </m.p>
           </div>
         </div>
 
         {/* Project display index cards */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
@@ -438,8 +438,8 @@ export default function FeaturedProjects() {
               resetSignal={resetSignal}
             />
           ))}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
       {/* Section Partition */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { SiGithub, SiGmail, SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Mail, MapPin, Send, CheckCircle2, Globe } from "lucide-react";
-import { motion, Variants } from "motion/react";
+import { m, Variants } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
@@ -101,7 +101,7 @@ export default function ContactSection() {
     >
       <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-      <motion.div 
+      <m.div 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
@@ -110,32 +110,32 @@ export default function ContactSection() {
         {/* Left column text details */}
         <div className="space-y-8 lg:sticky lg:top-28">
           <div className="space-y-4">
-            <motion.div
+            <m.div
               variants={textRevealVariants}
               className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500"
             >
               Inquiries & Hiring
-            </motion.div>
+            </m.div>
             <div className="overflow-hidden">
-              <motion.h2
+              <m.h2
                 variants={headingVariants}
                 className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]"
               >
                 Let's build <br />
                 something great.
-              </motion.h2>
+              </m.h2>
             </div>
-            <motion.p
+            <m.p
               variants={textRevealVariants}
               className="text-[#9ca3af] leading-relaxed text-sm md:text-base"
             >
               I am actively seeking software consulting gigs, fast-paced
               contract developments, or Full-Stack Node/MERN engineering
               positions globally. Let's start the dialogue.
-            </motion.p>
+            </m.p>
           </div>
 
-          <motion.div
+          <m.div
             variants={textRevealVariants}
             className="space-y-2 pt-4 border-t border-white/5"
           >
@@ -212,16 +212,16 @@ export default function ContactSection() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Right column form container */}
-        <motion.div
+        <m.div
           variants={textRevealVariants}
           className="p-8 rounded-[2.2rem] border border-brand-border bg-[#0f1012]/50 backdrop-blur-xl relative shadow-2xl"
         >
           {submitSuccess ? (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="py-16 flex flex-col items-center justify-center text-center space-y-4"
@@ -236,7 +236,7 @@ export default function ContactSection() {
                 Thank you for reaching out. I've received your query and will
                 get back to you within 24 business hours as Rahul.
               </p>
-            </motion.div>
+            </m.div>
           ) : (
             <form onSubmit={handleFormSubmit} className="space-y-6">
               <div className="space-y-2">
@@ -311,7 +311,7 @@ export default function ContactSection() {
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
-                    <motion.span
+                    <m.span
                       animate={{ rotate: 360 }}
                       transition={{
                         duration: 1,
@@ -331,8 +331,8 @@ export default function ContactSection() {
               </button>
             </form>
           )}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
       {/* Section Partition */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>

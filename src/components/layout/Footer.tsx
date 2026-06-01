@@ -3,7 +3,7 @@
 import React from "react";
 import { SiGithub, SiGmail, SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Terminal, MapPin } from "lucide-react";
-import { motion, Variants } from "motion/react";
+import { m, Variants } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
@@ -46,20 +46,20 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div 
+        <m.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: "some" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] gap-12 lg:gap-8 mb-24"
         >
           <div className="space-y-6">
-            <motion.div variants={textRevealVariants} className="font-heading font-extrabold text-[#e5e2e1] text-3xl tracking-tighter">
+            <m.div variants={textRevealVariants} className="font-heading font-extrabold text-[#e5e2e1] text-3xl tracking-tighter">
               RAHUL SHAW
-            </motion.div>
-            <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed max-w-xs text-base">
+            </m.div>
+            <m.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed max-w-xs text-base">
               Full-Stack MERN Engineer specializing in robust, scalable backend systems, secure authorization, and modern AI workflows.
-            </motion.p>
-            <motion.div variants={textRevealVariants} className="flex gap-3">
+            </m.p>
+            <m.div variants={textRevealVariants} className="flex gap-3">
               <a
                 href="https://github.com/CODER-RAHUL9038"
                 target="_blank"
@@ -95,12 +95,12 @@ export default function Footer() {
               >
                 <SiWhatsapp className="w-5 h-5" />
               </a>
-            </motion.div>
+            </m.div>
           </div>
 
           <div className="space-y-6">
-            <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Navigation</motion.h4>
-            <motion.ul variants={textRevealVariants} className="space-y-4">
+            <m.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Navigation</m.h4>
+            <m.ul variants={textRevealVariants} className="space-y-4">
               <li>
                 <a
                   href="#projects"
@@ -137,12 +137,12 @@ export default function Footer() {
                   Hire & Contact
                 </a>
               </li>
-            </motion.ul>
+            </m.ul>
           </div>
 
           <div className="space-y-6">
-            <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Featured Work</motion.h4>
-            <motion.ul variants={textRevealVariants} className="space-y-4">
+            <m.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">Featured Work</m.h4>
+            <m.ul variants={textRevealVariants} className="space-y-4">
               <li>
                 <a
                   href="https://rahul-shaw-ai-portfolio.vercel.app/"
@@ -183,12 +183,12 @@ export default function Footer() {
                   Dr Maya Reynolds
                 </a>
               </li>
-            </motion.ul>
+            </m.ul>
           </div>
 
           <div className="space-y-6">
-            <motion.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 font-heading">Collaborate</motion.h4>
-            <motion.div variants={textRevealVariants} className="space-y-4">
+            <m.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 font-heading">Collaborate</m.h4>
+            <m.div variants={textRevealVariants} className="space-y-4">
               <a
                 href="mailto:rahulshaw903866@gmail.com"
                 className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base block"
@@ -213,9 +213,9 @@ export default function Footer() {
                   Hire Me
                 </button>
               </div>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs text-[#9ca3af]">
@@ -232,4 +232,3 @@ export default function Footer() {
     </footer>
   );
 }
-

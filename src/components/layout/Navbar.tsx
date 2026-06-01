@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Menu, X, Terminal, FileDown } from "lucide-react";
-import { motion, AnimatePresence, Variants } from "motion/react";
+import { m, AnimatePresence, Variants } from "motion/react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -108,7 +108,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           {/* Brand/Logo */}
-          <motion.a
+          <m.a
             href="#"
             onClick={(e) => handleLinkClick(e, "#")}
             initial="hidden"
@@ -123,13 +123,13 @@ export default function Navbar() {
             <span className="font-heading font-extrabold text-base tracking-relaxed text-white group-hover:text-blue-400 transition-colors">
               RAHUL SHAW
             </span>
-          </motion.a>
+          </m.a>
 
           {/* Desktop nav menu */}
           <nav className="hidden lg:flex items-center gap-10">
             <ul className="flex items-center gap-6">
               {navLinks.map((link, idx) => (
-                <motion.li
+                <m.li
                   key={link.name}
                   initial="hidden"
                   animate="visible"
@@ -144,11 +144,11 @@ export default function Navbar() {
                     {link.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                   </a>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
 
-            <motion.a
+            <m.a
               id="download-resume-btn-desktop"
               initial="hidden"
               animate="visible"
@@ -161,11 +161,11 @@ export default function Navbar() {
             >
               <FileDown className="w-3.5 h-3.5" />
               Resume
-            </motion.a>
+            </m.a>
           </nav>
 
           {/* Mobile/Tab menu trigger button */}
-          <motion.button
+          <m.button
             id="mobile-menu-trigger"
             initial="hidden"
             animate="visible"
@@ -180,7 +180,7 @@ export default function Navbar() {
             ) : (
               <Menu className="w-6 h-6" />
             )}
-          </motion.button>
+          </m.button>
         </div>
       </header>
 
@@ -189,7 +189,7 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-[80] lg:hidden">
             {/* Backdrop Blur Overlay */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -199,7 +199,7 @@ export default function Navbar() {
             />
 
             {/* Side Menu Content */}
-            <motion.div
+            <m.div
               initial="closed"
               animate="open"
               exit="closed"
@@ -220,7 +220,7 @@ export default function Navbar() {
               <div className="px-10 flex flex-col gap-12">
                 <ul className="flex flex-col gap-8 perspective-1000">
                   {navLinks.map((link) => (
-                    <motion.li
+                    <m.li
                       key={link.name}
                       variants={mobileItemVariants}
                       className="origin-left"
@@ -232,11 +232,11 @@ export default function Navbar() {
                       >
                         {link.name}
                       </a>
-                    </motion.li>
+                    </m.li>
                   ))}
                 </ul>
 
-                <motion.div variants={mobileItemVariants}>
+                <m.div variants={mobileItemVariants}>
                   <a
                     id="download-resume-btn-mobile"
                     href="https://docs.google.com/document/d/1bC9X-X4A2a8mkWtWHsKFGEhGCfGEzUFcLkjqbcROJao/export?format=pdf"
@@ -245,7 +245,7 @@ export default function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="group flex items-center justify-center gap-2 bg-blue-600 text-white text-sm font-bold py-4.5 rounded-2xl hover:bg-blue-500 active:scale-95 transition-all w-full relative overflow-hidden shadow-lg shadow-blue-500/20"
                   >
-                    <motion.div
+                    <m.div
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "100%" }}
                       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -254,18 +254,18 @@ export default function Navbar() {
                     <FileDown className="w-5 h-5" />
                     Resume
                   </a>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   variants={mobileItemVariants}
                   className="mt-4 pt-12 border-t border-white/5"
                 >
                   <p className="text-[10px] font-mono text-[#4b5563] uppercase tracking-[0.2em]">
                     Rahul Shaw Portfolio v1.0
                   </p>
-                </motion.div>
+                </m.div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         )}
       </AnimatePresence>

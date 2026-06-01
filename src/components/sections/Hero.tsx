@@ -8,7 +8,7 @@ import { ArrowRight, Download } from "lucide-react";
 
 const Typewriter = dynamic(() => import("typewriter-effect"), { ssr: false });
 
-import { motion, Variants, useScroll, useTransform } from "motion/react";
+import { m, Variants, useScroll, useTransform } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
@@ -89,17 +89,17 @@ export default function Hero() {
             <div className="space-y-4 md:space-y-6">
               <h1 className="font-heading text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight text-white max-w-[12ch] md:max-w-none">
                 <div className="overflow-hidden">
-                  <motion.div
+                  <m.div
                     custom={1}
                     initial="hidden"
                     animate="visible"
                     variants={headingVariants}
                   >
                     Building Fast,
-                  </motion.div>
+                  </m.div>
                 </div>
                 <div className="overflow-hidden">
-                  <motion.div
+                  <m.div
                     custom={2}
                     initial="hidden"
                     animate="visible"
@@ -109,10 +109,10 @@ export default function Hero() {
                       Reliable
                     </span>{" "}
                     Web Systems.
-                  </motion.div>
+                  </m.div>
                 </div>
               </h1>
-              <motion.p 
+              <m.p 
                 custom={3}
                 initial="hidden"
                 animate="visible"
@@ -123,11 +123,11 @@ export default function Hero() {
                 , a backend-heavy MERN developer focused on
                 <span className="text-white font-medium"> scalable systems</span>,
                 secure APIs, and modern AI-assisted workflows.
-              </motion.p>
+              </m.p>
             </div>
 
             {/* Dynamic typing row */}
-            <motion.div 
+            <m.div 
               custom={3}
               initial="hidden"
               animate="visible"
@@ -152,10 +152,10 @@ export default function Hero() {
                   />
                 )}
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Call to Actions & Social Integration */}
-            <motion.div 
+            <m.div 
               custom={4}
               initial="hidden"
               animate="visible"
@@ -176,7 +176,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="group flex items-center justify-center gap-2 border border-white/5 bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-4.5 rounded-2xl shadow-lg hover:shadow-blue-500/10 active:scale-98 transition-all duration-300 min-w-[150px] backdrop-blur-md relative overflow-hidden"
               >
-                <motion.div 
+                <m.div 
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "100%" }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -221,13 +221,13 @@ export default function Hero() {
                   Based in Kolkata, IN
                 </span>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
 
         {/* Hero Right Avatar Visual */}
         <div className="relative flex justify-center lg:justify-end lg:pr-4 z-20 w-full min-w-0 order-1 lg:order-2 mb-6 lg:mb-0">
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: 40, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ 
@@ -240,12 +240,12 @@ export default function Hero() {
             className="relative w-full max-w-[300px] md:max-w-[500px] lg:max-w-[420px]"
           >
             {/* Ambient space glow behind avatar - Optimized to CSS animation */}
-            <motion.div 
+            <m.div 
               style={{ y: parallaxY }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none will-change-transform animate-ambient-glow"
             />
 
-            <motion.div 
+            <m.div 
               style={{ y: parallaxY }}
               className="relative w-full aspect-[1/1.15] will-change-transform animate-float-avatar"
             >
@@ -278,8 +278,8 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
       {/* Section Partition */}

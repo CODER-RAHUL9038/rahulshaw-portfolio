@@ -33,7 +33,7 @@ Integrated with **Gemini 2.5 Flash**, the portfolio features a custom-built AI a
 
 ## 🚀 Core Engineering Highlights
 
-- **Lighthouse Performance Mastery**: Optimized for near-perfect scores (99 Performance, 100 Best Practices, 100 SEO).
+- **Lighthouse Performance Mastery**: Optimized for near-perfect scores (99 Performance, 100 Best Practices, 100 SEO) with monitoring via Google Search Console.
 - **Performance-First UI/UX**: Dark-mode primary design with custom glassmorphism effects and hardware-accelerated CSS animations for zero layout thrashing.
 - **Backend-Heavy MERN Stack**: Engineered for scalability, featuring secure REST APIs, role-based access logic (RBAC), and complex data relationships.
 - **Next.js 16 & React 19**: Leveraging the cutting edge of the React ecosystem, including Server Components and advanced hydration strategies.

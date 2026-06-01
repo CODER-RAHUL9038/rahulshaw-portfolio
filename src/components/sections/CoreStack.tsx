@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { skills } from "../../data/skills";
 import { Atom, Globe, Cpu, Terminal, Database, Sparkles, Check } from "lucide-react";
-import { motion, Variants, AnimatePresence } from "motion/react";
+import { m, Variants, AnimatePresence } from "motion/react";
 
 export default function CoreStack() {
   const [activeTab, setActiveTab] = useState<string>("ALL");
@@ -124,7 +124,7 @@ export default function CoreStack() {
     <section id="stack" className="pt-16 pb-24 px-6 max-w-7xl mx-auto relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/[0.02] blur-[150px] rounded-full pointer-events-none"></div>
 
-      <motion.div 
+      <m.div 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
@@ -133,27 +133,27 @@ export default function CoreStack() {
         {/* Section Header */}
         <div className="space-y-3">
           <div className="overflow-hidden">
-            <motion.h2 
+            <m.h2 
               variants={headingVariants}
               className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
             >
               Tech Stack
-            </motion.h2>
+            </m.h2>
           </div>
           <div className="overflow-hidden">
-            <motion.p 
+            <m.p 
               variants={textRevealVariants}
               className="text-[#9ca3af] leading-relaxed text-sm md:text-base max-w-2xl font-sans"
             >
               Technologies I work with for building scalable web applications, APIs, and responsive user experiences.
-            </motion.p>
+            </m.p>
           </div>
         </div>
 
         {/* Dynamic upper grid - Reverted to md:grid-cols-5 and gap-4 */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {topPillars.map((pillar, idx) => (
-            <motion.div
+            <m.div
               key={pillar.id}
               variants={textRevealVariants}
               transition={{ delay: idx * 0.1 }}
@@ -184,12 +184,12 @@ export default function CoreStack() {
                   {pillar.subtitle}
                 </p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Directory Wrapper Panel - Reverted spacing and padding */}
-        <motion.div 
+        <m.div 
           id="skills"
           ref={directoryRef}
           variants={textRevealVariants}
@@ -225,7 +225,7 @@ export default function CoreStack() {
             </div>
           </div>
 
-          <motion.div 
+          <m.div 
             key={`${activeTab}-${isExpanded}`}
             variants={containerVariants}
             initial="hidden"
@@ -234,7 +234,7 @@ export default function CoreStack() {
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
           >
             {displayedSkills.map((skill) => (
-              <motion.div
+              <m.div
                 key={skill.id}
                 variants={itemVariants}
                 className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
@@ -250,9 +250,9 @@ export default function CoreStack() {
                       {skill.category.split(' ')[0]}
                     </span>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
-          </motion.div>
+          </m.div>
 
           {/* Show More / Less Toggle */}
           {hasMore && (
@@ -268,8 +268,8 @@ export default function CoreStack() {
               </button>
             </div>
           )}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
       {/* Section Partition */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>

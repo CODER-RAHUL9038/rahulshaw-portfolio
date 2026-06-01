@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   },
   keywords: [
     "Rahul Shaw",
+    "Rahul Shaw Portfolio",
     "Full Stack Developer",
     "Next.js Developer",
     "MERN Stack Developer",

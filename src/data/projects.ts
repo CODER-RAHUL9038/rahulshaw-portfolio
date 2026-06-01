@@ -15,6 +15,7 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "Framer Motion",
       "Gemini API",
+      "Google Search Console",
     ],
 
     image: "/projects/portfolio.png",
@@ -45,6 +46,7 @@ export const projects: Project[] = [
         "Tailwind CSS",
         "Framer Motion",
         "Gemini API",
+        "Google Search Console",
       ],
 
       challenges:

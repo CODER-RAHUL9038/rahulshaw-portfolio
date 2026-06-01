@@ -130,6 +130,12 @@ export const skills: Skill[] = [
     category: "FRONTEND",
     icon: "Search",
   },
+  {
+    id: "google-search-console",
+    name: "Google Search Console",
+    category: "FRONTEND",
+    icon: "Search",
+  },
 
   // AI WORKFLOWS
   {
@@ -261,5 +267,11 @@ export const skills: Skill[] = [
     name: "PWA",
     category: "TOOLS",
     icon: "Smartphone",
+  },
+  {
+    id: "google-search-console",
+    name: "Google Search Console",
+    category: "TOOLS",
+    icon: "Search",
   },
 ];

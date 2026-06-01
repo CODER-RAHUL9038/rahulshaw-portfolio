@@ -3,7 +3,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { experiences } from "../../data/experience";
 import { Briefcase, MapPin, Milestone, Award, Star, GraduationCap } from "lucide-react";
-import { motion, MotionValue, useScroll, useSpring, useTransform, Variants, AnimatePresence } from "motion/react";
+import { m, MotionValue, useScroll, useSpring, useTransform, Variants, AnimatePresence } from "motion/react";
 
 function TimelineNode({
   isHighlighted,
@@ -42,7 +42,7 @@ function TimelineNode({
     >
       <AnimatePresence>
         {isHighlighted && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 2.5 }}
             exit={{ opacity: 0, scale: 0 }}
@@ -163,7 +163,7 @@ export default function ProfessionalEvolution() {
         {/* Section Header */}
         <div className="text-center space-y-3">
           <div className="overflow-hidden">
-            <motion.h2 
+            <m.h2 
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: "some" }}
@@ -171,9 +171,9 @@ export default function ProfessionalEvolution() {
               className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight"
             >
               Professional Evolution
-            </motion.h2>
+            </m.h2>
           </div>
-          <motion.p 
+          <m.p 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: "some" }}
@@ -181,14 +181,14 @@ export default function ProfessionalEvolution() {
             className="text-[#9ca3af] leading-relaxed text-sm md:text-base max-w-xl mx-auto font-sans"
           >
             Technical milestones and engineering growth.
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Alternate Timelines Frame */}
         <div ref={timelineRef} className="relative max-w-5xl mx-auto">
           {/* Main vertical center timeline connector line */}
           <div ref={lineRef} className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 w-[2px] bg-white/5 overflow-hidden">
-             <motion.div 
+             <m.div 
                 className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 origin-top will-change-transform"
                 style={{ scaleY: clampedTimelineProgress, height: "100%" }}
              />
@@ -199,7 +199,7 @@ export default function ProfessionalEvolution() {
               const isEven = index % 2 === 0;
               const isHighlighted = exp.highlighted;
               return (
-                <motion.div
+                <m.div
                   key={exp.id}
                   initial="hidden"
                   whileInView="visible"
@@ -318,7 +318,7 @@ export default function ProfessionalEvolution() {
                       </div>
                     )}
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

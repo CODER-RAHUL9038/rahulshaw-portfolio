@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Terminal, Cpu, Clock, RefreshCw, AlertCircle, Sparkles } from "lucide-react";
 import { ChatMessage } from "../../types";
-import { motion, AnimatePresence, Variants } from "motion/react";
+import { m, AnimatePresence, Variants } from "motion/react";
 
 export default function RecruiterAssistant() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -122,7 +122,7 @@ export default function RecruiterAssistant() {
     <section id="ai-agent" className="pt-16 pb-24 px-6 max-w-7xl mx-auto relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/[0.015] blur-[100px] rounded-full pointer-events-none"></div>
 
-      <motion.div 
+      <m.div 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "some" }}
@@ -131,20 +131,20 @@ export default function RecruiterAssistant() {
         {/* Left column info */}
         <div className="space-y-8">
           <div className="space-y-4">
-            <motion.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 flex items-center gap-2">
+            <m.div variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.25em] text-blue-500 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-blue-400" />
               Ai chatbot
-            </motion.div>
-            <motion.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+            </m.div>
+            <m.h2 variants={textRevealVariants} className="font-heading text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
               Rahul's Ai <br />
               Assistant
-            </motion.h2>
-            <motion.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
+            </m.h2>
+            <m.p variants={textRevealVariants} className="text-[#9ca3af] leading-relaxed text-sm md:text-base font-sans">
               Need on-demand verification? Query my RAG-powered Gemini assistant to evaluate job alignment, technology choices, or professional highlights with dynamic portfolio context.
-            </motion.p>
+            </m.p>
           </div>
 
-          <motion.div variants={textRevealVariants} className="grid grid-cols-2 gap-4">
+          <m.div variants={textRevealVariants} className="grid grid-cols-2 gap-4">
             <div className="p-4 bg-[#0f1012]/40 border border-white/[0.04] rounded-2xl flex items-center gap-3">
               <Cpu className="w-5 h-5 text-blue-400 shrink-0" />
               <div>
@@ -159,11 +159,11 @@ export default function RecruiterAssistant() {
                 <div className="text-xs font-bold text-white mt-0.5">Online & Stable</div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Right column: Chat workspace */}
-        <motion.div variants={textRevealVariants} className="rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] md:h-[520px] flex flex-col overflow-hidden">
+        <m.div variants={textRevealVariants} className="rounded-[2rem] border border-white/[0.05] bg-[#0c0d0f]/85 backdrop-blur-xl relative shadow-2xl h-[580px] md:h-[520px] flex flex-col overflow-hidden">
           <div className="flex-grow flex flex-col justify-between p-5 md:p-7 h-full overflow-hidden">
             <div className="flex justify-between items-center pb-4 border-b border-white/[0.04]">
               <div className="flex items-center gap-3">
@@ -192,7 +192,7 @@ export default function RecruiterAssistant() {
             <div className="flex-grow overflow-y-auto py-6 space-y-4 pr-2 chatbot-scrollbar">
               <AnimatePresence initial={false}>
                 {messages.map((msg) => (
-                  <motion.div
+                  <m.div
                     key={msg.id}
                     initial={{ opacity: 0, y: 10, filter: "blur(4px)", scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
@@ -208,12 +208,12 @@ export default function RecruiterAssistant() {
                     >
                       {msg.text}
                     </div>
-                  </motion.div>
+                  </m.div>
                 ))}
               </AnimatePresence>
 
               {isLoading && (
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
@@ -226,7 +226,7 @@ export default function RecruiterAssistant() {
                     </span>
                     <span className="text-xs font-mono">Analyzing Rahul's journey...</span>
                   </div>
-                </motion.div>
+                </m.div>
               )}
 
               {errorMessage && (
@@ -242,7 +242,7 @@ export default function RecruiterAssistant() {
               )}
 
               {messages.length === 1 && !isLoading && (
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
@@ -265,7 +265,7 @@ export default function RecruiterAssistant() {
                       </button>
                     ))}
                   </div>
-                </motion.div>
+                </m.div>
               )}
               
               <div ref={messagesEndRef} />
@@ -302,8 +302,8 @@ export default function RecruiterAssistant() {
               </button>
             </form>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
       {/* Section Partition */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>
