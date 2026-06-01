@@ -91,7 +91,7 @@ export const experiences: Experience[] = [
 
   {
     id: "exp-5",
-    year: "2025",
+    year: "2026",
     role: "Freelance MERN Stack Developer",
     company: "NXERRA & INDEPENDENT WEB PROJECTS",
     tagline: "Full-stack development & backend systems",
