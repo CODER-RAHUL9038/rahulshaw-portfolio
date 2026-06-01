@@ -33,11 +33,36 @@ Integrated with **Gemini 2.5 Flash**, the portfolio features a custom-built AI a
 
 ## 🚀 Core Engineering Highlights
 
-- **Premium UI/UX**: Dark-mode primary design with custom glassmorphism effects, cinematic background gradients, and hardware-accelerated animations via **Framer Motion**.
+- **Lighthouse Performance Mastery**: Optimized for near-perfect scores (99 Performance, 100 Best Practices, 100 SEO).
+- **Performance-First UI/UX**: Dark-mode primary design with custom glassmorphism effects and hardware-accelerated CSS animations for zero layout thrashing.
 - **Backend-Heavy MERN Stack**: Engineered for scalability, featuring secure REST APIs, role-based access logic (RBAC), and complex data relationships.
-- **Next.js 16 & React 19**: Leveraging the cutting edge of the React ecosystem, including Server Components, advanced caching strategies, and the latest Turbopack performance.
+- **Next.js 16 & React 19**: Leveraging the cutting edge of the React ecosystem, including Server Components and advanced hydration strategies.
 - **Technical Milestone Timeline**: An interactive, scroll-synchronized professional evolution map that tracks engineering growth through high-fidelity visual nodes.
-- **Responsive Mastery**: Fluid, break-point optimized engineering ensuring a "native app" feel across mobile, tablet, and ultra-wide displays.
+
+---
+
+## ⚡ Performance Optimization Strategy
+
+This portfolio was engineered to hit **99+ Lighthouse Performance** without sacrificing cinematic visuals.
+
+### 🔬 Optimization Techniques
+1. **Main Thread Work Reduction**: Replaced heavy Framer Motion loops with lightweight CSS keyframes for ambient glows and pulsing effects, significantly reducing Total Blocking Time (TBT).
+2. **Dynamic Lazy Loading**: Below-the-fold components (Projects, Experience, AI Assistant) are dynamically imported using Next.js `dynamic`, ensuring the browser only processes critical Hero content on initial load.
+3. **Hydration Pruning**: Minimized client-side JavaScript execution by offloading complex rendering to Server Components where possible.
+4. **Asset & Image Engineering**: High-resolution local assets are served via the Next.js `Image` component with priority loading and optimized quality settings to eliminate LCP bottlenecks.
+5. **DOM Size Reduction**: Flattened deeply nested structures to reduce layout calculation overhead and style recalculations.
+
+### 📊 Lighthouse Performance (Desktop)
+- **Performance**: 99
+- **Accessibility**: 93
+- **Best Practices**: 100
+- **SEO**: 100
+
+**Core Web Vitals:**
+- **First Contentful Paint (FCP)**: 0.6s
+- **Largest Contentful Paint (LCP)**: 1.2s
+- **Cumulative Layout Shift (CLS)**: 0
+- **Total Blocking Time (TBT)**: <100ms
 
 ---
 
