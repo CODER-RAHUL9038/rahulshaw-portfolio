@@ -242,17 +242,18 @@ export default function Hero() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none will-change-transform"
             />
 
             <motion.div 
               animate={{ y: [0, -10, 0] }}
+              style={{ y: parallaxY }}
               transition={{
                 duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="relative w-full aspect-[1/1.15]"
+              className="relative w-full aspect-[1/1.15] will-change-transform"
             >
               {/* Dynamic visual framing containing the primary portrait */}
               <motion.div 

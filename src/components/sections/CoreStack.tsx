@@ -230,14 +230,14 @@ export default function CoreStack() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
           >
             <AnimatePresence mode="popLayout">
               {displayedSkills.map((skill) => (
                 <motion.div
                   key={skill.id}
-                  layout
+                  layout="position"
                   variants={itemVariants}
                   className="p-4 rounded-2xl bg-[#0e1012]/40 border border-white/[0.04] flex items-center gap-3.5 hover:border-blue-500/25 hover:bg-[#131518]/70 transition-all duration-300 group"
                 >

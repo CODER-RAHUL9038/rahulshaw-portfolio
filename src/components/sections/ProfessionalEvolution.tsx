@@ -191,7 +191,7 @@ export default function ProfessionalEvolution() {
           <div ref={lineRef} className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 w-[2px] bg-white/5 overflow-hidden">
              <motion.div 
                 className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 origin-top will-change-transform"
-                style={{ scaleY, height: "100%" }}
+                style={{ scaleY: clampedTimelineProgress, height: "100%" }}
              />
           </div>
 
@@ -327,10 +327,6 @@ export default function ProfessionalEvolution() {
       </div>
       {/* Section Partition */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
-    </section>
-  );
-}
-t-1/2 -translate-x-1/2 w-4/5 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
     </section>
   );
 }
