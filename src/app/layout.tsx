@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { LazyMotion, domAnimation } from "motion/react";
 import "./globals.css";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+import ScrollRestorer from "../components/shared/ScrollRestorer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -163,7 +166,12 @@ export default function RootLayout({
       </head>
       <body className="antialiased text-[#e5e2e1] bg-[#050505] selection:bg-blue-500/30 selection:text-white min-h-screen relative overflow-x-hidden">
         <LazyMotion features={domAnimation} strict>
-          {children}
+          <ScrollRestorer />
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
         </LazyMotion>
       </body>
     </html>
