@@ -1,6 +1,6 @@
 {
   "name": "Rahul Shaw Portfolio",
-  "description": "A cinematic premium AI-first developer portfolio website for Rahul Shaw, featuring an interactive GSAP-style timeline, custom glassmorphism effects, and a Next.js-powered Gemini recruiter assistant chatbot.",
+  "description": "A cinematic premium AI-first developer portfolio website for Rahul Shaw, a Full-Stack Developer with 2.1 years of professional experience, featuring an interactive GSAP-style timeline, custom glassmorphism effects, and a Next.js-powered Gemini recruiter assistant chatbot.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

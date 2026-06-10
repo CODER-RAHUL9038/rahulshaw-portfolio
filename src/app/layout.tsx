@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Rahul Shaw",
   },
   description:
-    "Production-focused Full Stack Developer specializing in Next.js, MERN stack, and AI-integrated web systems. Building scalable, secure, and high-performance applications with a focus on engineering excellence.",
+    "Production-focused Full Stack Developer with 2.1 years of professional experience specializing in Next.js, MERN stack, and AI-integrated web systems. Building scalable, secure, and high-performance applications with a focus on engineering excellence.",
   alternates: {
     canonical: "/",
   },

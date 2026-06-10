@@ -5,7 +5,7 @@
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Gemini AI](https://img.shields.io/badge/Gemini_2.5-Intelligence-4285F4?style=for-the-badge&logo=google-gemini&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-> **A high-performance, cinematic digital experience engineered with a focus on AI integration, backend-heavy architecture, and premium visual storytelling.**
+> **A high-performance, cinematic digital experience by a developer with 2.1 years of professional experience, engineered with a focus on AI integration, backend-heavy architecture, and premium visual storytelling.**
 
 ---
 
@@ -127,7 +127,7 @@ npm run dev
 
 ## 🤝 Connect & Collaborate
 
-**Rahul Shaw** - Full-Stack MERN & AI Systems Engineer
+**Rahul Shaw** - Full-Stack MERN & AI Systems Engineer (2.1 Years of Experience)
 - **Live Demo**: [rahul-shaw-ai-portfolio.vercel.app](https://rahul-shaw-ai-portfolio.vercel.app/)
 - **GitHub**: [@CODER-RAHUL9038](https://github.com/CODER-RAHUL9038)
 - **LinkedIn**: [rahulshaw-dev](https://www.linkedin.com/in/rahulshaw-dev)
