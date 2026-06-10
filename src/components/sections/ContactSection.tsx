@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { SiGithub, SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { Mail, MapPin, Send, CheckCircle2, Globe } from "lucide-react";
-import { m, Variants } from "motion/react";
+import { Mail, MapPin, Send, CheckCircle2, Globe, Check } from "lucide-react";
+import { m, AnimatePresence, Variants } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
@@ -24,6 +24,14 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopyEmail = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("rahulshaw903866@gmail.com");
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   const headingVariants: Variants = {
     hidden: { y: "100%" },
@@ -139,16 +147,36 @@ export default function ContactSection() {
             variants={textRevealVariants}
             className="space-y-2 pt-4 border-t border-white/5"
           >
-            <a
-              href="mailto:rahulshaw903866@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 group py-1.5 px-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
+            <button
+              onClick={(e) => handleCopyEmail(e, "contact-card")}
+              className="w-full flex items-center gap-3 group py-1.5 px-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors relative"
             >
               <div className="w-9 h-9 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform">
-                <Mail className="w-4.5 h-4.5" />
+                <AnimatePresence mode="wait">
+                  {copiedId === "contact-card" ? (
+                    <m.div
+                      key="check"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.5, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Check className="w-4.5 h-4.5 text-blue-400" />
+                    </m.div>
+                  ) : (
+                    <m.div
+                      key="mail"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.5, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Mail className="w-4.5 h-4.5" />
+                    </m.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <div>
+              <div className="text-left">
                 <div className="text-[10px] text-[#9ca3af] font-mono uppercase tracking-wider">
                   Email Address
                 </div>
@@ -156,7 +184,20 @@ export default function ContactSection() {
                   rahulshaw903866@gmail.com
                 </div>
               </div>
-            </a>
+              <AnimatePresence>
+                {copiedId === "contact-card" && (
+                  <m.div
+                    initial={{ opacity: 0, x: 20, scale: 0.9 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: 20, scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-4 px-3 py-1.5 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 text-blue-400 text-[10px] font-bold rounded-lg shadow-[0_0_20px_rgba(59,130,246,0.1)] whitespace-nowrap flex items-center gap-1.5"
+                  >
+                    Copied!
+                  </m.div>
+                )}
+              </AnimatePresence>
+            </button>
 
             <div className="flex items-center gap-3 py-1.5 px-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl">
               <div className="w-9 h-9 rounded-xl bg-indigo-500/5 border border-indigo-500/10 flex items-center justify-center text-indigo-400">
@@ -195,15 +236,50 @@ export default function ContactSection() {
                 >
                   <LinkedInIcon className="w-5 h-5" />
                 </a>
-                <a
-                  href="mailto:rahulshaw903866@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#9ca3af] hover:text-blue-400 transition-colors"
-                  title="Email Direct"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
+                <div className="relative">
+                  <button
+                    onClick={(e) => handleCopyEmail(e, "contact-icon")}
+                    className="text-[#9ca3af] hover:text-blue-400 transition-colors"
+                    title="Copy Email Address"
+                  >
+                    <AnimatePresence mode="wait">
+                      {copiedId === "contact-icon" ? (
+                        <m.div
+                          key="check"
+                          initial={{ scale: 0.5, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.5, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Check className="w-5 h-5 text-blue-400" />
+                        </m.div>
+                      ) : (
+                        <m.div
+                          key="mail"
+                          initial={{ scale: 0.5, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.5, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Mail className="w-5 h-5" />
+                        </m.div>
+                      )}
+                    </AnimatePresence>
+                  </button>
+                  <AnimatePresence>
+                    {copiedId === "contact-icon" && (
+                      <m.div
+                        initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 10, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.9 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 text-blue-400 text-[10px] font-bold rounded-lg shadow-[0_0_20px_rgba(59,130,246,0.1)] whitespace-nowrap z-50 flex items-center gap-1.5"
+                      >
+                        Copied!
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+                </div>
                 <a
                   href="https://wa.me/918240522820"
                   target="_blank"

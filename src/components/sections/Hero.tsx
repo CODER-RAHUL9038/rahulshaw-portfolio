@@ -4,11 +4,11 @@ import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, Check } from "lucide-react";
 
 const Typewriter = dynamic(() => import("typewriter-effect"), { ssr: false });
 
-import { m, Variants, useScroll, useTransform } from "motion/react";
+import { m, AnimatePresence, Variants, useScroll, useTransform } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
@@ -33,6 +33,14 @@ export default function Hero() {
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 500], [0, 100]);
   const [isMounted, setIsMounted] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("rahulshaw903866@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   React.useEffect(() => {
     // Delay non-critical JS execution until after hydration
@@ -207,15 +215,50 @@ export default function Hero() {
                   >
                     <LinkedInIcon className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
                   </a>
-                  <a
-                    href="mailto:rahulshaw903866@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group p-2 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
-                    aria-label="Email Address Contacts"
-                  >
-                    <Mail className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
-                  </a>
+                  <div className="relative">
+                    <button
+                      onClick={handleCopyEmail}
+                      className="group p-2 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
+                      aria-label="Copy Email Address"
+                    >
+                      <AnimatePresence mode="wait">
+                        {copied ? (
+                          <m.div
+                            key="check"
+                            initial={{ scale: 0.5, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.5, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Check className="w-4 h-4 text-blue-400" />
+                          </m.div>
+                        ) : (
+                          <m.div
+                            key="mail"
+                            initial={{ scale: 0.5, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.5, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Mail className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
+                          </m.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                    <AnimatePresence>
+                      {copied && (
+                        <m.div
+                          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 text-blue-400 text-[10px] font-bold rounded-lg shadow-[0_0_20px_rgba(59,130,246,0.1)] whitespace-nowrap z-50 flex items-center gap-1.5"
+                        >
+                          Copied!
+                        </m.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
                 
                 <div className="h-px w-6 bg-white/15 ml-1"></div>

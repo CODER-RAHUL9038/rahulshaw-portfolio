@@ -2,8 +2,8 @@
 
 import React from "react";
 import { SiGithub, SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { Terminal, MapPin, Mail } from "lucide-react";
-import { m, Variants } from "motion/react";
+import { Terminal, MapPin, Mail, Check } from "lucide-react";
+import { m, AnimatePresence, Variants } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
@@ -18,6 +18,14 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [copiedId, setCopiedId] = React.useState<string | null>(null);
+
+  const handleCopyEmail = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("rahulshaw903866@gmail.com");
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -78,15 +86,50 @@ export default function Footer() {
               >
                 <LinkedInIcon className="w-5 h-5" />
               </a>
-              <a
-                href="mailto:rahulshaw903866@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
-                title="Email Direct"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
+              <div className="relative">
+                <button
+                  onClick={(e) => handleCopyEmail(e, "footer-icon")}
+                  className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
+                  title="Copy Email Address"
+                >
+                  <AnimatePresence mode="wait">
+                    {copiedId === "footer-icon" ? (
+                      <m.div
+                        key="check"
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.5, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Check className="w-5 h-5 text-blue-400" />
+                      </m.div>
+                    ) : (
+                      <m.div
+                        key="mail"
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.5, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Mail className="w-5 h-5" />
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+                </button>
+                <AnimatePresence>
+                  {copiedId === "footer-icon" && (
+                    <m.div
+                      initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.9 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 text-blue-400 text-[10px] font-bold rounded-lg shadow-[0_0_20px_rgba(59,130,246,0.1)] whitespace-nowrap z-50 flex items-center gap-1.5"
+                    >
+                      Copied!
+                    </m.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <a
                 href="https://wa.me/918240522820"
                 target="_blank"
@@ -191,14 +234,27 @@ export default function Footer() {
           <div className="space-y-6">
             <m.h4 variants={textRevealVariants} className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 font-heading">Collaborate</m.h4>
             <m.div variants={textRevealVariants} className="space-y-4">
-              <a
-                href="mailto:rahulshaw903866@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base block"
-              >
-                rahulshaw903866@gmail.com
-              </a>
+              <div className="relative inline-block group/email">
+                <button
+                  onClick={(e) => handleCopyEmail(e, "footer-text")}
+                  className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base block text-left"
+                >
+                  rahulshaw903866@gmail.com
+                </button>
+                <AnimatePresence>
+                  {copiedId === "footer-text" && (
+                    <m.div
+                      initial={{ opacity: 0, x: 10, scale: 0.9 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: 10, scale: 0.9 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute left-full top-0 ml-4 px-3 py-1.5 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 text-blue-400 text-[10px] font-bold rounded-lg shadow-[0_0_20px_rgba(59,130,246,0.1)] whitespace-nowrap z-50 flex items-center gap-1.5"
+                    >
+                      Copied!
+                    </m.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <p className="text-[#9ca3af] flex items-center gap-2 text-sm">
                 <MapPin className="w-4 h-4 text-blue-500" />
                 Kolkata, India
