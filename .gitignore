@@ -7,6 +7,32 @@ out/
 
 # Environment variables
 .env
+
+
+# Build folders
+dist/
+build/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+
+# Coverage
+coverage/
+
+# Gemini
+prompt.md
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Environment variables
+.env
 .env.local
 .env.development.local
 .env.production.local
@@ -26,4 +52,5 @@ coverage/
 
 # Gemini
 prompt.md
+.geminiignore
 
