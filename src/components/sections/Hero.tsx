@@ -3,8 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { SiGithub, SiGmail } from "@icons-pack/react-simple-icons";
-import { ArrowRight, Download } from "lucide-react";
+import { SiGithub } from "@icons-pack/react-simple-icons";
+import { ArrowRight, Download, Mail } from "lucide-react";
 
 const Typewriter = dynamic(() => import("typewriter-effect"), { ssr: false });
 
@@ -209,10 +209,12 @@ export default function Hero() {
                   </a>
                   <a
                     href="mailto:rahulshaw903866@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group p-2 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
                     aria-label="Email Address Contacts"
                   >
-                    <SiGmail className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
+                    <Mail className="w-4 h-4 text-[#9ca3af] group-hover:text-blue-400 group-hover:scale-110 transition-all" />
                   </a>
                 </div>
                 

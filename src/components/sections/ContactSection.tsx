@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { SiGithub, SiGmail, SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { SiGithub, SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Mail, MapPin, Send, CheckCircle2, Globe } from "lucide-react";
 import { m, Variants } from "motion/react";
 
@@ -141,6 +141,8 @@ export default function ContactSection() {
           >
             <a
               href="mailto:rahulshaw903866@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 group py-1.5 px-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors"
             >
               <div className="w-9 h-9 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform">
@@ -195,10 +197,12 @@ export default function ContactSection() {
                 </a>
                 <a
                   href="mailto:rahulshaw903866@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[#9ca3af] hover:text-blue-400 transition-colors"
                   title="Email Direct"
                 >
-                  <SiGmail className="w-5 h-5" />
+                  <Mail className="w-5 h-5" />
                 </a>
                 <a
                   href="https://wa.me/918240522820"

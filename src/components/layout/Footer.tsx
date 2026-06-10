@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { SiGithub, SiGmail, SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { Terminal, MapPin } from "lucide-react";
+import { SiGithub, SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Terminal, MapPin, Mail } from "lucide-react";
 import { m, Variants } from "motion/react";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -80,10 +80,12 @@ export default function Footer() {
               </a>
               <a
                 href="mailto:rahulshaw903866@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                 title="Email Direct"
               >
-                <SiGmail className="w-5 h-5" />
+                <Mail className="w-5 h-5" />
               </a>
               <a
                 href="https://wa.me/918240522820"
@@ -191,6 +193,8 @@ export default function Footer() {
             <m.div variants={textRevealVariants} className="space-y-4">
               <a
                 href="mailto:rahulshaw903866@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base block"
               >
                 rahulshaw903866@gmail.com
