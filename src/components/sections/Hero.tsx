@@ -35,11 +35,18 @@ export default function Hero() {
   const [isMounted, setIsMounted] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
 
-  const handleCopyEmail = (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigator.clipboard.writeText("rahulshaw903866@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleEmailAction = (e: React.MouseEvent) => {
+    // Detect mobile using userAgent or screen width
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+    
+    if (isMobile) {
+      window.location.href = "mailto:rahulshaw903866@gmail.com";
+    } else {
+      e.preventDefault();
+      navigator.clipboard.writeText("rahulshaw903866@gmail.com");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   React.useEffect(() => {
@@ -217,7 +224,7 @@ export default function Hero() {
                   </a>
                   <div className="relative">
                     <button
-                      onClick={handleCopyEmail}
+                      onClick={handleEmailAction}
                       className="group p-2 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all"
                       aria-label="Copy Email Address"
                     >

@@ -20,11 +20,20 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [copiedId, setCopiedId] = React.useState<string | null>(null);
 
-  const handleCopyEmail = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    navigator.clipboard.writeText("rahulshaw903866@gmail.com");
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const handleEmailAction = (e: React.MouseEvent, id: string) => {
+    // Detect mobile using userAgent or screen width
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+    
+    if (isMobile) {
+      // Standard mailto for mobile - browsers handle this without blank tabs usually
+      window.location.href = "mailto:rahulshaw903866@gmail.com";
+    } else {
+      // Copy to clipboard for desktop
+      e.preventDefault();
+      navigator.clipboard.writeText("rahulshaw903866@gmail.com");
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
   };
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -88,7 +97,7 @@ export default function Footer() {
               </a>
               <div className="relative">
                 <button
-                  onClick={(e) => handleCopyEmail(e, "footer-icon")}
+                  onClick={(e) => handleEmailAction(e, "footer-icon")}
                   className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/50 hover:text-blue-400 transition-all text-[#9ca3af]"
                   title="Copy Email Address"
                 >
@@ -236,7 +245,7 @@ export default function Footer() {
             <m.div variants={textRevealVariants} className="space-y-4">
               <div className="relative inline-block group/email">
                 <button
-                  onClick={(e) => handleCopyEmail(e, "footer-text")}
+                  onClick={(e) => handleEmailAction(e, "footer-text")}
                   className="text-[#9ca3af] hover:text-blue-400 transition-colors text-base block text-left"
                 >
                   rahulshaw903866@gmail.com

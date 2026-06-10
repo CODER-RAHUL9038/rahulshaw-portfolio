@@ -26,11 +26,18 @@ export default function ContactSection() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  const handleCopyEmail = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    navigator.clipboard.writeText("rahulshaw903866@gmail.com");
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const handleEmailAction = (e: React.MouseEvent, id: string) => {
+    // Detect mobile using userAgent or screen width
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+    
+    if (isMobile) {
+      window.location.href = "mailto:rahulshaw903866@gmail.com";
+    } else {
+      e.preventDefault();
+      navigator.clipboard.writeText("rahulshaw903866@gmail.com");
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
   };
 
   const headingVariants: Variants = {
@@ -148,7 +155,7 @@ export default function ContactSection() {
             className="space-y-2 pt-4 border-t border-white/5"
           >
             <button
-              onClick={(e) => handleCopyEmail(e, "contact-card")}
+              onClick={(e) => handleEmailAction(e, "contact-card")}
               className="w-full flex items-center gap-3 group py-1.5 px-3 border border-brand-border bg-[#0f1012]/40 rounded-2xl hover:border-blue-500/30 hover:bg-[#0f1012] transition-colors relative"
             >
               <div className="w-9 h-9 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform">
@@ -238,7 +245,7 @@ export default function ContactSection() {
                 </a>
                 <div className="relative">
                   <button
-                    onClick={(e) => handleCopyEmail(e, "contact-icon")}
+                    onClick={(e) => handleEmailAction(e, "contact-icon")}
                     className="text-[#9ca3af] hover:text-blue-400 transition-colors"
                     title="Copy Email Address"
                   >
