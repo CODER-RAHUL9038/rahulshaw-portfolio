@@ -23,8 +23,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.05); }
 }
 
 @keyframes dot-bounce {

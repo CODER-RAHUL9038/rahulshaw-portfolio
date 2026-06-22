@@ -25,6 +25,14 @@ const nextConfig = {
       },
     ],
   },
+
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "motion",
+      "@icons-pack/react-simple-icons",
+    ],
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);

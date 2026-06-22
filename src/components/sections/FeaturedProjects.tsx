@@ -155,6 +155,7 @@ function ProjectFlipCard({
               width={1600}
               height={1000}
               loading="lazy"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 select-none"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent"></div>

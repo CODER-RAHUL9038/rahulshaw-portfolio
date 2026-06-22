@@ -1,10 +1,13 @@
 import dynamic from "next/dynamic";
 import Hero from "../components/sections/Hero";
+import LazySection from "../components/shared/LazySection";
 
 // Dynamic imports for below-the-fold components to optimize Performance/TBT
 const CoreStack = dynamic(() => import("../components/sections/CoreStack"));
 const FeaturedProjects = dynamic(() => import("../components/sections/FeaturedProjects"));
 const ProfessionalEvolution = dynamic(() => import("../components/sections/ProfessionalEvolution"));
+
+// Non-SEO-critical interactive components: load lazily
 const RecruiterAssistant = dynamic(() => import("../components/sections/RecruiterAssistant"));
 const ContactSection = dynamic(() => import("../components/sections/ContactSection"));
 
@@ -24,10 +27,14 @@ export default function Home() {
       <ProfessionalEvolution />
 
       {/* Gemini assistant chat module */}
-      <RecruiterAssistant />
+      <LazySection height="500px">
+        <RecruiterAssistant />
+      </LazySection>
 
       {/* Contact inquiry card list */}
-      <ContactSection />
+      <LazySection height="400px">
+        <ContactSection />
+      </LazySection>
     </>
   );
 }
