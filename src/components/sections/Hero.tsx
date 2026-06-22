@@ -22,7 +22,7 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 );
 
 const ROLES = [
-  "Backend-Heavy MERN Developer",
+  "Backend-Focused MERN Developer",
   "Full-Stack Engineer",
   "AI-Augmented Developer",
   "Production-Focused Developer",
@@ -135,7 +135,7 @@ export default function Hero() {
                 className="text-lg md:text-xl text-[#9ca3af] font-sans leading-relaxed max-w-xl"
               >
                 Hi, I’m <span className="text-white font-medium">Rahul Shaw</span>
-                , a backend-heavy MERN developer focused on
+                , a backend-focused MERN developer focused on
                 <span className="text-white font-medium"> scalable systems</span>,
                 secure APIs, and modern AI-assisted workflows.
               </m.p>
@@ -312,10 +312,10 @@ export default function Hero() {
                     width={500}
                     height={575}
                     priority
-                    unoptimized
-                    quality={100}
+                    quality={80}
                     className="w-full h-full object-cover scale-100 transition-transform duration-700 select-none pointer-events-none"
                     src="/rahul.png"
+                    sizes="(max-width: 768px) 100vw, 500px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
