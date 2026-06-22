@@ -106,7 +106,7 @@ export default function Navbar() {
             : "bg-transparent py-6"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-[1440px] mx-auto px-6 flex justify-between items-center">
           {/* Brand/Logo */}
           <m.a
             href="#"

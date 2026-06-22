@@ -384,7 +384,7 @@ export default function FeaturedProjects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="pt-16 pb-28 px-6 max-w-7xl mx-auto relative"
+      className="pt-16 pb-28 px-6 max-w-[1440px] mx-auto relative"
     >
       {/* Background neon dust glow */}
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>

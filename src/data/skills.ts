@@ -203,6 +203,18 @@ export const skills: Skill[] = [
 
   // TOOLS
   {
+    id: "docker",
+    name: "Docker",
+    category: "TOOLS",
+    icon: "Container",
+  },
+  {
+    id: "antigravity-cli",
+    name: "Antigravity CLI",
+    category: "TOOLS",
+    icon: "Terminal",
+  },
+  {
     id: "git-github",
     name: "Git & GitHub",
     category: "TOOLS",

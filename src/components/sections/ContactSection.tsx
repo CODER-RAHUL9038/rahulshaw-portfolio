@@ -112,7 +112,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="pt-10 pb-20 px-6 max-w-7xl mx-auto relative"
+      className="pt-10 pb-20 px-6 max-w-[1440px] mx-auto relative"
     >
       <div className="absolute top-1/2 right-0 w-[350px] h-[350px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 

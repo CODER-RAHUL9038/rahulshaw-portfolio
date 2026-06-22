@@ -95,7 +95,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-28 md:pt-32 pb-12 px-6 max-w-7xl mx-auto relative cinematic-bg">
+    <section className="min-h-screen flex flex-col justify-center pt-28 md:pt-32 pb-12 px-6 max-w-[1440px] mx-auto relative cinematic-bg">
       <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-16 items-center z-10 w-full">
         {/* Hero Left Content */}
         <div className="space-y-6 md:space-y-10 relative z-20 w-full min-w-0 order-2 lg:order-1">

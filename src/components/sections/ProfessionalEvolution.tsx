@@ -156,7 +156,7 @@ export default function ProfessionalEvolution() {
   };
 
   return (
-    <section id="experience" className="pt-16 pb-24 px-6 max-w-7xl mx-auto relative overflow-hidden">
+    <section id="experience" className="pt-16 pb-24 px-6 max-w-[1440px] mx-auto relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-500/[0.015] blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="space-y-20">
